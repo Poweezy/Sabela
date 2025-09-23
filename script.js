@@ -10,6 +10,7 @@ document.addEventListener('DOMContentLoaded', function() {
     initWeatherDashboard();
     initContactForm();
     initHeaderScroll();
+    initScrollToTopButton();
 });
 
 // Mobile Menu Functionality
@@ -373,3 +374,24 @@ function isValidEmail(email) {
 
 // Add CSS classes for weather conditions, now moved to style.css for better maintainability.
 // The animation for .weather-card is also defined in style.css.
+
+function initScrollToTopButton() {
+    const scrollToTopBtn = document.getElementById('scrollToTopBtn');
+
+    if (scrollToTopBtn) {
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) { // Show button after scrolling 300px
+                scrollToTopBtn.classList.add('visible');
+            } else {
+                scrollToTopBtn.classList.remove('visible');
+            }
+        });
+
+        scrollToTopBtn.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+    }
+}
