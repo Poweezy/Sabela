@@ -555,6 +555,75 @@ body {
     box-shadow: var(--shadow-xl);
 }
 
+/* Weather Card Skeleton */
+.weather-card.skeleton {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    pointer-events: none;
+}
+
+.skeleton-box {
+    background-color: #e5e7eb;
+    border-radius: 0.5rem;
+    animation: pulse 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+.skeleton-box.title {
+    width: 70%;
+    height: 1.5rem;
+}
+
+.skeleton-box.icon {
+    width: 4rem;
+    height: 4rem;
+    border-radius: 50%;
+}
+
+.skeleton-box.temp {
+    width: 50%;
+    height: 2.5rem;
+}
+
+.skeleton-box.condition {
+    width: 60%;
+    height: 1.25rem;
+}
+
+.skeleton-box.detail {
+    width: 80%;
+    height: 3rem;
+}
+
+.weather-card.error-card {
+    background: #fef2f2;
+    border-color: #ef4444;
+    text-align: center;
+}
+
+.weather-error {
+    color: #b91c1c;
+}
+
+.weather-error i {
+    width: 2rem;
+    height: 2rem;
+    margin-bottom: 1rem;
+}
+
+.temp-hot { color: #ef4444; }
+.temp-warm { color: #f97316; }
+.temp-mild { color: #22c55e; }
+.temp-cool { color: #3b82f6; }
+
+.condition-sunny { color: #f59e0b; }
+.condition-partly-cloudy { color: #6b7280; }
+.condition-rainy { color: #3b82f6; }
+.condition-cloudy { color: #6b7280; }
+.condition-default { color: #6b7280; }
+
 .weather-location {
     display: flex;
     align-items: center;
