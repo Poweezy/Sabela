@@ -68,15 +68,10 @@ body {
     color: var(--primary-color);
 }
 
-.logo-icon {
+.logo-image {
     width: 2.5rem;
     height: 2.5rem;
-    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
     border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: white;
 }
 
 .nav-links {
