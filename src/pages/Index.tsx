@@ -1,4 +1,4 @@
-import Header from '@/components/Header';
+import PageHeader from '@/components/PageHeader';
 import HeroSection from '@/components/HeroSection';
 import WhatWeDo from '@/components/WhatWeDo';
 import Impact from '@/components/Impact';
@@ -27,7 +27,7 @@ export default function Index() {
 
   return (
     <div className="min-h-screen">
-      <Header />
+      <PageHeader />
       <HeroSection />
       
       {/* Who We Are Section */}
