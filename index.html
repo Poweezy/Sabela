@@ -59,7 +59,7 @@
     <section id="home" class="hero">
         <div class="hero-video">
             <video autoplay muted loop playsinline poster="https://images.unsplash.com/photo-1569163139394-de44cb5894c6?q=80&w=2070&auto=format&fit=crop">
-                <source src="C:\Users\nsiba\Desktop\Sabela\img\website banner.mp4" type="video/mp4">
+                <source src="img/website banner.mp4" type="video/mp4">
             </video>
             <div class="hero-overlay"></div>
         </div>
@@ -73,10 +73,14 @@
                 Building a just, resilient, and sustainable Eswatini where people, nature, 
                 and economy thrive under climate change
             </p>
-            <form class="hero-form">
-                <input type="email" placeholder="Email address" required>
-                <button type="submit" class="btn btn-primary">Get started</button>
-            </form>
+            <div class="hero-buttons">
+                <a href="#what-we-do" class="btn btn-primary btn-lg">
+                    Discover Our Mission <i data-lucide="arrow-right"></i>
+                </a>
+                <a href="#get-involved" class="btn btn-outline-white btn-lg">
+                    Take Action Now <i data-lucide="play"></i>
+                </a>
+            </div>
             
             <div class="hero-stats">
                 <div class="stat">
@@ -238,7 +242,12 @@
     <!-- Weather Dashboard -->
     <section id="weather" class="section weather">
         <div class="container">
-            <h2 class="section-title">🌤️ Eswatini Weather Focus</h2>
+            <div class="making-a-difference">
+                <span class="dot"></span>
+                <span>Making a difference every day</span>
+                <span class="dot"></span>
+            </div>
+            <h2 class="section-title">Eswatini Weather Focus</h2>
             <p class="section-intro">
                 Real-time monitoring of microclimates across Eswatini's regions to support 
                 community adaptation strategies and climate resilience planning.
@@ -303,16 +312,34 @@
                 There are many ways you can help us build a climate-resilient Eswatini. 
                 Join us in the fight for a sustainable future!
             </p>
-            <div class="get-involved-grid">
-                <div class="get-involved-image">
-                    <img src="https://images.unsplash.com/photo-1593113646773-463a1a8c2d6c?q=80&w=2070&auto=format&fit=crop" alt="People working together" loading="lazy">
+            <div class="involvement-grid">
+                <div class="involvement-card">
+                    <div class="involvement-icon">
+                        <i data-lucide="heart"></i>
+                    </div>
+                    <h3>Join Our Campaigns</h3>
+                    <p>Participate in awareness campaigns and advocate for policy change.</p>
                 </div>
-                <div class="get-involved-content">
-                    <h3>Join Our Community</h3>
-                    <p>Be part of the solution. Whether you're an individual, a community group, or a corporation, there are many ways to get involved and support our work.</p>
-                    <button class="btn btn-primary" onclick="scrollToSection('#contact')">
-                        Contact Us
-                    </button>
+                <div class="involvement-card">
+                    <div class="involvement-icon">
+                        <i data-lucide="users"></i>
+                    </div>
+                    <h3>Volunteer With Us</h3>
+                    <p>Lend your skills and passion to our community projects and events.</p>
+                </div>
+                <div class="involvement-card">
+                    <div class="involvement-icon">
+                        <i data-lucide="shield"></i>
+                    </div>
+                    <h3>Partner With Us</h3>
+                    <p>Organizations can support our work through partnerships and sponsorships.</p>
+                </div>
+                <div class="involvement-card">
+                    <div class="involvement-icon">
+                        <i data-lucide="graduation-cap"></i>
+                    </div>
+                    <h3>Youth Leadership</h3>
+                    <p>Empower the next generation of climate leaders through our youth programs.</p>
                 </div>
             </div>
         </div>
@@ -391,7 +418,7 @@
                     <div class="donation-cta">
                         <h4>Make a Difference Today</h4>
                         <p>Every donation helps us fight climate change and build resilient communities.</p>
-                        <button class="btn btn-primary">Donate Now</button>
+                        <button class="btn btn-light">Donate Now</button>
                     </div>
                 </div>
                 

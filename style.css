@@ -6,8 +6,8 @@
 }
 
 :root {
-    --primary-color: #16a34a;
-    --primary-dark: #15803d;
+    --primary-color: #22c55e; /* Brighter green */
+    --primary-dark: #16a34a; /* Original primary was good for dark */
     --secondary-color: #10b981;
     --accent-color: #06b6d4;
     --text-primary: #1f2937;
@@ -15,8 +15,26 @@
     --text-light: #9ca3af;
     --bg-primary: #ffffff;
     --bg-secondary: #f9fafb;
-    --bg-accent: #f0fdf4;
+    --bg-accent: #f0fdf4; /* Light green */
     --border-color: #e5e7eb;
+
+    /* New colors from screenshots */
+    --icon-bg-green: #dcfce7;
+    --icon-text-green: #22c55e;
+    --icon-bg-blue: #dbeafe;
+    --icon-text-blue: #3b82f6;
+    --icon-bg-orange: #ffedd5;
+    --icon-text-orange: #f97316;
+    --icon-bg-purple: #ede9fe;
+    --icon-text-purple: #8b5cf6;
+    --icon-bg-pink: #fce7f3;
+    --icon-text-pink: #ec4899;
+    --icon-bg-red: #fee2e2;
+    --icon-text-red: #ef4444;
+
+    --gradient-blue-purple: linear-gradient(135deg, #3b82f6, #8b5cf6);
+    --gradient-pink-orange: linear-gradient(135deg, #fef2f2, #fef7ed);
+
     --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
     --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1);
     --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1);
@@ -43,13 +61,15 @@ body {
     left: 0;
     right: 0;
     z-index: 1000;
-    background: white;
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(10px);
     border-bottom: 1px solid var(--border-color);
     transition: all 0.3s ease;
 }
 
 .header.scrolled {
     box-shadow: var(--shadow-md);
+    background: rgba(255, 255, 255, 0.95);
 }
 
 .nav-container {
@@ -169,6 +189,16 @@ body {
     width: 100%;
 }
 
+.btn-light {
+    background: white;
+    color: var(--primary-color);
+}
+
+.btn-light:hover {
+    background: var(--bg-secondary);
+    transform: translateY(-2px);
+}
+
 /* Hero Section */
 .hero {
     position: relative;
@@ -202,7 +232,7 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.7);
+    background: rgba(0, 0, 0, 0.6);
     z-index: -1;
 }
 
@@ -214,70 +244,55 @@ body {
 
 .hero-title {
     font-family: 'Playfair Display', serif;
-    font-size: clamp(2.5rem, 8vw, 6rem);
+    font-size: clamp(3rem, 8vw, 7rem);
     font-weight: 700;
     line-height: 1.1;
     margin-bottom: 1.5rem;
 }
 
-.hero-title-line {
-    display: block;
-    margin-bottom: 1rem;
-}
-
 .hero-title-highlight {
     color: var(--primary-color);
-    animation: pulse-highlight 3s infinite ease-in-out;
+    animation: none;
 }
 
 .hero-subtitle {
     font-size: clamp(1.125rem, 3vw, 1.5rem);
-    font-weight: 300;
-    margin-bottom: 2rem;
+    font-weight: 400;
+    margin-bottom: 2.5rem;
     opacity: 0.9;
     max-width: 50rem;
     margin-left: auto;
     margin-right: auto;
 }
 
-.hero-form {
-    background: rgba(255, 255, 255, 0.1);
-    padding: 0.5rem;
-    border-radius: 0.75rem;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    -webkit-backdrop-filter: blur(10px);
-    backdrop-filter: blur(10px);
+.hero-buttons {
     display: flex;
+    flex-wrap: wrap;
     justify-content: center;
-    gap: 0.5rem;
+    gap: 1rem;
     margin-top: 2rem;
-    max-width: 500px;
-    margin-left: auto;
-    margin-right: auto;
 }
 
-.hero-form input {
+.btn-outline {
     background: transparent;
-    border: none;
+    color: var(--primary-color);
+    border: 2px solid var(--primary-color);
+}
+
+.btn-outline:hover {
+    background: var(--primary-color);
     color: white;
-    padding: 1rem;
-    border-radius: 0.5rem;
-    font-size: 1rem;
-    width: 100%;
 }
 
-.hero-form input::placeholder {
-    color: rgba(255, 255, 255, 0.7);
+.btn-outline-white {
+    background: transparent;
+    color: white;
+    border: 2px solid white;
 }
 
-.hero-form input:focus {
-    outline: none;
-    background: rgba(255, 255, 255, 0.1);
-}
-
-.hero-form .btn {
-    padding: 1rem 2rem;
-    font-size: 1rem;
+.btn-outline-white:hover {
+    background: white;
+    color: var(--text-primary);
 }
 
 .hero-stats {
@@ -372,8 +387,7 @@ body {
 
 /* Who We Are Section */
 .who-we-are {
-    background-color: var(--bg-primary);
-    background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23f0fdf4' fill-opacity='0.4'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    background-color: var(--bg-secondary);
 }
 
 .values-grid {
@@ -385,20 +399,43 @@ body {
 
 .value-card {
     text-align: center;
-    padding: 2rem;
+    padding: 2.5rem 2rem;
+    background: var(--bg-primary);
+    border-radius: 1rem;
+    box-shadow: var(--shadow-md);
+    transition: all 0.3s ease;
+    border: 1px solid var(--border-color);
+}
+
+.value-card:hover {
+    transform: translateY(-0.5rem);
+    box-shadow: var(--shadow-xl);
 }
 
 .value-icon {
     width: 4rem;
     height: 4rem;
-    background: var(--bg-accent);
-    border-radius: 50%;
+    border-radius: 1rem;
     display: flex;
     align-items: center;
     justify-content: center;
     margin: 0 auto 1.5rem;
-    color: var(--primary-color);
-    font-size: 1.5rem;
+    font-size: 2rem;
+}
+
+.values-grid .value-card:nth-child(1) .value-icon {
+    background: var(--icon-bg-green);
+    color: var(--icon-text-green);
+}
+
+.values-grid .value-card:nth-child(2) .value-icon {
+    background: var(--icon-bg-blue);
+    color: var(--icon-text-blue);
+}
+
+.values-grid .value-card:nth-child(3) .value-icon {
+    background: var(--icon-bg-purple);
+    color: var(--icon-text-purple);
 }
 
 .value-card h3 {
@@ -424,33 +461,56 @@ body {
 }
 
 .program-card {
-    background: var(--bg-primary);
-    padding: 1.5rem;
-    border-radius: 0.5rem;
+    background: var(--bg-secondary);
+    padding: 2rem;
+    border-radius: 1rem;
     box-shadow: var(--shadow-sm);
     text-align: center;
     transition: all 0.3s ease;
-    border: 1px solid var(--border-color);
+    border: 1px solid transparent;
 }
 
 .program-card:hover {
     transform: translateY(-0.5rem);
     box-shadow: var(--shadow-xl);
-    background: linear-gradient(135deg, var(--bg-primary), var(--bg-accent));
+    border-color: var(--primary-color);
 }
 
 .program-icon {
-    width: 3rem;
-    height: 3rem;
-    background: var(--bg-accent);
-    border-radius: 0.5rem;
+    width: 4rem;
+    height: 4rem;
+    border-radius: 1rem;
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: 0 auto 1rem;
-    color: var(--primary-color);
-    font-size: 1.25rem;
+    margin: 0 auto 1.5rem;
+    font-size: 2rem;
     transition: transform 0.3s ease;
+}
+
+.programs-grid .program-card:nth-child(1) .program-icon {
+    background: var(--icon-bg-green);
+    color: var(--icon-text-green);
+}
+.programs-grid .program-card:nth-child(2) .program-icon {
+    background: var(--icon-bg-blue);
+    color: var(--icon-text-blue);
+}
+.programs-grid .program-card:nth-child(3) .program-icon {
+    background: var(--icon-bg-orange);
+    color: var(--icon-text-orange);
+}
+.programs-grid .program-card:nth-child(4) .program-icon {
+    background: var(--icon-bg-purple);
+    color: var(--icon-text-purple);
+}
+.programs-grid .program-card:nth-child(5) .program-icon {
+    background: var(--icon-bg-pink);
+    color: var(--icon-text-pink);
+}
+.programs-grid .program-card:nth-child(6) .program-icon {
+    background: var(--icon-bg-green);
+    color: var(--icon-text-green);
 }
 
 .program-card:hover .program-icon {
@@ -471,12 +531,13 @@ body {
 
 /* Impact Section */
 .impact {
-    background: #111827;
-    color: white;
+    background: var(--bg-accent);
 }
+
 .impact .section-title, .impact .section-intro {
-    color: white;
+    color: var(--text-primary);
 }
+
 .impact-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -485,39 +546,35 @@ body {
 }
 
 .impact-card {
-    background: #1f2937;
+    background: var(--bg-primary);
     padding: 2rem;
     border-radius: 1rem;
     box-shadow: var(--shadow-md);
     transition: all 0.3s ease;
-    color: white;
 }
 
 .impact-card:hover {
-    transform: scale(1.05);
+    transform: translateY(-0.5rem);
     box-shadow: var(--shadow-xl);
 }
 
 .impact-icon {
     width: 4rem;
     height: 4rem;
-    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    background: var(--icon-bg-green);
+    color: var(--icon-text-green);
     border-radius: 1rem;
     display: flex;
     align-items: center;
     justify-content: center;
     margin: 0 auto 1.5rem;
-    color: white;
-    font-size: 1.5rem;
+    font-size: 2rem;
 }
 
 .impact-number {
     font-size: 3rem;
     font-weight: 700;
-    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    color: var(--primary-color);
     margin-bottom: 1rem;
 }
 
@@ -525,17 +582,39 @@ body {
     font-size: 1.25rem;
     font-weight: 600;
     margin-bottom: 0.5rem;
-    color: white;
+    color: var(--text-primary);
 }
 
 .impact-card p {
-    color: rgba(255, 255, 255, 0.8);
+    color: var(--text-secondary);
     font-size: 0.875rem;
 }
 
 /* Weather Section */
 .weather {
-    background: linear-gradient(135deg, #dbeafe, #e0e7ff);
+    background: var(--bg-secondary);
+}
+
+.making-a-difference {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    background: var(--bg-primary);
+    padding: 0.75rem 1.5rem;
+    border-radius: 2rem;
+    box-shadow: var(--shadow-md);
+    max-width: max-content;
+    margin: 0 auto 3rem;
+    font-weight: 500;
+    color: var(--text-primary);
+}
+
+.making-a-difference .dot {
+    width: 0.5rem;
+    height: 0.5rem;
+    background: var(--primary-color);
+    border-radius: 50%;
 }
 
 .weather-status {
@@ -564,19 +643,19 @@ body {
 }
 
 .weather-card {
-    background: rgba(255, 255, 255, 0.9);
-    -webkit-backdrop-filter: blur(10px);
-    padding: 1.5rem;
+    background: var(--bg-primary);
+    padding: 2rem;
     border-radius: 1rem;
     box-shadow: var(--shadow-md);
     text-align: center;
     transition: all 0.3s ease;
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    border: 1px solid var(--border-color);
 }
 
 .weather-card:hover {
-    transform: translateY(-0.25rem);
+    transform: translateY(-0.5rem);
     box-shadow: var(--shadow-xl);
+    border-color: var(--primary-color);
 }
 
 /* Weather Card Skeleton */
@@ -702,7 +781,7 @@ body {
 }
 
 .climate-note {
-    background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+    background: var(--gradient-blue-purple);
     color: white;
     padding: 3rem;
     border-radius: 1rem;
@@ -765,7 +844,7 @@ body {
 
 /* Why It Matters Section */
 .why-matters {
-    background: linear-gradient(135deg, #fef2f2, #fef7ed);
+    background: var(--gradient-pink-orange);
 }
 
 .matters-grid {
@@ -816,42 +895,26 @@ body {
 
 /* Get Involved Section */
 .get-involved {
-    background: #111827;
-    color: white;
+    background: var(--bg-accent);
 }
+
 .get-involved .section-title, .get-involved .section-intro {
-    color: white;
-}
-.involvement-card {
-    background: #1f2937;
-}
-.involvement-card h3 {
-    color: white;
-}
-.involvement-card p {
-    color: rgba(255, 255, 255, 0.8);
+    color: var(--text-primary);
 }
 
-.get-involved-grid {
+.involvement-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 3rem;
-    align-items: center;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
 }
 
-.get-involved-image img {
-    width: 100%;
+.involvement-card {
+    background: var(--bg-primary);
+    padding: 2.5rem 2rem;
     border-radius: 1rem;
-}
-
-.get-involved-content h3 {
-    font-size: 2rem;
-    font-weight: 700;
-    margin-bottom: 1.5rem;
-}
-
-.get-involved-content p {
-    margin-bottom: 2rem;
+    text-align: center;
+    box-shadow: var(--shadow-md);
+    transition: all 0.3s ease;
 }
 
 .involvement-card:hover {
@@ -862,19 +925,32 @@ body {
 .involvement-icon {
     width: 4rem;
     height: 4rem;
-    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
     border-radius: 1rem;
     display: flex;
     align-items: center;
     justify-content: center;
     margin: 0 auto 1.5rem;
-    color: white;
-    font-size: 1.5rem;
-    transition: transform 0.3s ease;
+    font-size: 2rem;
 }
 
-.involvement-card:hover .involvement-icon {
-    transform: rotate(12deg) scale(1.1);
+.involvement-grid .involvement-card:nth-child(1) .involvement-icon {
+    background: var(--icon-bg-pink);
+    color: var(--icon-text-pink);
+}
+
+.involvement-grid .involvement-card:nth-child(2) .involvement-icon {
+    background: var(--icon-bg-blue);
+    color: var(--icon-text-blue);
+}
+
+.involvement-grid .involvement-card:nth-child(3) .involvement-icon {
+    background: var(--icon-bg-green);
+    color: var(--icon-text-green);
+}
+
+.involvement-grid .involvement-card:nth-child(4) .involvement-icon {
+    background: var(--icon-bg-purple);
+    color: var(--icon-text-purple);
 }
 
 .involvement-card h3 {
@@ -886,7 +962,6 @@ body {
 
 .involvement-card p {
     color: var(--text-secondary);
-    margin-bottom: 1.5rem;
     line-height: 1.6;
 }
 
@@ -1060,10 +1135,10 @@ body {
 
 .contact-form input,
 .contact-form textarea {
-    padding: 0.75rem;
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 1rem;
+    border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 0.5rem;
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(0, 0, 0, 0.2);
     color: white;
     font-family: inherit;
     transition: all 0.3s ease;
