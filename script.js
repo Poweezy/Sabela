@@ -144,132 +144,169 @@ function animateCounter(element) {
 function initWeatherDashboard() {
     const weatherGrid = document.getElementById('weatherGrid');
     const lastUpdatedElement = document.getElementById('lastUpdated');
-    
+
     if (!weatherGrid || !lastUpdatedElement) return;
-    
-    // Mock weather data for Eswatini regions
-    const weatherData = [
-        {
-            location: 'Hhohho Region',
-            temperature: 22,
-            condition: 'Partly Cloudy',
-            humidity: 65,
-            windSpeed: 12,
-            visibility: 10,
-            icon: 'cloud'
-        },
-        {
-            location: 'Lubombo Region',
-            temperature: 28,
-            condition: 'Sunny',
-            humidity: 45,
-            windSpeed: 8,
-            visibility: 15,
-            icon: 'sun'
-        },
-        {
-            location: 'Manzini Region',
-            temperature: 25,
-            condition: 'Light Rain',
-            humidity: 78,
-            windSpeed: 15,
-            visibility: 8,
-            icon: 'cloud-rain'
-        },
-        {
-            location: 'Shiselweni Region',
-            temperature: 24,
-            condition: 'Cloudy',
-            humidity: 70,
-            windSpeed: 10,
-            visibility: 12,
-            icon: 'cloud'
-        }
+
+    const regions = [
+        { name: 'Hhohho Region', lat: -26.3167, lon: 31.1333 },
+        { name: 'Lubombo Region', lat: -26.4500, lon: 31.9500 },
+        { name: 'Manzini Region', lat: -26.4833, lon: 31.3667 },
+        { name: 'Shiselweni Region', lat: -27.1167, lon: 31.2000 }
     ];
-    
+
+    async function fetchWeatherData(lat, lon) {
+        const apiUrl = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=temperature_2m,relative_humidity_2m,weather_code,visibility,wind_speed_10m`;
+        try {
+            const response = await fetch(apiUrl);
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            const data = await response.json();
+            return data;
+        } catch (error) {
+            console.error('Error fetching weather data:', error);
+            return null;
+        }
+    }
+
+    async function updateWeatherDashboard() {
+        updateTimestamp();
+
+        const weatherPromises = regions.map(region => fetchWeatherData(region.lat, region.lon));
+        const weatherDataResults = await Promise.all(weatherPromises);
+
+        createWeatherCards(weatherDataResults);
+    }
+
+    function getWeatherCondition(code) {
+        const wmo = {
+            0: { condition: 'Clear sky', icon: 'sun' },
+            1: { condition: 'Mainly clear', icon: 'sun' },
+            2: { condition: 'Partly cloudy', icon: 'cloud' },
+            3: { condition: 'Overcast', icon: 'cloud' },
+            45: { condition: 'Fog', icon: 'cloud' },
+            48: { condition: 'Depositing rime fog', icon: 'cloud' },
+            51: { condition: 'Light drizzle', icon: 'cloud-drizzle' },
+            53: { condition: 'Moderate drizzle', icon: 'cloud-drizzle' },
+            55: { condition: 'Dense drizzle', icon: 'cloud-drizzle' },
+            56: { condition: 'Light freezing drizzle', icon: 'cloud-drizzle' },
+            57: { condition: 'Dense freezing drizzle', icon: 'cloud-drizzle' },
+            61: { condition: 'Slight rain', icon: 'cloud-rain' },
+            63: { condition: 'Moderate rain', icon: 'cloud-rain' },
+            65: { condition: 'Heavy rain', icon: 'cloud-rain' },
+            66: { condition: 'Light freezing rain', icon: 'cloud-rain' },
+            67: { condition: 'Heavy freezing rain', icon: 'cloud-rain' },
+            71: { condition: 'Slight snow fall', icon: 'cloud-snow' },
+            73: { condition: 'Moderate snow fall', icon: 'cloud-snow' },
+            75: { condition: 'Heavy snow fall', icon: 'cloud-snow' },
+            77: { condition: 'Snow grains', icon: 'cloud-snow' },
+            80: { condition: 'Slight rain showers', icon: 'cloud-rain' },
+            81: { condition: 'Moderate rain showers', icon: 'cloud-rain' },
+            82: { condition: 'Violent rain showers', icon: 'cloud-rain' },
+            85: { condition: 'Slight snow showers', icon: 'cloud-snow' },
+            86: { condition: 'Heavy snow showers', icon: 'cloud-snow' },
+            95: { condition: 'Thunderstorm', icon: 'cloud-lightning' },
+            96: { condition: 'Thunderstorm with hail', icon: 'cloud-lightning' },
+            99: { condition: 'Thunderstorm with heavy hail', icon: 'cloud-lightning' },
+        };
+        return wmo[code] || { condition: 'Cloudy', icon: 'cloud' };
+    }
+
     // Update timestamp
     function updateTimestamp() {
         const now = new Date();
         lastUpdatedElement.textContent = now.toLocaleTimeString();
     }
-    
+
     // Create weather cards
-    function createWeatherCards() {
+    function createWeatherCards(weatherData) {
         weatherGrid.innerHTML = '';
-        
-        weatherData.forEach((region, index) => {
-            // Add some randomization to make it feel more real-time
-            const temp = Math.round(region.temperature + (Math.random() - 0.5) * 2);
-            const humidity = Math.max(30, Math.min(90, Math.round(region.humidity + (Math.random() - 0.5) * 10)));
-            const windSpeed = Math.max(0, Math.round(region.windSpeed + (Math.random() - 0.5) * 5));
-            
+
+        weatherData.forEach((data, index) => {
             const card = document.createElement('div');
             card.className = 'weather-card';
             card.style.animationDelay = `${index * 0.1}s`;
-            
-            card.innerHTML = `
-                <div class="weather-location">
-                    <i data-lucide="map-pin"></i>
-                    ${region.location}
-                </div>
-                <div class="weather-icon">
-                    <i data-lucide="${region.icon}"></i>
-                </div>
-                <div class="weather-temp ${getTemperatureClass(temp)}">${temp}°C</div>
-                <div class="weather-condition ${getConditionClass(region.condition)}">${region.condition}</div>
-                <div class="weather-details">
-                    <div class="weather-detail">
-                        <i data-lucide="droplets"></i>
-                        <div class="weather-detail-value">${humidity}%</div>
-                        <div class="weather-detail-label">Humidity</div>
+
+            if (data && data.current) {
+                const { temperature_2m: temp, relative_humidity_2m: humidity, weather_code, visibility, wind_speed_10m: windSpeed } = data.current;
+                const { condition, icon } = getWeatherCondition(weather_code);
+                const visibilityKm = (visibility / 1000).toFixed(1);
+
+                card.innerHTML = `
+                    <div class="weather-location">
+                        <i data-lucide="map-pin"></i>
+                        ${regions[index].name}
                     </div>
-                    <div class="weather-detail">
-                        <i data-lucide="wind"></i>
-                        <div class="weather-detail-value">${windSpeed} km/h</div>
-                        <div class="weather-detail-label">Wind</div>
+                    <div class="weather-icon">
+                        <i data-lucide="${icon}"></i>
                     </div>
-                    <div class="weather-detail">
-                        <i data-lucide="eye"></i>
-                        <div class="weather-detail-value">${region.visibility} km</div>
-                        <div class="weather-detail-label">Visibility</div>
+                    <div class="weather-temp ${getTemperatureClass(temp)}">${Math.round(temp)}°C</div>
+                    <div class="weather-condition ${getConditionClass(condition)}">${condition}</div>
+                    <div class="weather-details">
+                        <div class="weather-detail">
+                            <i data-lucide="droplets"></i>
+                            <div class="weather-detail-value">${humidity}%</div>
+                            <div class="weather-detail-label">Humidity</div>
+                        </div>
+                        <div class="weather-detail">
+                            <i data-lucide="wind"></i>
+                            <div class="weather-detail-value">${Math.round(windSpeed)} km/h</div>
+                            <div class="weather-detail-label">Wind</div>
+                        </div>
+                        <div class="weather-detail">
+                            <i data-lucide="eye"></i>
+                            <div class="weather-detail-value">${visibilityKm} km</div>
+                            <div class="weather-detail-label">Visibility</div>
+                        </div>
                     </div>
-                </div>
-            `;
-            
+                `;
+            } else {
+                card.innerHTML = `
+                    <div class="weather-location">
+                        <i data-lucide="map-pin"></i>
+                        ${regions[index].name}
+                    </div>
+                    <div class="weather-error">
+                        <i data-lucide="alert-triangle"></i>
+                        <p>Could not load weather data.</p>
+                    </div>
+                `;
+            }
+
             weatherGrid.appendChild(card);
         });
-        
+
         // Recreate icons for new elements
         lucide.createIcons();
     }
-    
+
     function getTemperatureClass(temp) {
         if (temp >= 30) return 'temp-hot';
         if (temp >= 25) return 'temp-warm';
         if (temp >= 20) return 'temp-mild';
         return 'temp-cool';
     }
-    
+
     function getConditionClass(condition) {
-        switch (condition.toLowerCase()) {
-            case 'sunny': return 'condition-sunny';
-            case 'partly cloudy': return 'condition-partly-cloudy';
-            case 'light rain': return 'condition-rainy';
-            case 'cloudy': return 'condition-cloudy';
-            default: return 'condition-default';
+        const lowerCaseCondition = condition.toLowerCase();
+        if (lowerCaseCondition.includes('sun') || lowerCaseCondition.includes('clear')) {
+            return 'condition-sunny';
         }
+        if (lowerCaseCondition.includes('rain') || lowerCaseCondition.includes('drizzle')) {
+            return 'condition-rainy';
+        }
+        if (lowerCaseCondition.includes('cloud')) {
+            return 'condition-partly-cloudy';
+        }
+        return 'condition-default';
     }
-    
-    // Initialize weather dashboard
-    updateTimestamp();
-    createWeatherCards();
-    
+
+    // Initial load
+    updateWeatherDashboard();
+
     // Update every 5 minutes
-    setInterval(() => {
-        updateTimestamp();
-        createWeatherCards();
-    }, 300000);
-    
+    setInterval(updateWeatherDashboard, 300000);
+
     // Update timestamp every minute
     setInterval(updateTimestamp, 60000);
 }
