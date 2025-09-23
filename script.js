@@ -159,11 +159,29 @@ function initWeatherDashboard() {
             if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
             return await response.json();
         } catch (error) {
-            console.error('Error fetreturn null;
+            console.error('Error fetching weather data:', error);
+            return null;
         }
     }
+    function displayWeatherSkeleton() {
+        weatherGrid.innerHTML = '';
+        for (let i = 0; i < regions.length; i++) {
+            const card = document.createElement('div');
+            card.className = 'weather-card skeleton';
+            card.innerHTML = `
+                <div class="skeleton-box title"></div>
+                <div class="skeleton-box icon"></div>
+                <div class="skeleton-box temp"></div>
+                <div class="skeleton-box condition"></div>
+                <div class="skeleton-box detail"></div>
+            `;
+            weatherGrid.appendChild(card);
+        }
+    }
+
     async function updateWeatherDashboard() {
         updateTimestamp();
+        displayWeatherSkeleton();
 
         const weatherPromises = regions.map(region => fetchWeatherData(region.lat, region.lon));
         const weatherDataResults = await Promise.all(weatherPromises);
@@ -171,6 +189,7 @@ function initWeatherDashboard() {
         createWeatherCards(weatherDataResults);
     }
 
+    // Maps WMO weather codes to a condition string and a Lucide icon name.
     function getWeatherCondition(code) {
         const wmo = {
             0: { condition: 'Clear sky', icon: 'sun' },
@@ -262,8 +281,10 @@ function initWeatherDashboard() {
                     <div class="weather-error">
                         <i data-lucide="alert-triangle"></i>
                         <p>Could not load weather data.</p>
+                        <p>Please try again later.</p>
                     </div>
                 `;
+                card.classList.add('error-card');
             }
 
             weatherGrid.appendChild(card);
@@ -350,31 +371,5 @@ function isValidEmail(email) {
     return emailRegex.test(email);
 }
 
-// Add CSS classes for weather conditions
-const style = document.createElement('style');
-style.textContent = `
-    .temp-hot { color: #ef4444; }
-    .temp-warm { color: #f97316; }
-    .temp-mild { color: #22c55e; }
-    .temp-cool { color: #3b82f6; }
-    
-    .condition-sunny { color: #f59e0b; }
-    .condition-partly-cloudy { color: #6b7280; }
-    .condition-rainy { color: #3b82f6; }
-    .condition-cloudy { color: #6b7280; }
-    .condition-default { color: #6b7280; }
-    
-    .weather-card {
-        animation: fadeInUp 0.6s ease-out forwards;
-        opacity: 0;
-        transform: translateY(1rem);
-    }
-    
-    @keyframes fadeInUp {
-        to {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    }
-`;
-document.head.appendChild(style);
+// Add CSS classes for weather conditions, now moved to style.css for better maintainability.
+// The animation for .weather-card is also defined in style.css.
