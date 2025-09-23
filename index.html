@@ -1,29 +1,463 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="icon" href="https://public-frontend-cos.metadl.com/mgx/img/favicon.png" type="image/png">
-  <title>The Climate Watch - Building a Sustainable Eswatini</title>
-  <meta name="description" content="The Climate Watch is an Eswatini-based climate change NGO working to build a just, resilient, and sustainable future through community-driven climate action, advocacy, and education." />
-  <meta name="author" content="The Climate Watch NGO" />
-  <meta name="keywords" content="climate change, Eswatini, NGO, sustainability, renewable energy, climate justice, environmental protection" />
-
-  <meta property="og:title" content="The Climate Watch - Building a Sustainable Eswatini" />
-  <meta property="og:description" content="Join us in building a climate-resilient Eswatini through community-driven action, advocacy, and sustainable development." />
-  <meta property="og:type" content="website" />
-  <meta property="og:image" content="https://images.unsplash.com/photo-1754693196922-be18f7750518?fm=jpg&q=60&w=1200&ixlib=rb-4.1.0" />
-
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="The Climate Watch - Building a Sustainable Eswatini" />
-  <meta name="twitter:description" content="Community-driven climate action for a sustainable future in Eswatini" />
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Climate Watch - Building a Sustainable Eswatini</title>
+    <meta name="description" content="The Climate Watch is an Eswatini-based climate change NGO working to build a just, resilient, and sustainable future through community-driven climate action, advocacy, and education.">
+    <meta name="keywords" content="climate change, Eswatini, NGO, sustainability, renewable energy, climate justice, environmental protection">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="The Climate Watch - Building a Sustainable Eswatini">
+    <meta property="og:description" content="Join us in building a climate-resilient Eswatini through community-driven action, advocacy, and sustainable development.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://images.unsplash.com/photo-1754693196922-be18f7750518?fm=jpg&q=60&w=1200&ixlib=rb-4.1.0">
+    
+    <!-- Favicon -->
+    <link rel="icon" href="https://public-frontend-cos.metadl.com/mgx/img/favicon.png" type="image/png">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+    
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="styles.css">
 </head>
-
 <body>
-  <div id="root"></div>
-  <script type="module" src="/src/main.tsx"></script>
-</body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav">
+            <div class="nav-container">
+                <div class="logo">
+                    <div class="logo-icon">
+                        <i data-lucide="leaf"></i>
+                    </div>
+                    <span class="logo-text">The Climate Watch</span>
+                </div>
+                
+                <ul class="nav-links" id="navLinks">
+                    <li><a href="#home" class="nav-link">Home</a></li>
+                    <li><a href="#what-we-do" class="nav-link">What We Do</a></li>
+                    <li><a href="#why-it-matters" class="nav-link">Why It Matters</a></li>
+                    <li><a href="#weather" class="nav-link">Weather</a></li>
+                    <li><a href="#get-involved" class="nav-link">Get Involved</a></li>
+                    <li><a href="#resources" class="nav-link">Resources</a></li>
+                    <li><a href="#contact" class="nav-link">Contact</a></li>
+                    <li><button class="btn btn-primary" onclick="scrollToSection('#contact')">Donate Now</button></li>
+                </ul>
+                
+                <button class="mobile-menu-btn" id="mobileMenuBtn">
+                    <i data-lucide="menu"></i>
+                </button>
+            </div>
+        </nav>
+    </header>
 
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-video">
+            <video autoplay muted loop playsinline poster="https://images.unsplash.com/photo-1569163139394-de44cb5894c6?q=80&w=2070&auto=format&fit=crop">
+                <source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4" type="video/mp4">
+            </video>
+            <div class="hero-overlay"></div>
+        </div>
+        
+        <div class="hero-content">
+            <h1 class="hero-title">
+                <span class="hero-title-line">Welcome to</span>
+                <span class="hero-title-highlight">The Climate Watch</span>
+            </h1>
+            <p class="hero-subtitle">
+                Building a just, resilient, and sustainable Eswatini where people, nature, 
+                and economy thrive under climate change
+            </p>
+            <div class="hero-buttons">
+                <button class="btn btn-primary btn-lg" onclick="scrollToSection('#what-we-do')">
+                    Discover Our Mission
+                    <i data-lucide="arrow-right"></i>
+                </button>
+                <button class="btn btn-outline btn-lg" onclick="scrollToSection('#get-involved')">
+                    <i data-lucide="play"></i>
+                    Take Action Now
+                </button>
+            </div>
+            
+            <div class="hero-stats">
+                <div class="stat">
+                    <div class="stat-number">10,000+</div>
+                    <div class="stat-label">Lives Impacted</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">5,000+</div>
+                    <div class="stat-label">Hectares Restored</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">50+</div>
+                    <div class="stat-label">Projects Completed</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="scroll-indicator">
+            <div class="scroll-mouse"></div>
+            <span>Scroll to explore</span>
+        </div>
+    </section>
+
+    <!-- Who We Are Section -->
+    <section class="section who-we-are">
+        <div class="container">
+            <h2 class="section-title">Who We Are</h2>
+            <p class="section-intro">
+                We are an Eswatini-based climate change NGO, grounded in local realities and communities. 
+                Our mission is to drive climate action through advocacy, education, and policy change, 
+                focusing on adaptation and mitigation strategies that align with local priorities.
+            </p>
+            <div class="values-grid">
+                <div class="value-card">
+                    <div class="value-icon">
+                        <i data-lucide="heart"></i>
+                    </div>
+                    <h3>Climate Justice</h3>
+                    <p>Fighting for equitable climate solutions</p>
+                </div>
+                <div class="value-card">
+                    <div class="value-icon">
+                        <i data-lucide="users"></i>
+                    </div>
+                    <h3>Community-Led</h3>
+                    <p>Locally-driven solutions and collaboration</p>
+                </div>
+                <div class="value-card">
+                    <div class="value-icon">
+                        <i data-lucide="graduation-cap"></i>
+                    </div>
+                    <h3>Scientific Integrity</h3>
+                    <p>Evidence-based climate action</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- What We Do Section -->
+    <section id="what-we-do" class="section what-we-do">
+        <div class="container">
+            <h2 class="section-title">What We Do</h2>
+            <p class="section-intro">
+                We drive climate action through comprehensive programs that address the unique challenges 
+                and opportunities in Eswatini's fight against climate change.
+            </p>
+            <div class="programs-grid">
+                <div class="program-card">
+                    <div class="program-icon">
+                        <i data-lucide="tree-pine"></i>
+                    </div>
+                    <h3>Adaptation & Resilience</h3>
+                    <p>Building community resilience through nature-based solutions and disaster risk reduction strategies.</p>
+                </div>
+                <div class="program-card">
+                    <div class="program-icon">
+                        <i data-lucide="users"></i>
+                    </div>
+                    <h3>Sustainable Livelihoods</h3>
+                    <p>Promoting climate-smart agriculture and green initiatives for sustainable community development.</p>
+                </div>
+                <div class="program-card">
+                    <div class="program-icon">
+                        <i data-lucide="zap"></i>
+                    </div>
+                    <h3>Clean Energy</h3>
+                    <p>Advocating for renewable energy transitions to reduce greenhouse gas emissions.</p>
+                </div>
+                <div class="program-card">
+                    <div class="program-icon">
+                        <i data-lucide="cloud"></i>
+                    </div>
+                    <h3>GHG Emissions Reduction</h3>
+                    <p>Reducing emissions from agriculture, land use, and energy through innovative solutions.</p>
+                </div>
+                <div class="program-card">
+                    <div class="program-icon">
+                        <i data-lucide="book-open"></i>
+                    </div>
+                    <h3>Education & Awareness</h3>
+                    <p>Empowering communities through education, training, and capacity building programs.</p>
+                </div>
+                <div class="program-card">
+                    <div class="program-icon">
+                        <i data-lucide="message-square"></i>
+                    </div>
+                    <h3>Policy Advocacy</h3>
+                    <p>Influencing national and regional policies to align with global climate commitments.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Impact Section -->
+    <section class="section impact">
+        <div class="container">
+            <h2 class="section-title">Our Impact</h2>
+            <p class="section-intro">
+                Measurable change across Eswatini through community-driven climate action 
+                and sustainable development initiatives.
+            </p>
+            <div class="impact-grid">
+                <div class="impact-card">
+                    <div class="impact-icon">
+                        <i data-lucide="users"></i>
+                    </div>
+                    <div class="impact-number" data-count="10000">0+</div>
+                    <h3>People Empowered</h3>
+                    <p>Community members trained and supported</p>
+                </div>
+                <div class="impact-card">
+                    <div class="impact-icon">
+                        <i data-lucide="tree-pine"></i>
+                    </div>
+                    <div class="impact-number" data-count="5000">0+</div>
+                    <h3>Hectares Restored</h3>
+                    <p>Land rehabilitated through our programs</p>
+                </div>
+                <div class="impact-card">
+                    <div class="impact-icon">
+                        <i data-lucide="building"></i>
+                    </div>
+                    <div class="impact-number" data-count="50">0+</div>
+                    <h3>Community Projects</h3>
+                    <p>Successful climate adaptation initiatives</p>
+                </div>
+                <div class="impact-card">
+                    <div class="impact-icon">
+                        <i data-lucide="file-text"></i>
+                    </div>
+                    <div class="impact-number" data-count="15">0+</div>
+                    <h3>Policies Influenced</h3>
+                    <p>National and regional policy changes</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Weather Dashboard -->
+    <section id="weather" class="section weather">
+        <div class="container">
+            <h2 class="section-title">🌤️ Eswatini Weather Focus</h2>
+            <p class="section-intro">
+                Real-time monitoring of microclimates across Eswatini's regions to support 
+                community adaptation strategies and climate resilience planning.
+            </p>
+            <div class="weather-status">
+                <div class="status-indicator"></div>
+                <span>Live Data • Last updated: <span id="lastUpdated"></span></span>
+            </div>
+            
+            <div class="weather-grid" id="weatherGrid">
+                <!-- Weather cards will be populated by JavaScript -->
+            </div>
+            
+            <div class="climate-note">
+                <div class="climate-note-icon">
+                    <i data-lucide="thermometer"></i>
+                </div>
+                <h3>Climate Monitoring Matters</h3>
+                <p>
+                    Understanding regional weather patterns helps us develop targeted climate adaptation 
+                    strategies and support communities in building resilience to climate change impacts across Eswatini.
+                </p>
+                <div class="climate-tags">
+                    <span class="tag">📊 Data-Driven Decisions</span>
+                    <span class="tag">🌱 Community Resilience</span>
+                    <span class="tag">🔬 Scientific Approach</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why It Matters Section -->
+    <section id="why-it-matters" class="section why-matters">
+        <div class="container">
+            <h2 class="section-title">Why It Matters</h2>
+            <p class="section-intro">
+                Climate change is not a distant threat; it's a present reality in Eswatini. 
+                We are experiencing rising temperatures, erratic rainfall, and more frequent 
+                droughts and floods, which impact our agriculture, water security, and unique ecosystems.
+            </p>
+            <div class="matters-grid">
+                <div class="matter-card challenge">
+                    <h3>The Challenge</h3>
+                    <p>Climate change disproportionately affects the most vulnerable among us, 
+                    including women, rural communities, the poor, and the youth. We fight for 
+                    climate justice to ensure that no one is left behind.</p>
+                </div>
+                <div class="matter-card opportunity">
+                    <h3>The Opportunity</h3>
+                    <p>By investing in a green economy, renewable energy, and sustainable agriculture, 
+                    we can unlock new opportunities for growth and prosperity while protecting our environment.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Get Involved Section -->
+    <section id="get-involved" class="section get-involved">
+        <div class="container">
+            <h2 class="section-title">Get Involved</h2>
+            <p class="section-intro">
+                There are many ways you can help us build a climate-resilient Eswatini. 
+                Join us in the fight for a sustainable future!
+            </p>
+            <div class="involvement-grid">
+                <div class="involvement-card">
+                    <div class="involvement-icon">
+                        <i data-lucide="heart"></i>
+                    </div>
+                    <h3>Join Our Campaigns</h3>
+                    <p>Participate in awareness campaigns and climate action initiatives</p>
+                    <button class="btn btn-outline" onclick="scrollToSection('#contact')">
+                        Learn More
+                        <i data-lucide="arrow-right"></i>
+                    </button>
+                </div>
+                <div class="involvement-card">
+                    <div class="involvement-icon">
+                        <i data-lucide="users"></i>
+                    </div>
+                    <h3>Volunteer With Us</h3>
+                    <p>Lend your skills and passion to our environmental causes</p>
+                    <button class="btn btn-outline" onclick="scrollToSection('#contact')">
+                        Learn More
+                        <i data-lucide="arrow-right"></i>
+                    </button>
+                </div>
+                <div class="involvement-card">
+                    <div class="involvement-icon">
+                        <i data-lucide="handshake"></i>
+                    </div>
+                    <h3>Partner With Us</h3>
+                    <p>Organizations can support through funding and partnerships</p>
+                    <button class="btn btn-outline" onclick="scrollToSection('#contact')">
+                        Learn More
+                        <i data-lucide="arrow-right"></i>
+                    </button>
+                </div>
+                <div class="involvement-card">
+                    <div class="involvement-icon">
+                        <i data-lucide="graduation-cap"></i>
+                    </div>
+                    <h3>Youth Leadership</h3>
+                    <p>Empower the next generation of climate leaders</p>
+                    <button class="btn btn-outline" onclick="scrollToSection('#contact')">
+                        Learn More
+                        <i data-lucide="arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Resources Section -->
+    <section id="resources" class="section resources">
+        <div class="container">
+            <h2 class="section-title">Resources & Stories</h2>
+            <p class="section-intro">
+                Explore our library of publications, reports, and discover the human stories 
+                behind our climate action work.
+            </p>
+            <div class="resources-grid">
+                <div class="resource-card">
+                    <img src="https://images.unsplash.com/photo-1752341135601-d9252f5cdbdd?fm=jpg&q=60&w=800&ixlib=rb-4.1.0" alt="Community reforestation">
+                    <div class="resource-content">
+                        <span class="resource-category">Story</span>
+                        <h3>Community-led Reforestation in the Lubombo Mountains</h3>
+                        <p>Learn how local communities are working to restore native forests.</p>
+                        <a href="#" class="resource-link">
+                            Read More <i data-lucide="external-link"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="resource-card">
+                    <img src="https://images.unsplash.com/photo-1758347384057-8d47cf6fad1b?fm=jpg&q=60&w=800&ixlib=rb-4.1.0" alt="Climate report">
+                    <div class="resource-content">
+                        <span class="resource-category">Report</span>
+                        <h3>The State of Climate Change in Eswatini 2024</h3>
+                        <p>Our annual report on climate data and impacts in Eswatini.</p>
+                        <a href="#" class="resource-link">
+                            Read More <i data-lucide="external-link"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="resource-card">
+                    <img src="https://images.unsplash.com/photo-1757880776486-5e5285dab685?fm=jpg&q=60&w=800&ixlib=rb-4.1.0" alt="Sustainable agriculture">
+                    <div class="resource-content">
+                        <span class="resource-category">Guide</span>
+                        <h3>A Guide to Sustainable Agriculture in Eswatini</h3>
+                        <p>Practical resources for climate-smart farming practices.</p>
+                        <a href="#" class="resource-link">
+                            Read More <i data-lucide="external-link"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section contact">
+        <div class="container">
+            <h2 class="section-title">Contact & Donate</h2>
+            <p class="section-intro">
+                Your support is vital to our mission. Help us create a climate-resilient Eswatini 
+                through financial contributions, in-kind support, or sharing your skills.
+            </p>
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <h3>Get in Touch</h3>
+                    <div class="contact-item">
+                        <i data-lucide="mail"></i>
+                        <span><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="f69f989099b6829e93959a9f9b978293819782959ed8998491">[email&#160;protected]</a></span>
+                    </div>
+                    <div class="contact-item">
+                        <i data-lucide="phone"></i>
+                        <span>+268 2505 2000</span>
+                    </div>
+                    <div class="contact-item">
+                        <i data-lucide="map-pin"></i>
+                        <span>Mbabane, Eswatini</span>
+                    </div>
+                    
+                    <div class="donation-cta">
+                        <h4>Make a Difference Today</h4>
+                        <p>Every donation helps us fight climate change and build resilient communities.</p>
+                        <button class="btn btn-primary">Donate Now</button>
+                    </div>
+                </div>
+                
+                <div class="contact-form-container">
+                    <h3>Send us a Message</h3>
+                    <form class="contact-form" id="contactForm">
+                        <div class="form-row">
+                            <input type="text" name="name" placeholder="Your Name" required>
+                            <input type="email" name="email" placeholder="Your Email" required>
+                        </div>
+                        <textarea name="message" placeholder="Your Message" rows="5" required></textarea>
+                        <button type="submit" class="btn btn-primary btn-full">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 The Climate Watch. All rights reserved. Building a sustainable future for Eswatini.</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="script.js"></script>
+</body>
 </html>
