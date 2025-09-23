@@ -541,7 +541,7 @@ body {
 
 .weather-card {
     background: rgba(255, 255, 255, 0.9);
-    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
     padding: 1.5rem;
     border-radius: 1rem;
     box-shadow: var(--shadow-md);
@@ -667,7 +667,7 @@ body {
     padding: 0.5rem 1rem;
     border-radius: 2rem;
     font-size: 0.875rem;
-    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
 }
 
 /* Why It Matters Section */
@@ -939,7 +939,7 @@ body {
 
 .contact-form-container {
     background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
     padding: 2rem;
     border-radius: 1rem;
     border: 1px solid rgba(255, 255, 255, 0.1);
@@ -1045,7 +1045,7 @@ body {
         height: 100vh;
         width: 100%;
         background: rgba(255, 255, 255, 0.98);
-        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
         flex-direction: column;
         justify-content: center;
         transition: right 0.3s ease;
@@ -1116,5 +1116,39 @@ body {
     .involvement-card,
     .weather-card {
         padding: 1.5rem;
+    }
+}
+/* Additional Responsive Improvements */
+@media (max-width: 1024px) {
+    .hero-content {
+        padding: 0 1.5rem;
+    }
+    
+    .weather-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+@media (max-width: 640px) {
+    .hero-form {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    .hero-form input,
+    .hero-form .btn {
+        width: 100%;
+    }
+    
+    .weather-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .weather-card {
+        margin: 0 1rem;
+    }
+    
+    .climate-note {
+        margin: 0 1rem;
+        padding: 2rem 1.5rem;
     }
 }

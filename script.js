@@ -141,34 +141,27 @@ function animateCounter(element) {
 }
 
 // Weather Dashboard
+// Weather Dashboard with Enhanced Features
 function initWeatherDashboard() {
     const weatherGrid = document.getElementById('weatherGrid');
     const lastUpdatedElement = document.getElementById('lastUpdated');
-
     if (!weatherGrid || !lastUpdatedElement) return;
-
     const regions = [
         { name: 'Hhohho Region', lat: -26.3167, lon: 31.1333 },
         { name: 'Lubombo Region', lat: -26.4500, lon: 31.9500 },
         { name: 'Manzini Region', lat: -26.4833, lon: 31.3667 },
         { name: 'Shiselweni Region', lat: -27.1167, lon: 31.2000 }
     ];
-
     async function fetchWeatherData(lat, lon) {
-        const apiUrl = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=temperature_2m,relative_humidity_2m,weather_code,visibility,wind_speed_10m`;
+        const apiUrl = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=temperature_2m,relative_humidity_2m,weather_code,visibility,wind_speed_10m&hourly=temperature_2m&daily=temperature_2m_max,temperature_2m_min,precipitation_probability_max`;
         try {
             const response = await fetch(apiUrl);
-            if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
-            }
-            const data = await response.json();
-            return data;
+            if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+            return await response.json();
         } catch (error) {
-            console.error('Error fetching weather data:', error);
-            return null;
+            console.error('Error fetreturn null;
         }
     }
-
     async function updateWeatherDashboard() {
         updateTimestamp();
 
