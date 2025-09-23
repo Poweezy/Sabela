@@ -144,6 +144,8 @@ body {
 
 .btn-primary:hover {
     background: var(--primary-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(22, 163, 74, 0.3);
 }
 
 .btn-outline {
@@ -225,7 +227,7 @@ body {
 
 .hero-title-highlight {
     color: var(--primary-color);
-    animation: none;
+    animation: pulse-highlight 3s infinite ease-in-out;
 }
 
 .hero-subtitle {
@@ -239,18 +241,38 @@ body {
 }
 
 .hero-form {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 0.5rem;
+    border-radius: 0.75rem;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
     display: flex;
     justify-content: center;
     gap: 0.5rem;
     margin-top: 2rem;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .hero-form input {
+    background: transparent;
+    border: none;
+    color: white;
     padding: 1rem;
     border-radius: 0.5rem;
-    border: none;
     font-size: 1rem;
-    width: 300px;
+    width: 100%;
+}
+
+.hero-form input::placeholder {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.hero-form input:focus {
+    outline: none;
+    background: rgba(255, 255, 255, 0.1);
 }
 
 .hero-form .btn {
@@ -350,7 +372,8 @@ body {
 
 /* Who We Are Section */
 .who-we-are {
-    background: var(--bg-primary);
+    background-color: var(--bg-primary);
+    background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23f0fdf4' fill-opacity='0.4'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
 }
 
 .values-grid {
@@ -413,6 +436,7 @@ body {
 .program-card:hover {
     transform: translateY(-0.5rem);
     box-shadow: var(--shadow-xl);
+    background: linear-gradient(135deg, var(--bg-primary), var(--bg-accent));
 }
 
 .program-icon {
@@ -889,6 +913,7 @@ body {
 .resource-card:hover {
     transform: translateY(-0.5rem);
     box-shadow: var(--shadow-xl);
+    border-color: var(--primary-color);
 }
 
 .resource-card img {
@@ -1102,6 +1127,17 @@ body {
     }
     90% {
         transform: translate3d(0, -0.25rem, 0);
+    }
+}
+
+@keyframes pulse-highlight {
+    0%, 100% {
+        transform: scale(1);
+        text-shadow: 0 0 5px rgba(22, 163, 74, 0.5);
+    }
+    50% {
+        transform: scale(1.02);
+        text-shadow: 0 0 15px rgba(22, 163, 74, 0.8);
     }
 }
 
