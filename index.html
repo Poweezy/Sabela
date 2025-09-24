@@ -45,10 +45,10 @@
                     <li><a href="#get-involved" class="nav-link">Get Involved</a></li>
                     <li><a href="#resources" class="nav-link">Resources</a></li>
                     <li><a href="#contact" class="nav-link">Contact</a></li>
-                    <li><button class="btn btn-primary" onclick="scrollToSection('#contact')">Donate Now</button></li>
+                    <li><button class="btn btn-primary" id="donate-now-btn-header">Donate Now</button></li>
                 </ul>
                 
-                <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Open menu">
+                <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Open menu" aria-controls="navLinks" aria-expanded="false">
                     <i data-lucide="menu"></i>
                 </button>
             </div>
@@ -58,8 +58,8 @@
     <!-- Hero Section -->
     <section id="home" class="hero">
         <div class="hero-video">
-            <video autoplay muted loop playsinline poster="https://images.unsplash.com/photo-1569163139394-de44cb5894c6?q=80&w=2070&auto=format&fit=crop">
-                <source src="https://drive.google.com/uc?id=1zS30bZ9Q8GAok6E4DstO17B5NvboDOCe" type="video/mp4">
+            <video autoplay muted loop playsinline poster="https://images.unsplash.com/photo-1569163139394-de44cb5894c6?q=80&w=2070&auto=format&fit=crop" title="A lush, green valley in Eswatini, representing the natural beauty the Climate Watch aims to protect.">
+                <source src="img/website banner.mp4" type="video/mp4">
             </video>
             <div class="hero-overlay"></div>
         </div>
@@ -74,10 +74,10 @@
                 and economy thrive under climate change
             </p>
             <div class="hero-buttons">
-                <button class="btn btn-primary btn-lg" onclick="scrollToSection('#what-we-do')">
+                <button class="btn btn-primary btn-lg" id="discover-mission-btn">
                     Discover Our Mission <i data-lucide="arrow-right"></i>
                 </button>
-                <button class="btn btn-outline btn-lg" onclick="scrollToSection('#get-involved')">
+                <button class="btn btn-outline btn-lg" id="take-action-btn">
                     Take Action Now <i data-lucide="play-circle"></i>
                 </button>
             </div>
@@ -355,7 +355,7 @@
                         <span class="resource-category">Story</span>
                         <h3>Community-led Reforestation in the Lubombo Mountains</h3>
                         <p>Learn how local communities are working to restore native forests.</p>
-                        <a href="#" class="resource-link">
+                        <a href="#!" class="resource-link">
                             Read More <i data-lucide="external-link"></i>
                         </a>
                     </div>
@@ -366,7 +366,7 @@
                         <span class="resource-category">Report</span>
                         <h3>The State of Climate Change in Eswatini 2024</h3>
                         <p>Our annual report on climate data and impacts in Eswatini.</p>
-                        <a href="#" class="resource-link">
+                        <a href="#!" class="resource-link">
                             Read More <i data-lucide="external-link"></i>
                         </a>
                     </div>
@@ -377,7 +377,29 @@
                         <span class="resource-category">Guide</span>
                         <h3>A Guide to Sustainable Agriculture in Eswatini</h3>
                         <p>Practical resources for climate-smart farming practices.</p>
-                        <a href="#" class="resource-link">
+                        <a href="#!" class="resource-link">
+                            Read More <i data-lucide="external-link"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="resource-card" data-animation-delay="0.4s">
+                    <img src="https://images.unsplash.com/photo-1629279598436-b1d5a893600c?fm=jpg&q=60&w=800&ixlib=rb-4.1.0" alt="Eswatini landscape" loading="lazy">
+                    <div class="resource-content">
+                        <span class="resource-category">News</span>
+                        <h3>Eswatini Joins Global Methane Pledge</h3>
+                        <p>A look into Eswatini's commitment to reducing methane emissions and what it means for the country's climate goals.</p>
+                        <a href="#!" class="resource-link">
+                            Read More <i data-lucide="external-link"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="resource-card" data-animation-delay="0.5s">
+                    <img src="https://images.unsplash.com/photo-1599691456121-26b24880067a?fm=jpg&q=60&w=800&ixlib=rb-4.1.0" alt="Solar panel in Africa" loading="lazy">
+                    <div class="resource-content">
+                        <span class="resource-category">Blog</span>
+                        <h3>The Future is Bright: Solar Power in Rural Eswatini</h3>
+                        <p>A deep dive into how solar mini-grids are transforming lives and livelihoods in remote communities.</p>
+                        <a href="#!" class="resource-link">
                             Read More <i data-lucide="external-link"></i>
                         </a>
                     </div>
