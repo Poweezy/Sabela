@@ -349,14 +349,6 @@ body {
 /* Section Styles */
 .section {
     padding: 5rem 0;
-    opacity: 0;
-    transform: translateY(2rem);
-    transition: all 0.8s ease;
-}
-
-.section.visible {
-    opacity: 1;
-    transform: translateY(0);
 }
 
 .section-title {
@@ -457,11 +449,11 @@ body {
     margin: 0 auto 1rem;
     color: var(--primary-color);
     font-size: 1.25rem;
-    transition: transform 0.3s ease;
+    transition: all 0.3s ease-in-out;
 }
 
 .program-card:hover .program-icon {
-    transform: scale(1.1);
+    transform: scale(1.1) rotate(5deg);
 }
 
 .program-card h3 {
@@ -861,11 +853,11 @@ body {
     margin: 0 auto 1.5rem;
     color: white;
     font-size: 1.5rem;
-    transition: transform 0.3s ease;
+    transition: all 0.3s ease-in-out;
 }
 
 .involvement-card:hover .involvement-icon {
-    transform: rotate(12deg) scale(1.1);
+    transform: rotate(-5deg) scale(1.1);
 }
 
 .involvement-card h3 {
@@ -1072,10 +1064,61 @@ body {
     box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.2);
 }
 
+.form-message {
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border-radius: 0.5rem;
+    text-align: center;
+    font-weight: 500;
+    display: none;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+}
+
+.form-message.show {
+    display: block;
+    opacity: 1;
+}
+
+.form-message.success {
+    background-color: var(--bg-accent);
+    color: var(--primary-dark);
+    border: 1px solid var(--primary-color);
+}
+
+.form-message.error {
+    background-color: #fef2f2;
+    color: #b91c1c;
+    border: 1px solid #ef4444;
+}
+
+.contact-form input.is-invalid,
+.contact-form textarea.is-invalid {
+    border-color: #ef4444;
+}
+
+.contact-form input.is-valid,
+.contact-form textarea.is-valid {
+    border-color: var(--primary-color);
+}
+
 .contact-form textarea {
     resize: vertical;
     min-height: 120px;
 }
+
+/* Card Animations */
+.value-card, .program-card, .impact-card, .involvement-card, .resource-card, .matter-card {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out, box-shadow 0.3s ease;
+}
+
+.visible.value-card, .visible.program-card, .visible.impact-card, .visible.involvement-card, .visible.resource-card, .visible.matter-card {
+    opacity: 1;
+    transform: translateY(0);
+}
+
 
 /* Footer */
 .footer {
