@@ -1,3 +1,6 @@
+(function() {
+    'use strict';
+
 // Initialize Lucide icons
 document.addEventListener('DOMContentLoaded', function() {
     lucide.createIcons();
@@ -423,3 +426,4 @@ function isValidEmail(email) {
 
 // Add CSS classes for weather conditions, now moved to style.css for better maintainability.
 // The animation for .weather-card is also defined in style.css.
+})();
