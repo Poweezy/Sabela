@@ -217,6 +217,7 @@ function initWeatherDashboard() {
             const card = document.createElement('div');
             card.className = 'weather-card skeleton';
             card.innerHTML = `
+                <div class="skeleton-box image"></div>
                 <div class="skeleton-box title"></div>
                 <div class="skeleton-box icon"></div>
                 <div class="skeleton-box temp"></div>
@@ -272,6 +273,42 @@ function initWeatherDashboard() {
         return wmo[code] || { condition: 'Cloudy', icon: 'cloud' };
     }
 
+    // Maps weather conditions to image URLs for visual representation
+    function getWeatherImage(condition) {
+        const images = {
+            'Clear sky': 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80',
+            'Mainly clear': 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80',
+            'Partly cloudy': 'https://images.unsplash.com/photo-1504608524841-42fe6f032b4b?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80',
+            'Overcast': 'https://images.unsplash.com/photo-1504608524841-42fe6f032b4b?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80',
+            'Fog': 'https://images.unsplash.com/photo-1487621167305-5d248087c724?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80',
+            'Depositing rime fog': 'https://images.unsplash.com/photo-1487621167305-5d248087c724?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80',
+            'Light drizzle': 'https://images.unsplash.com/photo-1519692933481-e162a57d6721?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80',
+            'Moderate drizzle': 'https://images.unsplash.com/photo-1519692933481-e162a57d6721?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80',
+            'Dense drizzle': 'https://images.unsplash.com/photo-1519692933481-e162a57d6721?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80',
+            'Light freezing drizzle': 'https://images.unsplash.com/photo-1519692933481-e162a57d6721?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80',
+            'Dense freezing drizzle': 'https://images.unsplash.com/photo-1519692933481-e162a57d6721?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80',
+            'Slight rain': 'https://images.unsplash.com/photo-1519692933481-e162a57d6721?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80',
+            'Moderate rain': 'https://images.unsplash.com/photo-1519692933481-e162a57d6721?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80',
+            'Heavy rain': 'https://images.unsplash.com/photo-1519692933481-e162a57d6721?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80',
+            'Light freezing rain': 'https://images.unsplash.com/photo-1519692933481-e162a57d6721?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80',
+            'Heavy freezing rain': 'https://images.unsplash.com/photo-1519692933481-e162a57d6721?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80',
+            'Slight snow fall': 'https://images.unsplash.com/photo-1516431883631-67f23b308ad6?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80',
+            'Moderate snow fall': 'https://images.unsplash.com/photo-1516431883631-67f23b308ad6?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80',
+            'Heavy snow fall': 'https://images.unsplash.com/photo-1516431883631-67f23b308ad6?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80',
+            'Snow grains': 'https://images.unsplash.com/photo-1516431883631-67f23b308ad6?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80',
+            'Slight rain showers': 'https://images.unsplash.com/photo-1519692933481-e162a57d6721?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80',
+            'Moderate rain showers': 'https://images.unsplash.com/photo-1519692933481-e162a57d6721?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80',
+            'Violent rain showers': 'https://images.unsplash.com/photo-1519692933481-e162a57d6721?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80',
+            'Slight snow showers': 'https://images.unsplash.com/photo-1516431883631-67f23b308ad6?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80',
+            'Heavy snow showers': 'https://images.unsplash.com/photo-1516431883631-67f23b308ad6?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80',
+            'Thunderstorm': 'https://images.unsplash.com/photo-1500674425229-f692875b0ab7?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80',
+            'Thunderstorm with hail': 'https://images.unsplash.com/photo-1500674425229-f692875b0ab7?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80',
+            'Thunderstorm with heavy hail': 'https://images.unsplash.com/photo-1500674425229-f692875b0ab7?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80',
+            'Cloudy': 'https://images.unsplash.com/photo-1504608524841-42fe6f032b4b?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80'
+        };
+        return images[condition] || images['Cloudy'];
+    }
+
     // Update timestamp
     function updateTimestamp() {
         const now = new Date();
@@ -293,6 +330,9 @@ function initWeatherDashboard() {
                 const visibilityKm = (visibility / 1000).toFixed(1);
 
                 card.innerHTML = `
+                    <div class="weather-image">
+                        <img src="${getWeatherImage(condition)}" alt="${condition}" loading="lazy" onerror="this.style.display='none';">
+                    </div>
                     <div class="weather-location">
                         <i data-lucide="map-pin"></i>
                         ${regions[index].name}

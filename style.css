@@ -662,6 +662,11 @@ body {
     animation: pulse 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 }
 
+.skeleton-box.image {
+    width: 100%;
+    height: 150px;
+}
+
 .skeleton-box.title {
     width: 70%;
     height: 1.5rem;
@@ -714,6 +719,23 @@ body {
 .condition-rainy { color: #3b82f6; }
 .condition-cloudy { color: #6b7280; }
 .condition-default { color: #6b7280; }
+
+/* New styles for weather image */
+.weather-image {
+    width: 100%;
+    height: 150px;
+    overflow: hidden;
+    border-radius: 1rem 1rem 0 0;
+    margin-bottom: 0.75rem;
+}
+
+.weather-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    border-radius: 1rem 1rem 0 0;
+}
 
 .weather-location {
     display: flex;
