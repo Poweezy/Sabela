@@ -45,10 +45,10 @@
                     <li><a href="#get-involved" class="nav-link">Get Involved</a></li>
                     <li><a href="#resources" class="nav-link">Resources</a></li>
                     <li><a href="#contact" class="nav-link">Contact</a></li>
-                    <li><button class="btn btn-primary" onclick="scrollToSection('#contact')">Donate Now</button></li>
+                    <li><button class="btn btn-primary" id="donate-now-btn-header">Donate Now</button></li>
                 </ul>
                 
-                <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Open menu">
+                <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Open menu" aria-controls="navLinks" aria-expanded="false">
                     <i data-lucide="menu"></i>
                 </button>
             </div>
@@ -58,7 +58,7 @@
     <!-- Hero Section -->
     <section id="home" class="hero">
         <div class="hero-video">
-            <video autoplay muted loop playsinline poster="https://images.unsplash.com/photo-1569163139394-de44cb5894c6?q=80&w=2070&auto=format&fit=crop">
+            <video autoplay muted loop playsinline poster="https://images.unsplash.com/photo-1569163139394-de44cb5894c6?q=80&w=2070&auto=format&fit=crop" title="A lush, green valley in Eswatini, representing the natural beauty the Climate Watch aims to protect.">
                 <source src="img/website banner.mp4" type="video/mp4">
             </video>
             <div class="hero-overlay"></div>
@@ -74,10 +74,10 @@
                 and economy thrive under climate change
             </p>
             <div class="hero-buttons">
-                <button class="btn btn-primary btn-lg" onclick="scrollToSection('#what-we-do')">
+                <button class="btn btn-primary btn-lg" id="discover-mission-btn">
                     Discover Our Mission <i data-lucide="arrow-right"></i>
                 </button>
-                <button class="btn btn-outline btn-lg" onclick="scrollToSection('#get-involved')">
+                <button class="btn btn-outline btn-lg" id="take-action-btn">
                     Take Action Now <i data-lucide="play-circle"></i>
                 </button>
             </div>

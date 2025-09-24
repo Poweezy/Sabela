@@ -3,6 +3,12 @@
 
 // Initialize Lucide icons
 document.addEventListener('DOMContentLoaded', function() {
+    // Add aria-hidden="true" to all lucide icons for accessibility
+    const icons = document.querySelectorAll('i[data-lucide]');
+    icons.forEach(icon => {
+        icon.setAttribute('aria-hidden', 'true');
+    });
+
     lucide.createIcons();
     
     // Initialize all functionality
@@ -13,6 +19,7 @@ document.addEventListener('DOMContentLoaded', function() {
     initWeatherDashboard();
     initContactForm();
     initHeaderScroll();
+    initScrollButtons();
 });
 
 // Mobile Menu Functionality
@@ -22,14 +29,17 @@ function initMobileMenu() {
     
     if (mobileMenuBtn && navLinks) {
         mobileMenuBtn.addEventListener('click', function() {
-            navLinks.classList.toggle('active');
+            const isOpened = navLinks.classList.toggle('active');
+            mobileMenuBtn.setAttribute('aria-expanded', isOpened);
             
-            // Change icon
+            // Change icon and aria-label
             const icon = mobileMenuBtn.querySelector('i');
-            if (navLinks.classList.contains('active')) {
+            if (isOpened) {
                 icon.setAttribute('data-lucide', 'x');
+                mobileMenuBtn.setAttribute('aria-label', 'Close menu');
             } else {
                 icon.setAttribute('data-lucide', 'menu');
+                mobileMenuBtn.setAttribute('aria-label', 'Open menu');
             }
             lucide.createIcons();
         });
@@ -43,6 +53,23 @@ function initMobileMenu() {
                 lucide.createIcons();
             }
         });
+    }
+}
+
+function initScrollButtons() {
+    const donateBtn = document.getElementById('donate-now-btn-header');
+    if (donateBtn) {
+        donateBtn.addEventListener('click', () => scrollToSection('#contact'));
+    }
+
+    const discoverBtn = document.getElementById('discover-mission-btn');
+    if (discoverBtn) {
+        discoverBtn.addEventListener('click', () => scrollToSection('#what-we-do'));
+    }
+
+    const takeActionBtn = document.getElementById('take-action-btn');
+    if (takeActionBtn) {
+        takeActionBtn.addEventListener('click', () => scrollToSection('#get-involved'));
     }
 }
 
