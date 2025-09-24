@@ -427,6 +427,11 @@ body {
 .value-card {
     text-align: center;
     padding: 2rem;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 1rem;
 }
 
 .value-icon {
@@ -479,13 +484,15 @@ body {
 }
 
 .program-card {
-    background: var(--bg-primary);
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
     padding: 1.5rem;
     border-radius: 0.5rem;
     box-shadow: var(--shadow-sm);
     text-align: center;
     transition: all 0.3s ease;
-    border: 2px solid #06b6d4;
+    border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .program-card:hover {
@@ -541,12 +548,15 @@ body {
 }
 
 .impact-card {
-    background: #1f2937;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
     padding: 2rem;
     border-radius: 1rem;
     box-shadow: var(--shadow-md);
     transition: all 0.3s ease;
     color: white;
+    border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .impact-card:hover {
@@ -620,7 +630,7 @@ body {
 }
 
 .weather-card {
-    background: rgba(255, 255, 255, 0.9);
+    background: rgba(255, 255, 255, 0.1);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
     padding: 1.5rem;
@@ -833,11 +843,14 @@ body {
 }
 
 .matter-card {
-    background: var(--bg-primary);
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
     padding: 2rem;
     border-radius: 1rem;
     box-shadow: var(--shadow-md);
     transition: all 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .matter-card:hover {
@@ -881,7 +894,10 @@ body {
     color: white;
 }
 .involvement-card {
-    background: #1f2937;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
 }
 .involvement-card h3 {
     color: white;
@@ -946,12 +962,14 @@ body {
 }
 
 .resource-card {
-    background: var(--bg-primary);
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
     border-radius: 1rem;
     box-shadow: var(--shadow-md);
     overflow: hidden;
     transition: all 0.3s ease;
-    border: 1px solid var(--border-color);
+    border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .resource-card:hover {

@@ -1,0 +1,10 @@
+- [x] Update value-card in who-we-are section to glass effect
+- [x] Update program-card in what-we-do section to glass effect
+- [x] Update impact-card in impact section to glass effect
+- [x] Update involvement-card in get-involved section to glass effect
+- [x] Update resource-card in resources section to glass effect
+- [x] Update matter-card in why-matters section to glass effect
+- [x] Update weather-card to enhance glass effect
+- [ ] Launch browser and test all sections for glass effects
+- [ ] Navigate through each section, check visual consistency and readability
+- [ ] Interact with buttons and links to ensure functionality
