@@ -898,6 +898,8 @@ body {
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
     border: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 2rem;
+    text-align: center;
 }
 .involvement-card h3 {
     color: white;
@@ -913,8 +915,8 @@ body {
 }
 
 .involvement-card:hover {
-    transform: translateY(-0.5rem);
-    box-shadow: var(--shadow-xl);
+    transform: translateY(-0.5rem) scale(1.05);
+    box-shadow: var(--shadow-xl), 0 0 20px rgba(255, 255, 255, 0.3);
 }
 
 .involvement-icon {
@@ -939,11 +941,11 @@ body {
     font-size: 1.25rem;
     font-weight: 600;
     margin-bottom: 1rem;
-    color: var(--text-primary);
+    color: white;
 }
 
 .involvement-card p {
-    color: var(--text-secondary);
+    color: rgba(255, 255, 255, 0.8);
     margin-bottom: 1.5rem;
     line-height: 1.6;
 }
