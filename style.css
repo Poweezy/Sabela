@@ -196,21 +196,22 @@ body {
     object-fit: cover;
 }
 
-/* Video controls styling */
+/* Video controls styling - Hidden */
 .hero-video video::-webkit-media-controls {
-    background: rgba(0, 0, 0, 0.7);
-    border-radius: 0.5rem;
-    color: white;
+    display: none !important;
 }
 
 .hero-video video::-webkit-media-controls-panel {
-    background: rgba(0, 0, 0, 0.7);
+    display: none !important;
 }
 
 .hero-video video::-webkit-media-controls-play-button,
-.hero-video video::-webkit-media-controls-mute-button {
-    background: var(--primary-color);
-    border-radius: 50%;
+.hero-video video::-webkit-media-controls-mute-button,
+.hero-video video::-webkit-media-controls-timeline,
+.hero-video video::-webkit-media-controls-current-time-display,
+.hero-video video::-webkit-media-controls-time-remaining-display,
+.hero-video video::-webkit-media-controls-fullscreen-button {
+    display: none !important;
 }
 
 .hero-overlay {
