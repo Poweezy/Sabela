@@ -90,6 +90,15 @@ function initScrollAnimations() {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('visible');
+                const animatedChildren = entry.target.querySelectorAll('[data-animation-delay]');
+                animatedChildren.forEach(child => {
+                    const delay = child.dataset.animationDelay;
+                    if (delay) {
+                        child.style.transitionDelay = delay;
+                    }
+                    child.classList.add('visible');
+                });
+                observer.unobserve(entry.target);
             }
         });
     }, {
@@ -325,45 +334,86 @@ function initWeatherDashboard() {
     setInterval(updateTimestamp, 60000);
 }
 
-// Contact Form
+// Contact Form with Advanced Feedback
 function initContactForm() {
     const contactForm = document.getElementById('contactForm');
-    
-    if (contactForm) {
-        contactForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            const formData = new FormData(contactForm);
-            const name = formData.get('name');
-            const email = formData.get('email');
-            const message = formData.get('message');
-            
-            // Simple validation
-            if (!name || !email || !message) {
-                alert('Please fill in all fields.');
-                return;
-            }
-            
-            if (!isValidEmail(email)) {
-                alert('Please enter a valid email address.');
-                return;
-            }
-            
-            // Simulate form submission
-            const submitButton = contactForm.querySelector('button[type="submit"]');
-            const originalText = submitButton.textContent;
-            
-            submitButton.textContent = 'Sending...';
-            submitButton.disabled = true;
-            
-            setTimeout(() => {
-                alert('Thank you for your message! We will get back to you soon.');
-                contactForm.reset();
-                submitButton.textContent = originalText;
-                submitButton.disabled = false;
-            }, 2000);
+    if (!contactForm) return;
+
+    const formMessage = contactForm.querySelector('.form-message');
+    const nameInput = contactForm.querySelector('input[name="name"]');
+    const emailInput = contactForm.querySelector('input[name="email"]');
+    const messageInput = contactForm.querySelector('textarea[name="message"]');
+    const submitButton = contactForm.querySelector('button[type="submit"]');
+
+    contactForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+
+        // Reset previous states
+        formMessage.classList.remove('show', 'success', 'error');
+        formMessage.textContent = '';
+        [nameInput, emailInput, messageInput].forEach(input => {
+            input.classList.remove('is-valid', 'is-invalid');
         });
-    }
+
+        const name = nameInput.value.trim();
+        const email = emailInput.value.trim();
+        const message = messageInput.value.trim();
+        let errors = [];
+
+        // Validation
+        if (!name) {
+            errors.push('Name is required.');
+            nameInput.classList.add('is-invalid');
+        } else {
+            nameInput.classList.add('is-valid');
+        }
+
+        if (!email) {
+            errors.push('Email is required.');
+            emailInput.classList.add('is-invalid');
+        } else if (!isValidEmail(email)) {
+            errors.push('Please enter a valid email address.');
+            emailInput.classList.add('is-invalid');
+        } else {
+            emailInput.classList.add('is-valid');
+        }
+
+        if (!message) {
+            errors.push('Message is required.');
+            messageInput.classList.add('is-invalid');
+        } else {
+            messageInput.classList.add('is-valid');
+        }
+
+        if (errors.length > 0) {
+            formMessage.textContent = errors.join(' ');
+            formMessage.classList.add('error', 'show');
+            return;
+        }
+
+        // Simulate form submission
+        const originalButtonText = submitButton.textContent;
+        submitButton.textContent = 'Sending...';
+        submitButton.disabled = true;
+
+        setTimeout(() => {
+            formMessage.textContent = 'Thank you for your message! We will get back to you soon.';
+            formMessage.classList.add('success', 'show');
+            
+            contactForm.reset();
+            [nameInput, emailInput, messageInput].forEach(input => {
+                input.classList.remove('is-valid');
+            });
+            
+            submitButton.textContent = originalButtonText;
+            submitButton.disabled = false;
+
+            // Hide the success message after 5 seconds
+            setTimeout(() => {
+                formMessage.classList.remove('show');
+            }, 5000);
+        }, 2000);
+    });
 }
 
 function isValidEmail(email) {
