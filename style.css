@@ -275,6 +275,13 @@ body {
     background: rgba(255, 255, 255, 0.1);
 }
 
+.hero-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
 .hero-form .btn {
     padding: 1rem 2rem;
     font-size: 1rem;
@@ -832,26 +839,10 @@ body {
     color: rgba(255, 255, 255, 0.8);
 }
 
-.get-involved-grid {
+.involvement-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 3rem;
-    align-items: center;
-}
-
-.get-involved-image img {
-    width: 100%;
-    border-radius: 1rem;
-}
-
-.get-involved-content h3 {
-    font-size: 2rem;
-    font-weight: 700;
-    margin-bottom: 1.5rem;
-}
-
-.get-involved-content p {
-    margin-bottom: 2rem;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
 }
 
 .involvement-card:hover {

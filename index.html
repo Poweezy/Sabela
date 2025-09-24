@@ -73,10 +73,14 @@
                 Building a just, resilient, and sustainable Eswatini where people, nature, 
                 and economy thrive under climate change
             </p>
-            <form class="hero-form">
-                <input type="email" placeholder="Email address" required>
-                <button type="submit" class="btn btn-primary">Get started</button>
-            </form>
+            <div class="hero-buttons">
+                <button class="btn btn-primary btn-lg" onclick="scrollToSection('#what-we-do')">
+                    Discover Our Mission <i data-lucide="arrow-right"></i>
+                </button>
+                <button class="btn btn-outline btn-lg" onclick="scrollToSection('#get-involved')">
+                    Take Action Now <i data-lucide="play-circle"></i>
+                </button>
+            </div>
             
             <div class="hero-stats">
                 <div class="stat">
@@ -303,16 +307,34 @@
                 There are many ways you can help us build a climate-resilient Eswatini. 
                 Join us in the fight for a sustainable future!
             </p>
-            <div class="get-involved-grid">
-                <div class="get-involved-image">
-                    <img src="https://images.unsplash.com/photo-1593113646773-463a1a8c2d6c?q=80&w=2070&auto=format&fit=crop" alt="People working together" loading="lazy">
+            <div class="involvement-grid">
+                <div class="involvement-card">
+                    <div class="involvement-icon">
+                        <i data-lucide="heart"></i>
+                    </div>
+                    <h3>Join Our Campaigns</h3>
+                    <p>Participate in awareness campaigns, tree planting events, and community workshops.</p>
                 </div>
-                <div class="get-involved-content">
-                    <h3>Join Our Community</h3>
-                    <p>Be part of the solution. Whether you're an individual, a community group, or a corporation, there are many ways to get involved and support our work.</p>
-                    <button class="btn btn-primary" onclick="scrollToSection('#contact')">
-                        Contact Us
-                    </button>
+                <div class="involvement-card">
+                    <div class="involvement-icon">
+                        <i data-lucide="users"></i>
+                    </div>
+                    <h3>Volunteer With Us</h3>
+                    <p>Lend your skills and passion to support our on-the-ground climate action projects.</p>
+                </div>
+                <div class="involvement-card">
+                    <div class="involvement-icon">
+                        <i data-lucide="shield"></i>
+                    </div>
+                    <h3>Partner With Us</h3>
+                    <p>Organizations can support our work through corporate social responsibility programs.</p>
+                </div>
+                <div class="involvement-card">
+                    <div class="involvement-icon">
+                        <i data-lucide="graduation-cap"></i>
+                    </div>
+                    <h3>Youth Leadership</h3>
+                    <p>Empower the next generation of climate leaders through mentorship and training.</p>
                 </div>
             </div>
         </div>
