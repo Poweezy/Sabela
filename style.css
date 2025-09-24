@@ -228,6 +228,7 @@ body {
 .hero-title-highlight {
     color: var(--primary-color);
     animation: pulse-highlight 3s infinite ease-in-out;
+    text-shadow: 2px 2px 0 white, -2px -2px 0 white, 2px -2px 0 white, -2px 2px 0 white;
 }
 
 .hero-subtitle {
