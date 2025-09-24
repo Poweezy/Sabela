@@ -1,7 +1,7 @@
 (function() {
     'use strict';
 
-// Initialize Lucide icons
+// Initialize Lucide icons with error handling
 document.addEventListener('DOMContentLoaded', function() {
     // Add aria-hidden="true" to all lucide icons for accessibility
     const icons = document.querySelectorAll('i[data-lucide]');
@@ -9,7 +9,16 @@ document.addEventListener('DOMContentLoaded', function() {
         icon.setAttribute('aria-hidden', 'true');
     });
 
-    lucide.createIcons();
+    try {
+        lucide.createIcons();
+    } catch (error) {
+        console.warn('Lucide icons failed to load:', error);
+        // Fallback: Replace icons with text
+        document.querySelectorAll('[data-lucide]').forEach(el => {
+            const iconName = el.getAttribute('data-lucide');
+            el.innerHTML = `[${iconName}]`;
+        });
+    }
     
     // Initialize all functionality
     initMobileMenu();
