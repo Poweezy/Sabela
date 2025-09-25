@@ -31,39 +31,42 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <!-- Skip to main content link for accessibility -->
+    <a href="#home" class="skip-link">Skip to main content</a>
+
     <!-- Header -->
-    <header class="header">
-        <nav class="nav">
+    <header class="header" role="banner">
+        <nav class="nav" role="navigation" aria-label="Primary Navigation">
             <div class="nav-container">
                 <div class="logo">
-                <a href="#home" class="logo-icon" aria-label="Go to Home" onclick="window.scrollTo({top: 0, behavior: 'smooth'});">
+                <a href="#home" class="logo-icon" aria-label="Go to Home" onclick="window.scrollTo({top: 0, behavior: 'smooth'});" role="link">
                     <img src="img/logo.png" alt="Sabela Logo" style="height: 40px; width: auto;">
                 </a>
                 <span class="logo-text">The Climate Watch</span>
                 </div>
                 
-                <ul class="nav-links" id="navLinks">
-                    <li><a href="#home" class="nav-link">Home</a></li>
-                    <li><a href="#what-we-do" class="nav-link">What We Do</a></li>
-                    <li><a href="#why-it-matters" class="nav-link">Why It Matters</a></li>
-                    <li><a href="#weather" class="nav-link">Weather</a></li>
-                    <li><a href="#get-involved" class="nav-link">Get Involved</a></li>
-                    <li><a href="#resources" class="nav-link">Resources</a></li>
-                    <li><a href="#contact" class="nav-link">Contact</a></li>
-                    <li><button class="btn btn-primary" id="donate-now-btn-header">Donate Now</button></li>
+                <ul class="nav-links" id="navLinks" role="menubar">
+                    <li role="none"><a href="#home" class="nav-link" role="menuitem" tabindex="0">Home</a></li>
+                    <li role="none"><a href="#what-we-do" class="nav-link" role="menuitem" tabindex="-1">What We Do</a></li>
+                    <li role="none"><a href="#why-it-matters" class="nav-link" role="menuitem" tabindex="-1">Why It Matters</a></li>
+                    <li role="none"><a href="#weather" class="nav-link" role="menuitem" tabindex="-1">Weather</a></li>
+                    <li role="none"><a href="#get-involved" class="nav-link" role="menuitem" tabindex="-1">Get Involved</a></li>
+                    <li role="none"><a href="#resources" class="nav-link" role="menuitem" tabindex="-1">Resources</a></li>
+                    <li role="none"><a href="#contact" class="nav-link" role="menuitem" tabindex="-1">Contact</a></li>
+                    <li role="none"><a href="#donate" class="btn btn-primary" id="donate-now-btn-header" aria-label="Donate Now" role="menuitem">Donate Now</a></li>
                 </ul>
                 
-                <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Open menu" aria-controls="navLinks" aria-expanded="false">
-                    <i data-lucide="menu"></i>
+                <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Open menu" aria-controls="navLinks" aria-expanded="false" aria-haspopup="true" role="button">
+                    <i data-lucide="menu" aria-hidden="true"></i>
                 </button>
             </div>
         </nav>
     </header>
 
     <!-- Hero Section -->
-    <section id="home" class="hero">
+    <section id="home" class="hero" role="region" aria-label="Hero Section">
         <div class="hero-video">
-            <video autoplay muted loop playsinline poster="https://images.unsplash.com/photo-1569163139394-de44cb5894c6?q=80&w=2070&auto=format&fit=crop" title="A lush, green valley in Eswatini, representing the natural beauty the Climate Watch aims to protect." onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+            <video autoplay muted loop playsinline poster="https://images.unsplash.com/photo-1569163139394-de44cb5894c6?q=80&w=2070&auto=format&fit=crop" title="A lush, green valley in Eswatini, representing the natural beauty the Climate Watch aims to protect." onerror="this.style.display='none'; this.nextElementSibling.style.display='block';" aria-label="Video showing a lush green valley in Eswatini">
                 <source src="img/website-banner.mp4" type="video/mp4">
             </video>
            
@@ -230,25 +233,25 @@
     </section>
 
     <!-- Weather Dashboard -->
-    <section id="weather" class="section weather">
+    <section id="weather" class="section weather" role="region" aria-label="Eswatini Weather Focus">
         <div class="container">
             <h2 class="section-title">🌤️ Eswatini Weather Focus</h2>
             <p class="section-intro">
                 Real-time monitoring of microclimates across Eswatini's regions to support 
                 community adaptation strategies and climate resilience planning.
             </p>
-            <div class="weather-status">
+            <div class="weather-status" role="status" aria-live="polite" aria-atomic="true">
                 <div class="status-indicator"></div>
                 <span>Live Data • Last updated: <span id="lastUpdated"></span></span>
             </div>
             
-            <div class="weather-grid" id="weatherGrid">
+            <div class="weather-grid" id="weatherGrid" role="list" aria-label="Weather information for regions">
                 <!-- Weather cards will be populated by JavaScript -->
             </div>
             
-            <div class="climate-note">
+            <div class="climate-note" role="note">
                 <div class="climate-note-icon">
-                    <i data-lucide="thermometer"></i>
+                    <i data-lucide="thermometer" aria-hidden="true"></i>
                 </div>
                 <h3>Climate Monitoring Matters</h3>
                 <p>
@@ -346,7 +349,7 @@
 
             <div class="resources-grid">
                 <div class="resource-card" data-animation-delay="0.1s">
-                    <img src="https://images.unsplash.com/photo-1752341135601-d9252f5cdbdd?fm=jpg&q=60&w=800&ixlib=rb-4.1.0" alt="Community reforestation" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                    <img src="https://images.unsplash.com/photo-1752341135601-d9252f5cdbdd?fm=jpg&q=60&w=800&ixlib=rb-4.1.0" alt="Local community members planting trees in the Lubombo Mountains, showcasing reforestation efforts in Eswatini" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
                     <div style="display: none; background: #f0fdf4; padding: 2rem; text-align: center; color: #16a34a;">Image Unavailable</div>
                     <div class="resource-content">
                         <span class="resource-category">Story</span>
@@ -358,7 +361,7 @@
                     </div>
                 </div>
                 <div class="resource-card" data-animation-delay="0.2s">
-                    <img src="https://images.unsplash.com/photo-1758347384057-8d47cf6fad1b?fm=jpg&q=60&w=800&ixlib=rb-4.1.0" alt="Climate report" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                    <img src="https://images.unsplash.com/photo-1758347384057-8d47cf6fad1b?fm=jpg&q=60&w=800&ixlib=rb-4.1.0" alt="Annual climate change report document with charts and data visualizations showing Eswatini's environmental trends" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
                     <div style="display: none; background: #f0fdf4; padding: 2rem; text-align: center; color: #16a34a;">Image Unavailable</div>
                     <div class="resource-content">
                         <span class="resource-category">Report</span>
@@ -370,7 +373,7 @@
                     </div>
                 </div>
                 <div class="resource-card" data-animation-delay="0.3s">
-                    <img src="https://images.unsplash.com/photo-1757880776486-5e5285dab685?fm=jpg&q=60&w=800&ixlib=rb-4.1.0" alt="Sustainable agriculture" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                    <img src="https://images.unsplash.com/photo-1757880776486-5e5285dab685?fm=jpg&q=60&w=800&ixlib=rb-4.1.0" alt="Farmer in Eswatini practicing sustainable agriculture with traditional farming tools and climate-resilient crops" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
                     <div style="display: none; background: #f0fdf4; padding: 2rem; text-align: center; color: #16a34a;">Image Unavailable</div>
                     <div class="resource-content">
                         <span class="resource-category">Guide</span>
@@ -382,7 +385,7 @@
                     </div>
                 </div>
                 <div class="resource-card" data-animation-delay="0.4s">
-                    <img src="https://images.unsplash.com/photo-1629279598436-b1d5a893600c?fm=jpg&q=60&w=800&ixlib=rb-4.1.0" alt="Eswatini landscape" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                    <img src="https://images.unsplash.com/photo-1629279598436-b1d5a893600c?fm=jpg&q=60&w=800&ixlib=rb-4.1.0" alt="Scenic landscape of Eswatini showing rolling hills and traditional homesteads, representing the natural beauty being protected" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
                     <div style="display: none; background: #f0fdf4; padding: 2rem; text-align: center; color: #16a34a;">Image Unavailable</div>
                     <div class="resource-content">
                         <span class="resource-category">News</span>
@@ -394,7 +397,7 @@
                     </div>
                 </div>
                 <div class="resource-card" data-animation-delay="0.5s">
-                    <img src="https://images.unsplash.com/photo-1599691456121-26b24880067a?fm=jpg&q=60&w=800&ixlib=rb-4.1.0" alt="Solar panel in Africa" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                    <img src="https://images.unsplash.com/photo-1599691456121-26b24880067a?fm=jpg&q=60&w=800&ixlib=rb-4.1.0" alt="Solar panels installed on a rural homestead in Eswatini, demonstrating renewable energy adoption in African communities" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
                     <div style="display: none; background: #f0fdf4; padding: 2rem; text-align: center; color: #16a34a;">Image Unavailable</div>
                     <div class="resource-content">
                         <span class="resource-category">Blog</span>
@@ -410,7 +413,7 @@
     </section>
 
     <!-- Contact Section -->
-    <section id="contact" class="section contact">
+    <section id="contact" class="section contact" role="region" aria-label="Contact and Donate">
         <div class="container">
             <h2 class="section-title">Contact & Donate</h2>
             <p class="section-intro">
@@ -421,35 +424,35 @@
                 <div class="contact-info">
                     <h3>Get in Touch</h3>
                     <div class="contact-item">
-                        <i data-lucide="mail"></i>
-                        <span><a href="mailto:info.climate@sabela.ngo">info.climate@sabela.ngo</a></span>
+                        <i data-lucide="mail" aria-hidden="true"></i>
+                        <span><a href="mailto:info.climate@sabela.ngo" aria-label="Email address info.climate@sabela.ngo">info.climate@sabela.ngo</a></span>
                     </div>
                     <div class="contact-item">
-                        <i data-lucide="phone"></i>
-                        <span>+268 2505 2000</span>
+                        <i data-lucide="phone" aria-hidden="true"></i>
+                        <span><a href="tel:+26825052000" aria-label="Phone number +268 2505 2000">+268 2505 2000</a></span>
                     </div>
                     <div class="contact-item">
-                        <i data-lucide="map-pin"></i>
+                        <i data-lucide="map-pin" aria-hidden="true"></i>
                         <span>Mbabane, Eswatini</span>
                     </div>
                     
                     <div class="donation-cta">
                         <h4>Make a Difference Today</h4>
                         <p>Every donation helps us fight climate change and build resilient communities.</p>
-                        <button class="btn btn-primary">Donate Now</button>
+                        <button class="btn btn-primary" aria-label="Donate Now">Donate Now</button>
                     </div>
                 </div>
                 
                 <div class="contact-form-container">
                     <h3>Send us a Message</h3>
-                    <form class="contact-form" id="contactForm">
-                        <div class="form-message"></div>
+                    <form class="contact-form" id="contactForm" aria-label="Contact form">
+                        <div class="form-message" role="alert" aria-live="assertive"></div>
                         <div class="form-row">
-                            <input type="text" name="name" placeholder="Your Name" required>
-                            <input type="email" name="email" placeholder="Your Email" required>
+                            <input type="text" name="name" placeholder="Your Name" required aria-required="true" aria-label="Your Name">
+                            <input type="email" name="email" placeholder="Your Email" required aria-required="true" aria-label="Your Email">
                         </div>
-                        <textarea name="message" placeholder="Your Message" rows="5" required></textarea>
-                        <button type="submit" class="btn btn-primary btn-full">Send Message</button>
+                        <textarea name="message" placeholder="Your Message" rows="5" required aria-required="true" aria-label="Your Message"></textarea>
+                        <button type="submit" class="btn btn-primary btn-full" aria-label="Send Message">Send Message</button>
                     </form>
                 </div>
             </div>
