@@ -23,7 +23,7 @@
 - [ ] Optimize images with proper alt tags and compression
 
 ## 4. Interactive Features
-- [ ] Add newsletter signup form with email validation
+- [x] Add newsletter signup form with email validation
 - [ ] Implement social media sharing buttons
 - [ ] Create interactive maps showing project locations
 - [ ] Add volunteer sign-up form with skill selection

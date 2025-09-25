@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,7 +7,18 @@
     <title>The Climate Watch - Building a Sustainable Eswatini</title>
     <meta name="description" content="The Climate Watch is an Eswatini-based climate change NGO working to build a just, resilient, and sustainable future through community-driven climate action, advocacy, and education.">
     <meta name="keywords" content="climate change, Eswatini, NGO, sustainability, renewable energy, climate justice, environmental protection">
-    
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://yourwebsiteurl.com" />
+
+    <!-- Section Meta Descriptions -->
+    <meta name="who-we-are-description" content="We are an Eswatini-based climate change NGO focused on community-driven climate action, advocacy, and education." />
+    <meta name="what-we-do-description" content="Our programs address climate adaptation, resilience, sustainable livelihoods, clean energy, and policy advocacy in Eswatini." />
+    <meta name="why-it-matters-description" content="Climate change impacts Eswatini with rising temperatures, erratic rainfall, and threats to agriculture and water security." />
+    <meta name="get-involved-description" content="Join our campaigns, volunteer, partner, or empower youth to build a climate-resilient Eswatini." />
+    <meta name="resources-description" content="Explore publications, reports, and stories behind our climate action work in Eswatini." />
+    <meta name="contact-description" content="Contact us to support our mission through donations, in-kind support, or sharing your skills." />
+
     <!-- Open Graph Meta Tags -->
     <meta property="og:title" content="The Climate Watch - Building a Sustainable Eswatini">
     <meta property="og:description" content="Join us in building a climate-resilient Eswatini through community-driven action, advocacy, and sustainable development.">
@@ -59,7 +71,6 @@
     </script>
 </head>
 <body>
-    <!-- Skip to main content link for accessibility -->
     <a href="#home" class="skip-link">Skip to main content</a>
 
     <!-- Header -->
@@ -361,6 +372,51 @@
         </div>
     </section>
 
+    <!-- Newsletter Signup Section -->
+    <section class="section newsletter" aria-label="Newsletter Signup Section">
+        <div class="container">
+            <div class="newsletter-content">
+                <div class="newsletter-text">
+                    <h2 class="section-title">Stay Connected</h2>
+                    <p class="section-intro">
+                        Join our community and receive the latest updates on climate action in Eswatini.
+                        Get exclusive insights, success stories, and opportunities to get involved.
+                    </p>
+                    <div class="newsletter-benefits">
+                        <div class="benefit-item">
+                            <i data-lucide="mail" aria-hidden="true"></i>
+                            <span>Monthly Climate Updates</span>
+                        </div>
+                        <div class="benefit-item">
+                            <i data-lucide="users" aria-hidden="true"></i>
+                            <span>Community Stories</span>
+                        </div>
+                        <div class="benefit-item">
+                            <i data-lucide="calendar" aria-hidden="true"></i>
+                            <span>Event Invitations</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="newsletter-form-container">
+                    <form class="newsletter-form" id="newsletterForm" aria-label="Newsletter signup form">
+                        <div class="form-message" role="alert" aria-live="assertive"></div>
+                        <div class="form-group">
+                            <label for="newsletterEmail" class="sr-only">Email Address</label>
+                            <input type="email" id="newsletterEmail" name="email" placeholder="Enter your email address" required aria-required="true" aria-label="Email address for newsletter">
+                            <button type="submit" class="btn btn-primary btn-newsletter" aria-label="Subscribe to newsletter">
+                                Subscribe <i data-lucide="send"></i>
+                            </button>
+                        </div>
+                        <p class="privacy-note">
+                            We respect your privacy. Unsubscribe at any time.
+                        </p>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Resources Section -->
     <section id="resources" class="section resources" aria-label="Resources Section">
         <div class="container">
@@ -496,5 +552,6 @@
 
     <!-- JavaScript -->
     <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="script.js"></script>
+    <script src="newsletter.js"></script>
 </body>
 </html>
