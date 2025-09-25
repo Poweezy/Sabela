@@ -2041,7 +2041,23 @@ body {
         padding: 1rem;
     }
 
-    .share-modal-body {
+.share-modal-body {
         padding: 1rem;
     }
+}
+
+/* Fix dropdown menu visibility issue */
+.dropdown-menu {
+    background-color: #f8f9fa !important; /* Set background to light gray */
+    color: #000000 !important; /* Set text color to black */
+    border: 1px solid #ccc !important; /* Optional: add border for visibility */
+    z-index: 1000 !important; /* Ensure dropdown is above other elements */
+}
+
+.dropdown-menu a {
+    color: #000000 !important; /* Ensure links inside dropdown are black */
+}
+
+.dropdown-menu a:hover {
+    background-color: #e9ecef !important; /* Highlight on hover */
 }
