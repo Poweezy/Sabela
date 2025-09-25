@@ -29,6 +29,34 @@
     
     <!-- Custom Styles -->
     <link rel="stylesheet" href="style.css">
+
+    <!-- Structured Data JSON-LD for NGO -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "NGO",
+      "name": "The Climate Watch",
+      "url": "https://yourwebsiteurl.com",
+      "logo": "https://yourwebsiteurl.com/img/logo.png",
+      "description": "The Climate Watch is an Eswatini-based climate change NGO working to build a just, resilient, and sustainable future through community-driven climate action, advocacy, and education.",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Mbabane",
+        "addressCountry": "Eswatini"
+      },
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "contactType": "customer support",
+        "email": "info.climate@sabela.ngo",
+        "telephone": "+268 2505 2000"
+      },
+      "sameAs": [
+        "https://www.facebook.com/yourpage",
+        "https://twitter.com/yourprofile",
+        "https://www.linkedin.com/company/yourcompany"
+      ]
+    }
+    </script>
 </head>
 <body>
     <!-- Skip to main content link for accessibility -->
@@ -98,10 +126,10 @@
     </section>
 
     <!-- Who We Are Section -->
-    <section class="section who-we-are">
+    <section class="section who-we-are" aria-label="Who We Are Section">
         <div class="container">
             <h2 class="section-title">Who We Are</h2>
-            <p class="section-intro">
+            <p class="section-intro" id="whoWeAreDesc">
                 We are an Eswatini-based climate change NGO, grounded in local realities and communities. 
                 Our mission is to drive climate action through advocacy, education, and policy change, 
                 focusing on adaptation and mitigation strategies that align with local priorities.
@@ -133,10 +161,10 @@
     </section>
 
     <!-- What We Do Section -->
-    <section id="what-we-do" class="section what-we-do">
+    <section id="what-we-do" class="section what-we-do" aria-label="What We Do Section">
         <div class="container">
             <h2 class="section-title">What We Do</h2>
-            <p class="section-intro">
+            <p class="section-intro" id="whatWeDoDesc">
                 We drive climate action through comprehensive programs that address the unique challenges 
                 and opportunities in Eswatini's fight against climate change.
             </p>
@@ -188,11 +216,11 @@
     </section>
 
     <!-- Impact Section -->
-    <section class="section impact">
+    <section class="section impact" aria-label="Our Impact Section">
         <div class="container">
             <h2 class="section-title">Our Impact</h2>
-            <p class="section-intro">
-                Measurable change across Eswatini through community-driven climate action 
+            <p class="section-intro" id="impactDesc">
+                Measurable change across Eswatini through community-driven climate action
                 and sustainable development initiatives.
             </p>
             <div class="impact-grid">
@@ -236,8 +264,8 @@
     <section id="weather" class="section weather" role="region" aria-label="Eswatini Weather Focus">
         <div class="container">
             <h2 class="section-title">🌤️ Eswatini Weather Focus</h2>
-            <p class="section-intro">
-                Real-time monitoring of microclimates across Eswatini's regions to support 
+            <p class="section-intro" id="weatherDesc">
+                Real-time monitoring of microclimates across Eswatini's regions to support
                 community adaptation strategies and climate resilience planning.
             </p>
             <div class="weather-status" role="status" aria-live="polite" aria-atomic="true">
@@ -268,24 +296,24 @@
     </section>
 
     <!-- Why It Matters Section -->
-    <section id="why-it-matters" class="section why-matters">
+    <section id="why-it-matters" class="section why-matters" aria-label="Why It Matters Section">
         <div class="container">
             <h2 class="section-title">Why It Matters</h2>
-            <p class="section-intro">
-                Climate change is not a distant threat; it's a present reality in Eswatini. 
-                We are experiencing rising temperatures, erratic rainfall, and more frequent 
+            <p class="section-intro" id="whyItMattersDesc">
+                Climate change is not a distant threat; it's a present reality in Eswatini.
+                We are experiencing rising temperatures, erratic rainfall, and more frequent
                 droughts and floods, which impact our agriculture, water security, and unique ecosystems.
             </p>
             <div class="matters-grid">
                 <div class="matter-card challenge" data-animation-delay="0.1s">
                     <h3>The Challenge</h3>
-                    <p>Climate change disproportionately affects the most vulnerable among us, 
-                    including women, rural communities, the poor, and the youth. We fight for 
+                    <p>Climate change disproportionately affects the most vulnerable among us,
+                    including women, rural communities, the poor, and the youth. We fight for
                     climate justice to ensure that no one is left behind.</p>
                 </div>
                 <div class="matter-card opportunity" data-animation-delay="0.2s">
                     <h3>The Opportunity</h3>
-                    <p>By investing in a green economy, renewable energy, and sustainable agriculture, 
+                    <p>By investing in a green economy, renewable energy, and sustainable agriculture,
                     we can unlock new opportunities for growth and prosperity while protecting our environment.</p>
                 </div>
             </div>
@@ -293,11 +321,11 @@
     </section>
 
     <!-- Get Involved Section -->
-    <section id="get-involved" class="section get-involved">
+    <section id="get-involved" class="section get-involved" aria-label="Get Involved Section">
         <div class="container">
             <h2 class="section-title">Get Involved</h2>
-            <p class="section-intro">
-                There are many ways you can help us build a climate-resilient Eswatini. 
+            <p class="section-intro" id="getInvolvedDesc">
+                There are many ways you can help us build a climate-resilient Eswatini.
                 Join us in the fight for a sustainable future!
             </p>
             <div class="involvement-grid">
@@ -334,10 +362,10 @@
     </section>
 
     <!-- Resources Section -->
-    <section id="resources" class="section resources">
+    <section id="resources" class="section resources" aria-label="Resources Section">
         <div class="container">
             <h2 class="section-title">Resources & Stories</h2>
-            <p class="section-intro">
+            <p class="section-intro" id="resourcesDesc">
                 Explore our library of publications, reports, and discover the human stories
                 behind our climate action work.
             </p>
@@ -416,8 +444,8 @@
     <section id="contact" class="section contact" role="region" aria-label="Contact and Donate">
         <div class="container">
             <h2 class="section-title">Contact & Donate</h2>
-            <p class="section-intro">
-                Your support is vital to our mission. Help us create a climate-resilient Eswatini 
+            <p class="section-intro" id="contactDesc">
+                Your support is vital to our mission. Help us create a climate-resilient Eswatini
                 through financial contributions, in-kind support, or sharing your skills.
             </p>
             <div class="contact-grid">

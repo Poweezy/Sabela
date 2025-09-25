@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://yourwebsiteurl.com/</loc>
+    <priority>1.00</priority>
+  </url>
+  <url>
+    <loc>https://yourwebsiteurl.com/#home</loc>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://yourwebsiteurl.com/#what-we-do</loc>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://yourwebsiteurl.com/#why-it-matters</loc>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://yourwebsiteurl.com/#weather</loc>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://yourwebsiteurl.com/#get-involved</loc>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://yourwebsiteurl.com/#resources</loc>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://yourwebsiteurl.com/#contact</loc>
+    <priority>0.80</priority>
+  </url>
+</urlset>
