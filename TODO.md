@@ -24,7 +24,7 @@
 
 ## 4. Interactive Features
 - [x] Add newsletter signup form with email validation
-- [ ] Implement social media sharing buttons
+- [x] Implement social media sharing buttons
 - [ ] Create interactive maps showing project locations
 - [ ] Add volunteer sign-up form with skill selection
 - [ ] Implement photo gallery for community projects
@@ -37,7 +37,7 @@
 - [ ] Create FAQ section for common questions
 
 ## 6. Social Integration
-- [ ] Add social media sharing buttons for resources
+- [x] Add social media sharing buttons for resources
 - [ ] Integrate live social media feeds
 - [ ] Add donation sharing functionality
 - [ ] Implement social proof counters (followers, shares)
