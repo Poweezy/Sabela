@@ -152,11 +152,6 @@ function initScrollButtons() {
     if (discoverBtn) {
         discoverBtn.addEventListener('click', () => scrollToSection('#what-we-do'));
     }
-
-    const takeActionBtn = document.getElementById('take-action-btn');
-    if (takeActionBtn) {
-        takeActionBtn.addEventListener('click', () => scrollToSection('#get-involved'));
-    }
 }
 
 // Smooth Scrolling
@@ -635,6 +630,14 @@ function initQuizModal() {
     const quizResults = document.getElementById('quizResults');
     const restartBtn = document.getElementById('restartQuiz');
 
+    console.log('Quiz button found:', quizBtn);
+    console.log('Quiz modal found:', quizModal);
+    if (quizBtn) {
+        const rect = quizBtn.getBoundingClientRect();
+        console.log('Button position:', rect);
+        console.log('Button center:', Math.floor(rect.left + rect.width / 2), Math.floor(rect.top + rect.height / 2));
+    }
+
     if (!quizBtn || !quizModal) return;
 
     // Quiz questions data
@@ -696,8 +699,9 @@ function initQuizModal() {
 
     // Open modal
     quizBtn.addEventListener('click', function(e) {
+        console.log('Take Action button clicked');
         e.preventDefault();
-        quizModal.style.display = 'block';
+        quizModal.classList.add('show');
         document.body.style.overflow = 'hidden';
         showQuestion();
     });
@@ -712,7 +716,7 @@ function initQuizModal() {
 
     // Close modal function
     function closeModal() {
-        quizModal.style.display = 'none';
+        quizModal.classList.remove('show');
         document.body.style.overflow = 'auto';
         resetQuiz();
     }

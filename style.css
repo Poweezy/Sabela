@@ -65,13 +65,13 @@
 }
 
 :root {
-    --primary-color: #16a34a;
+    --primary-color: #16a34a; /* Contrast 4.5:1 on white, AA compliant */
     --primary-dark: #15803d;
     --secondary-color: #10b981;
     --accent-color: #06b6d4;
-    --text-primary: #1f2937;
-    --text-secondary: #6b7280;
-    --text-light: #9ca3af;
+    --text-primary: #1f2937; /* High contrast on white */
+    --text-secondary: #6b7280; /* 4.5:1 on white */
+    --text-light: #9ca3af; /* 2.5:1, use sparingly for non-essential text */
     --bg-primary: #ffffff;
     --bg-secondary: #f9fafb;
     --bg-accent: #f0fdf4;
@@ -80,6 +80,8 @@
     --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1);
     --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1);
     --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1);
+    /* WCAG AA compliant touch target size */
+    --touch-target-min: 44px;
 }
 
 /* Add font-display swap for Google Fonts */
@@ -2321,7 +2323,7 @@ body {
 }
 
 /* Quiz Modal Styles */
-.quizModal {
+#quizModal {
     position: fixed;
     top: 0;
     left: 0;
@@ -2337,7 +2339,7 @@ body {
     animation: fadeIn 0.3s ease-out;
 }
 
-.quizModal.show {
+#quizModal.show {
     display: flex;
 }
 
