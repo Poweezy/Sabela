@@ -374,6 +374,20 @@
                     <p>Empower the next generation of climate leaders through mentorship and training.</p>
                 </div>
             </div>
+
+            <!-- File Upload Section -->
+            <div class="file-upload-section">
+                <h3>Upload Resources or Documents</h3>
+                <p>Share documents, photos, or resources related to climate action.</p>
+                <div id="uploadArea" class="upload-area">
+                    <i data-lucide="upload-cloud" class="upload-icon"></i>
+                    <p>Drag and drop files here or <span class="click-to-upload">click to browse</span></p>
+                    <p class="upload-hint">Supports: Images (JPEG, PNG, GIF), PDFs (Max 5MB)</p>
+                    <input type="file" id="fileInput" multiple accept="image/*,application/pdf" style="display: none;">
+                </div>
+                <div id="fileList" class="file-list"></div>
+                <button id="uploadBtn" class="btn btn-primary">Upload Files</button>
+            </div>
         </div>
     </section>
 
@@ -596,6 +610,19 @@
             </div>
         </div>
     </section>
+
+    <!-- Quiz Modal -->
+    <div id="quizModal" class="modal" role="dialog" aria-labelledby="quizTitle" aria-hidden="true">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="quizTitle">Test Your Climate Knowledge</h2>
+                <span class="close">&times;</span>
+            </div>
+            <form id="quizForm"></form>
+            <div id="quizResults" style="display: none;"></div>
+            <button id="restartQuiz" class="btn btn-secondary">Restart Quiz</button>
+        </div>
+    </div>
 
     </main>
 

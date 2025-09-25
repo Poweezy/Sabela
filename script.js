@@ -30,6 +30,8 @@ document.addEventListener('DOMContentLoaded', function() {
     initHeaderScroll();
     initScrollButtons();
     initResourceSearch();
+    initQuizModal();
+    initFileUpload();
 });
 
 // Mobile Menu Functionality with Enhanced Keyboard Navigation
@@ -619,6 +621,370 @@ function initResourceSearch() {
             filterResources('');
         }
     });
+}
+
+// Add CSS classes for weather conditions, now moved to style.css for better maintainability.
+// The animation for .weather-card is also defined in style.css.
+
+// Quiz Modal Functionality
+function initQuizModal() {
+    const quizBtn = document.getElementById('take-action-btn');
+    const quizModal = document.getElementById('quizModal');
+    const closeBtn = quizModal.querySelector('.close');
+    const quizForm = document.getElementById('quizForm');
+    const quizResults = document.getElementById('quizResults');
+    const restartBtn = document.getElementById('restartQuiz');
+
+    if (!quizBtn || !quizModal) return;
+
+    // Quiz questions data
+    const quizQuestions = [
+        {
+            question: "What is the primary goal of The Climate Watch?",
+            options: [
+                "To promote tourism in Eswatini",
+                "To build a sustainable and resilient future through climate action",
+                "To develop new technologies",
+                "To increase agricultural exports"
+            ],
+            correct: 1
+        },
+        {
+            question: "Which region of Eswatini is most affected by climate change according to current data?",
+            options: [
+                "Hhohho Region",
+                "Lubombo Region",
+                "Manzini Region",
+                "All regions are equally affected"
+            ],
+            correct: 3
+        },
+        {
+            question: "What type of solutions does The Climate Watch focus on?",
+            options: [
+                "Only technological solutions",
+                "Only policy changes",
+                "Community-driven climate action, advocacy, and education",
+                "Only renewable energy projects"
+            ],
+            correct: 2
+        },
+        {
+            question: "What is one of the key challenges Eswatini faces due to climate change?",
+            options: [
+                "Increasing temperatures and erratic rainfall",
+                "Too much rainfall",
+                "Stable weather patterns",
+                "Decreasing temperatures"
+            ],
+            correct: 0
+        },
+        {
+            question: "How can individuals get involved with The Climate Watch?",
+            options: [
+                "Only by donating money",
+                "By joining campaigns, volunteering, partnering, or supporting youth leadership",
+                "Only through social media",
+                "Only by attending events"
+            ],
+            correct: 1
+        }
+    ];
+
+    let currentQuestion = 0;
+    let score = 0;
+
+    // Open modal
+    quizBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        quizModal.style.display = 'block';
+        document.body.style.overflow = 'hidden';
+        showQuestion();
+    });
+
+    // Close modal
+    closeBtn.addEventListener('click', closeModal);
+    window.addEventListener('click', function(e) {
+        if (e.target === quizModal) {
+            closeModal();
+        }
+    });
+
+    // Close modal function
+    function closeModal() {
+        quizModal.style.display = 'none';
+        document.body.style.overflow = 'auto';
+        resetQuiz();
+    }
+
+    // Show current question
+    function showQuestion() {
+        const question = quizQuestions[currentQuestion];
+        quizForm.innerHTML = `
+            <div class="quiz-question">
+                <h3>Question ${currentQuestion + 1} of ${quizQuestions.length}</h3>
+                <p>${question.question}</p>
+                <div class="quiz-options">
+                    ${question.options.map((option, index) => `
+                        <label class="quiz-option">
+                            <input type="radio" name="answer" value="${index}">
+                            <span>${option}</span>
+                        </label>
+                    `).join('')}
+                </div>
+                <button type="submit" class="btn btn-primary" id="submitAnswer">Submit Answer</button>
+            </div>
+        `;
+
+        // Handle answer submission
+        quizForm.addEventListener('submit', handleAnswer);
+    }
+
+    // Handle answer submission
+    function handleAnswer(e) {
+        e.preventDefault();
+        const selectedAnswer = document.querySelector('input[name="answer"]:checked');
+        if (!selectedAnswer) return;
+
+        const answer = parseInt(selectedAnswer.value);
+        if (answer === quizQuestions[currentQuestion].correct) {
+            score++;
+        }
+
+        currentQuestion++;
+        if (currentQuestion < quizQuestions.length) {
+            showQuestion();
+        } else {
+            showResults();
+        }
+    }
+
+    // Show quiz results
+    function showResults() {
+        const percentage = Math.round((score / quizQuestions.length) * 100);
+        let message = '';
+        let icon = '';
+
+        if (percentage >= 80) {
+            message = "Excellent! You're a climate champion!";
+            icon = 'trophy';
+        } else if (percentage >= 60) {
+            message = "Good job! You have a solid understanding of climate issues.";
+            icon = 'thumbs-up';
+        } else {
+            message = "Keep learning! Climate action starts with awareness.";
+            icon = 'book-open';
+        }
+
+        quizResults.innerHTML = `
+            <div class="quiz-results-content">
+                <i data-lucide="${icon}" class="results-icon"></i>
+                <h3>Quiz Complete!</h3>
+                <p class="score">Your Score: ${score}/${quizQuestions.length} (${percentage}%)</p>
+                <p class="message">${message}</p>
+                <div class="results-actions">
+                    <button class="btn btn-primary" id="shareResults">Share Results</button>
+                    <button class="btn btn-secondary" id="learnMore">Learn More</button>
+                </div>
+            </div>
+        `;
+
+        quizForm.style.display = 'none';
+        quizResults.style.display = 'block';
+
+        lucide.createIcons();
+
+        // Share results
+        document.getElementById('shareResults').addEventListener('click', function() {
+            const shareText = `I scored ${score}/${quizQuestions.length} on The Climate Watch climate quiz! Take the quiz to test your knowledge: ${window.location.href}`;
+            if (navigator.share) {
+                navigator.share({
+                    title: 'Climate Quiz Results',
+                    text: shareText,
+                    url: window.location.href
+                });
+            } else {
+                navigator.clipboard.writeText(shareText).then(() => {
+                    alert('Results copied to clipboard!');
+                });
+            }
+        });
+
+        // Learn more
+        document.getElementById('learnMore').addEventListener('click', function() {
+            closeModal();
+            scrollToSection('#resources');
+        });
+    }
+
+    // Reset quiz
+    function resetQuiz() {
+        currentQuestion = 0;
+        score = 0;
+        quizForm.style.display = 'block';
+        quizResults.style.display = 'none';
+        quizForm.innerHTML = '';
+    }
+
+    // Restart quiz
+    restartBtn.addEventListener('click', function() {
+        resetQuiz();
+        showQuestion();
+    });
+}
+
+// File Upload Functionality
+function initFileUpload() {
+    const uploadArea = document.getElementById('uploadArea');
+    const fileInput = document.getElementById('fileInput');
+    const fileList = document.getElementById('fileList');
+    const uploadBtn = document.getElementById('uploadBtn');
+
+    if (!uploadArea || !fileInput) return;
+
+    // Drag and drop functionality
+    ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+        uploadArea.addEventListener(eventName, preventDefaults, false);
+    });
+
+    function preventDefaults(e) {
+        e.preventDefault();
+        e.stopPropagation();
+    }
+
+    ['dragenter', 'dragover'].forEach(eventName => {
+        uploadArea.addEventListener(eventName, highlight, false);
+    });
+
+    ['dragleave', 'drop'].forEach(eventName => {
+        uploadArea.addEventListener(eventName, unhighlight, false);
+    });
+
+    function highlight(e) {
+        uploadArea.classList.add('dragover');
+    }
+
+    function unhighlight(e) {
+        uploadArea.classList.remove('dragover');
+    }
+
+    uploadArea.addEventListener('drop', handleDrop, false);
+
+    function handleDrop(e) {
+        const dt = e.dataTransfer;
+        const files = dt.files;
+        handleFiles(files);
+    }
+
+    // Click to upload
+    uploadArea.addEventListener('click', function() {
+        fileInput.click();
+    });
+
+    fileInput.addEventListener('change', function() {
+        handleFiles(this.files);
+    });
+
+    function handleFiles(files) {
+        [...files].forEach(uploadFile);
+    }
+
+    function uploadFile(file) {
+        // Validate file type and size
+        const allowedTypes = ['image/jpeg', 'image/png', 'image/gif', 'application/pdf'];
+        const maxSize = 5 * 1024 * 1024; // 5MB
+
+        if (!allowedTypes.includes(file.type)) {
+            showUploadMessage('Please upload only image files (JPEG, PNG, GIF) or PDF documents.', 'error');
+            return;
+        }
+
+        if (file.size > maxSize) {
+            showUploadMessage('File size must be less than 5MB.', 'error');
+            return;
+        }
+
+        // Create file preview
+        const fileItem = document.createElement('div');
+        fileItem.className = 'file-item';
+
+        if (file.type.startsWith('image/')) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                fileItem.innerHTML = `
+                    <img src="${e.target.result}" alt="${file.name}" class="file-preview">
+                    <div class="file-info">
+                        <p class="file-name">${file.name}</p>
+                        <p class="file-size">${formatFileSize(file.size)}</p>
+                    </div>
+                    <button class="remove-file" aria-label="Remove ${file.name}">×</button>
+                `;
+                fileList.appendChild(fileItem);
+            };
+            reader.readAsDataURL(file);
+        } else {
+            fileItem.innerHTML = `
+                <div class="file-icon">
+                    <i data-lucide="file-text"></i>
+                </div>
+                <div class="file-info">
+                    <p class="file-name">${file.name}</p>
+                    <p class="file-size">${formatFileSize(file.size)}</p>
+                </div>
+                <button class="remove-file" aria-label="Remove ${file.name}">×</button>
+            `;
+            fileList.appendChild(fileItem);
+            lucide.createIcons();
+        }
+
+        // Remove file functionality
+        fileItem.querySelector('.remove-file').addEventListener('click', function() {
+            fileItem.remove();
+        });
+
+        showUploadMessage('File uploaded successfully!', 'success');
+    }
+
+    function formatFileSize(bytes) {
+        if (bytes === 0) return '0 Bytes';
+        const k = 1024;
+        const sizes = ['Bytes', 'KB', 'MB', 'GB'];
+        const i = Math.floor(Math.log(bytes) / Math.log(k));
+        return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+    }
+
+    function showUploadMessage(message, type) {
+        const messageEl = document.createElement('div');
+        messageEl.className = `upload-message ${type}`;
+        messageEl.textContent = message;
+        uploadArea.appendChild(messageEl);
+
+        setTimeout(() => {
+            messageEl.remove();
+        }, 3000);
+    }
+
+    // Upload button functionality (simulate upload)
+    if (uploadBtn) {
+        uploadBtn.addEventListener('click', function() {
+            const files = fileList.querySelectorAll('.file-item');
+            if (files.length === 0) {
+                showUploadMessage('Please select files to upload.', 'error');
+                return;
+            }
+
+            // Simulate upload process
+            uploadBtn.textContent = 'Uploading...';
+            uploadBtn.disabled = true;
+
+            setTimeout(() => {
+                showUploadMessage('All files uploaded successfully!', 'success');
+                fileList.innerHTML = '';
+                uploadBtn.textContent = 'Upload Files';
+                uploadBtn.disabled = false;
+            }, 2000);
+        });
+    }
 }
 
 // Add CSS classes for weather conditions, now moved to style.css for better maintainability.
