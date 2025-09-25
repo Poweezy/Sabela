@@ -11,6 +11,6 @@ This TODO tracks the implementation of CSS styles for the file upload functional
 - [x] Step 4: Style file previews (.file-preview for images, .file-icon for PDFs) - Image sizing, PDF icon with Lucide, consistent dimensions.
 - [x] Step 5: Style upload button (#uploadBtn) and messages (.upload-message.success/error) - Consistent with site buttons, positioned feedback.
 - [x] Step 6: Add animations (e.g., fade-in for messages, scale on dragover) and responsive media queries (stack layouts on mobile, adjust sizes).
-- [ ] Step 7: Test the implementation - Relaunch browser, scroll to Get Involved, drag/drop files or click to upload, verify previews, remove, and simulate upload.
-- [ ] Step 8: Update TODO-file-upload.md with completions and mark as done.
-- [ ] Step 9: Use attempt_completion to finalize the task.
+- [x] Step 7: Test the implementation - Relaunch browser, scroll to Get Involved, drag/drop files or click to upload, verify previews, remove, and simulate upload.
+- [x] Step 8: Update TODO-file-upload.md with completions and mark as done.
+- [x] Step 9: Use attempt_completion to finalize the task.
