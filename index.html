@@ -105,6 +105,8 @@
         </nav>
     </header>
 
+    <!-- Main Content -->
+    <main role="main">
     <!-- Hero Section -->
     <section id="home" class="hero" role="region" aria-label="Hero Section">
         <div class="hero-video">
@@ -275,7 +277,7 @@
     </section>
 
     <!-- Weather Dashboard -->
-    <section id="weather" class="section weather" role="region" aria-label="Eswatini Weather Focus">
+    <section id="weather" class="section weather" role="complementary" aria-label="Eswatini Weather Focus">
         <div class="container">
             <h2 class="section-title">🌤️ Eswatini Weather Focus</h2>
             <p class="section-intro" id="weatherDesc">
@@ -402,7 +404,7 @@
                 </div>
 
                 <div class="newsletter-form-container">
-                    <form class="newsletter-form" id="newsletterForm" aria-label="Newsletter signup form">
+                    <form class="newsletter-form" id="newsletterForm" aria-label="Newsletter signup form" aria-describedby="newsletter-privacy">
                         <div class="form-message" role="alert" aria-live="assertive"></div>
                         <div class="form-group">
                             <label for="newsletterEmail" class="sr-only">Email Address</label>
@@ -411,7 +413,7 @@
                                 Subscribe <i data-lucide="send"></i>
                             </button>
                         </div>
-                        <p class="privacy-note">
+                        <p class="privacy-note" id="newsletter-privacy">
                             We respect your privacy. Unsubscribe at any time.
                         </p>
                     </form>
@@ -581,7 +583,7 @@
                 
                 <div class="contact-form-container">
                     <h3>Send us a Message</h3>
-                    <form class="contact-form" id="contactForm" aria-label="Contact form">
+                    <form class="contact-form" id="contactForm" aria-label="Contact form" aria-describedby="contactDesc">
                         <div class="form-message" role="alert" aria-live="assertive"></div>
                         <div class="form-row">
                             <input type="text" name="name" placeholder="Your Name" required aria-required="true" aria-label="Your Name">
@@ -594,6 +596,8 @@
             </div>
         </div>
     </section>
+
+    </main>
 
     <!-- Footer -->
     <footer class="footer">
