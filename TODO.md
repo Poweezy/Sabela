@@ -1,16 +1,20 @@
-- [x] Update value-card in who-we-are section to glass effect
-- [x] Update program-card in what-we-do section to glass effect
-- [x] Update impact-card in impact section to glass effect
-- [x] Update involvement-card in get-involved section to glass effect
-- [x] Update resource-card in resources section to glass effect
-- [x] Update matter-card in why-matters section to glass effect
-- [x] Update weather-card to enhance glass effect
-- [ ] Fix text legibility in Get Involved section (ensure white/light text on dark background)
-- [ ] Enhance Get Involved card design (padding, rounded corners, subtle gradients)
-- [ ] Add call-to-action buttons to each Get Involved card
-- [ ] Improve hover animations and visual feedback for Get Involved cards
-- [ ] Add subtle background pattern or gradient to Get Involved section
-- [ ] Ensure responsive design for Get Involved section on all devices
-- [ ] Launch browser and test all sections for glass effects
-- [ ] Navigate through each section, check visual consistency and readability
-- [ ] Interact with buttons and links to ensure functionality
+# Website Improvements TODO
+
+## Performance Optimizations
+- [ ] Add font-display: swap for Google Fonts
+- [ ] Implement lazy loading for images
+- [ ] Add preload hints for critical resources
+
+## Accessibility Enhancements
+- [ ] Improve color contrast ratios
+- [ ] Add keyboard navigation support
+- [ ] Enhance ARIA labels and screen reader support
+
+## Functionality Improvements
+- [ ] Add search functionality for resources section
+- [ ] Implement proper form submission (email integration)
+- [ ] Add social media sharing buttons
+
+## Code Quality
+- [ ] Add error boundaries and better error handling
+- [ ] Optimize animations for performance

@@ -29,6 +29,7 @@ document.addEventListener('DOMContentLoaded', function() {
     initContactForm();
     initHeaderScroll();
     initScrollButtons();
+    initResourceSearch();
 });
 
 // Mobile Menu Functionality
@@ -498,6 +499,52 @@ function initContactForm() {
 function isValidEmail(email) {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailRegex.test(email);
+}
+
+// Resource Search Functionality
+function initResourceSearch() {
+    const searchInput = document.getElementById('resourceSearch');
+    const clearButton = document.getElementById('clearSearch');
+    const resourceCards = document.querySelectorAll('.resource-card');
+
+    if (!searchInput || !clearButton || !resourceCards.length) return;
+
+    // Function to filter resources
+    function filterResources(searchTerm) {
+        const term = searchTerm.toLowerCase().trim();
+
+        resourceCards.forEach(card => {
+            const title = card.querySelector('h3').textContent.toLowerCase();
+            const description = card.querySelector('p').textContent.toLowerCase();
+            const category = card.querySelector('.resource-category').textContent.toLowerCase();
+
+            const matches = title.includes(term) ||
+                           description.includes(term) ||
+                           category.includes(term);
+
+            card.style.display = matches || term === '' ? 'block' : 'none';
+        });
+    }
+
+    // Search input event listener
+    searchInput.addEventListener('input', function() {
+        filterResources(this.value);
+    });
+
+    // Clear search button event listener
+    clearButton.addEventListener('click', function() {
+        searchInput.value = '';
+        filterResources('');
+        searchInput.focus();
+    });
+
+    // Optional: Add keyboard shortcut for clearing search (Escape key)
+    searchInput.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+            searchInput.value = '';
+            filterResources('');
+        }
+    });
 }
 
 // Add CSS classes for weather conditions, now moved to style.css for better maintainability.
