@@ -380,13 +380,39 @@
                 <h3>Upload Resources or Documents</h3>
                 <p>Share documents, photos, or resources related to climate action.</p>
                 <div id="uploadArea" class="upload-area">
-                    <i data-lucide="upload-cloud" class="upload-icon"></i>
+                    <i data-lucide="upload-cloud" class="upload-icon" aria-hidden="true"></i>
                     <p>Drag and drop files here or <span class="click-to-upload">click to browse</span></p>
                     <p class="upload-hint">Supports: Images (JPEG, PNG, GIF), PDFs (Max 5MB)</p>
                     <input type="file" id="fileInput" multiple accept="image/*,application/pdf" style="display: none;">
                 </div>
                 <div id="fileList" class="file-list"></div>
                 <button id="uploadBtn" class="btn btn-primary">Upload Files</button>
+            </div>
+
+            <!-- Volunteer Signup Form -->
+            <div class="volunteer-form-container">
+                <h3>Volunteer Signup</h3>
+                <form id="volunteerForm" aria-label="Volunteer signup form">
+                    <div class="form-message" role="alert" aria-live="assertive"></div>
+                    <div class="form-row">
+                        <input type="text" name="name" placeholder="Full Name" required aria-required="true" aria-label="Full Name">
+                        <input type="email" name="email" placeholder="Email Address" required aria-required="true" aria-label="Email Address">
+                    </div>
+                    <div class="form-row">
+                        <select name="skills" required aria-required="true" aria-label="Select your skills">
+                            <option value="">Select your skills</option>
+                            <option value="agriculture">Agriculture & Farming</option>
+                            <option value="education">Education & Training</option>
+                            <option value="advocacy">Advocacy & Policy</option>
+                            <option value="tech">Technology & Data</option>
+                            <option value="community">Community Organizing</option>
+                            <option value="other">Other</option>
+                        </select>
+                        <input type="text" name="availability" placeholder="Availability (e.g., weekends)" aria-label="Availability">
+                    </div>
+                    <textarea name="message" placeholder="Tell us about your interest in volunteering" rows="4" aria-label="Message about volunteering interest"></textarea>
+                    <button type="submit" class="btn btn-primary btn-full" aria-label="Submit volunteer application">Sign Up to Volunteer</button>
+                </form>
             </div>
         </div>
     </section>
