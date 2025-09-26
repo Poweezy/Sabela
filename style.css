@@ -1074,6 +1074,69 @@ body {
     line-height: 1.6;
 }
 
+/* Testimonials Section */
+.testimonials {
+    background: #111827;
+    color: white;
+}
+
+.testimonials .section-title,
+.testimonials .section-intro {
+    color: white;
+}
+
+.testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+}
+
+.testimonial-card {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 2rem;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.testimonial-card:hover {
+    transform: translateY(-0.5rem) scale(1.05);
+    box-shadow: var(--shadow-xl), 0 0 20px rgba(255, 255, 255, 0.3);
+}
+
+.testimonial-icon {
+    width: 4rem;
+    height: 4rem;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    border-radius: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1.5rem;
+    color: white;
+    font-size: 1.5rem;
+    transition: all 0.3s ease-in-out;
+}
+
+.testimonial-card:hover .testimonial-icon {
+    transform: rotate(-5deg) scale(1.1);
+}
+
+.testimonial-card h3 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: white;
+}
+
+.testimonial-card p {
+    color: rgba(255, 255, 255, 0.8);
+    line-height: 1.6;
+    font-style: italic;
+}
+
 /* Resources Section */
 .resources {
     background: var(--bg-primary);
