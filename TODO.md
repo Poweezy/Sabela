@@ -1,4 +1,4 @@
-ts# TODO: Fix Cypress Test Failures
+# TODO: Fix Cypress Test Failures
 
 ## 1. Fix Newsletter Form Message Visibility
 - [x] Update newsletter.js to add 'show' class to formMessage for success and error messages
@@ -11,13 +11,6 @@ ts# TODO: Fix Cypress Test Failures
 ## 3. Verify Focus Indicators
 - [x] Check if all interactive elements have visible focus indicators
 - [x] Add focus styles if missing for any elements
-
-## 4. Test Fixes
-- [x] Run Cypress tests to verify fixes
-- [ ] Check load time optimization if needed
-## 3. Verify Focus Indicators
-- [ ] Check if all interactive elements have visible focus indicators
-- [ ] Add focus styles if missing for any elements
 
 ## 4. Test Fixes
 - [x] Run Cypress tests to verify fixes

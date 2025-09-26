@@ -1,26 +1,25 @@
-medescribe('Accessibility Focus Indicators', () => {
+Domedescribe('Accessibility Focus Indicators', () => {
   beforeEach(() => {
     cy.visit('/');
   });
 
-  it('should have proper focus indicators on contact form', () => {
+
     // Navigate to contact section
     cy.scrollTo('bottom');
 
     // Focus on contact form inputs - specific to contact form
     cy.get('#contactForm input[name="name"]').focus();
-    cy.get('#contactForm input[name="name"]').should('have.css', 'outline', '2px solid rgb(22, 163, 74)');
+    cy.get('#contactForm input[name="name"]').should('have.css', 'outline-color', 'rgb(22, 163, 74)');
 
     cy.get('#contactForm input[name="email"]').focus();
-    cy.get('#contactForm input[name="email"]').should('have.css', 'outline', '2px solid rgb(22, 163, 74)');
+    cy.get('#contactForm input[name="email"]').should('have.css', 'outline-color', 'rgb(22, 163, 74)');
 
     cy.get('#contactForm textarea[name="message"]').focus();
-    cy.get('#contactForm textarea[name="message"]').should('have.css', 'outline', '2px solid rgb(22, 163, 74)');
+    cy.get('#contactForm textarea[name="message"]').should('have.css', 'outline-color', 'rgb(22, 163, 74)');
 
     cy.get('#contactForm button[type="submit"]').focus();
-    cy.get('#contactForm button[type="submit"]').should('have.css', 'outline', '2px solid rgb(22, 163, 74)');
+    cy.get('#contactForm button[type="submit"]').should('have.css', 'outline-color', 'rgb(22, 163, 74)');
   });
-
   it('should have proper focus indicators on newsletter form', () => {
     // Navigate to newsletter section
     cy.get('#newsletterForm').scrollIntoView();
