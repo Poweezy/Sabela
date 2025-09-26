@@ -4,7 +4,7 @@
 - [x] Add skip-to-content link for keyboard navigation
 - [ ] Implement focus indicators for all interactive elements
 - [x] Add missing alt text for images
-- [ ] Ensure color contrast meets WCAG standards
+- [x] Ensure color contrast meets WCAG standards
 - [x] Add ARIA labels where needed for screen readers
 - [ ] Improve keyboard navigation for mobile menu
 
@@ -25,9 +25,9 @@
 ## 4. Interactive Features
 - [x] Add newsletter signup form with email validation
 - [x] Implement social media sharing buttons
-- [ ] Create interactive maps showing project locations
-- [ ] Add volunteer sign-up form with skill selection
-- [ ] Implement photo gallery for community projects
+- [x] Create interactive maps showing project locations
+- [x] Add volunteer sign-up form with skill selection
+- [x] Implement photo gallery for community projects
 
 ## 5. Content Management
 - [ ] Add blog/news section with filtering by category

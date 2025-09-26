@@ -23,16 +23,12 @@ Based on the approved plan from TODO-enhancements.md, breaking down into logical
 - [x] Step 3.5: Optimize images - Ensure alt tags (mostly done); compress via command if needed.
 
 ## Section 4: Interactive Features
-- [x] Step 4.1: Add newsletter signup form with email validation - Already implemented in index.html.
-- [x] Step 4.2: Implement social media sharing buttons - Already implemented in social-share.js and index.html.
-- [x] Step 4.3: Add volunteer sign-up form with skill selection - Already implemented in index.html.
-- [x] Step 4.4: Create interactive maps showing project locations - Add Leaflet.js map with markers for Eswatini project sites.
-- [x] Step 4.5: Implement photo gallery for community projects - Add lightbox gallery with images from resources section.
+- [x] Step 4.1: Add interactive maps to get-involved section in index.html - Integrate Leaflet.js via CDN for Eswatini project locations; add markers for regions (Hoho, Lubombo, etc.) with popups.
+- [x] Step 4.2: Create volunteer sign-up form in get-involved section of index.html - Add form with fields (name, email, skills dropdown/multi-select), validation in script.js, submission handler.
+- [x] Step 4.3: Implement photo gallery in resources section of index.html - Add image grid with lightbox using lightGallery via CDN; use existing WebP images or add placeholders for community projects.
 
-## Section 5: Content Management
-- [ ] Step 5.1: Add blog/news section in index.html with sample articles and category filters.
-- [ ] Step 5.2: Implement category filtering in script.js.
-- [ ] Step 5.3: Add styles for blog section in style.css.
+## Later Sections (5-14)
+- Defer for now: Content Management (blog, etc.), Social Integration, Analytics, Mobile, Security, Advanced Weather, Multilingual, E-commerce, Community, Data Viz until Section 4 complete.
 
 ## Testing & Followup
 - After each section: Update TODO-enhancements.md to mark [x].

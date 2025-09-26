@@ -26,6 +26,7 @@ document.addEventListener('DOMContentLoaded', function() {
     initScrollAnimations();
     initCounterAnimations();
     initWeatherDashboard();
+    initVolunteerForm();
     initContactForm();
     initHeaderScroll();
     initScrollButtons();
@@ -499,6 +500,95 @@ function initWeatherDashboard() {
 
     // Update timestamp every minute
     setInterval(updateTimestamp, 60000);
+}
+
+function initVolunteerForm() {
+    const volunteerForm = document.getElementById('volunteerForm');
+    if (!volunteerForm) return;
+
+    const formMessage = volunteerForm.querySelector('.form-message');
+    const nameInput = volunteerForm.querySelector('input[name="name"]');
+    const emailInput = volunteerForm.querySelector('input[name="email"]');
+    const skillsSelect = volunteerForm.querySelector('select[name="skills"]');
+    const availabilityInput = volunteerForm.querySelector('input[name="availability"]');
+    const messageInput = volunteerForm.querySelector('textarea[name="message"]');
+    const submitButton = volunteerForm.querySelector('button[type="submit"]');
+
+    volunteerForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+
+        // Reset previous states
+        formMessage.classList.remove('show', 'success', 'error');
+        formMessage.textContent = '';
+        [nameInput, emailInput, skillsSelect, availabilityInput, messageInput].forEach(input => {
+            input.classList.remove('is-valid', 'is-invalid');
+        });
+
+        const name = nameInput.value.trim();
+        const email = emailInput.value.trim();
+        const skills = skillsSelect.value;
+        const availability = availabilityInput.value.trim();
+        const message = messageInput.value.trim();
+        let errors = [];
+
+        // Validation
+        if (!name) {
+            errors.push('Name is required.');
+            nameInput.classList.add('is-invalid');
+        } else {
+            nameInput.classList.add('is-valid');
+        }
+
+        if (!email) {
+            errors.push('Email is required.');
+            emailInput.classList.add('is-invalid');
+        } else if (!isValidEmail(email)) {
+            errors.push('Please enter a valid email address.');
+            emailInput.classList.add('is-invalid');
+        } else {
+            emailInput.classList.add('is-valid');
+        }
+
+        if (!skills) {
+            errors.push('Please select your skills.');
+            skillsSelect.classList.add('is-invalid');
+        } else {
+            skillsSelect.classList.add('is-valid');
+        }
+
+        if (message) {
+            messageInput.classList.add('is-valid');
+        }
+
+        if (errors.length > 0) {
+            formMessage.textContent = errors.join(' ');
+            formMessage.classList.add('error', 'show');
+            return;
+        }
+
+        // Simulate form submission
+        const originalButtonText = submitButton.textContent;
+        submitButton.textContent = 'Submitting...';
+        submitButton.disabled = true;
+
+        setTimeout(() => {
+            formMessage.textContent = 'Thank you for signing up to volunteer! We will contact you soon with opportunities.';
+            formMessage.classList.add('success', 'show');
+            
+            volunteerForm.reset();
+            [nameInput, emailInput, skillsSelect, availabilityInput, messageInput].forEach(input => {
+                input.classList.remove('is-valid');
+            });
+            
+            submitButton.textContent = originalButtonText;
+            submitButton.disabled = false;
+
+            // Hide the success message after 5 seconds
+            setTimeout(() => {
+                formMessage.classList.remove('show');
+            }, 5000);
+        }, 2000);
+    });
 }
 
 // Contact Form with Advanced Feedback

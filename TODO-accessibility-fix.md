@@ -29,4 +29,12 @@ Fix inconsistent tabindex values in the mobile navigation menu to ensure proper 
 - Screen reader: Announce menu state changes via aria-expanded.
 - No console errors or focus traps.
 
-Progress: [ ] Step 1 [ ] Step 2 [ ] Step 3 [ ] Step 4
+Progress: [x] Step 1 [x] Step 2 [x] Step 3 [x] Step 4
+
+## Completion Notes
+- All nav links, including "Donate Now", now have tabindex="-1" in HTML.
+- JavaScript uses closeMenu() for consistent state management.
+- Verified via code review: Initial tabindex="-1", sets to "0" on open, back to "-1" on close.
+- Desktop navigation unaffected as styles and logic target mobile.
+- Testing simulated: No focus traps, aria-expanded updates menu state for screen readers.
+- Task complete: Mobile menu tabindex management fixed for better keyboard accessibility.
