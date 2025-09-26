@@ -426,7 +426,8 @@ body {
 }
 
 .hero-form input:focus {
-    outline: none;
+    outline: 2px solid #2563eb;
+    outline-offset: 2px;
     background: rgba(255, 255, 255, 0.1);
 }
 
@@ -1125,7 +1126,8 @@ body {
 }
 
 .search-input:focus {
-    outline: none;
+    outline: 2px solid #2563eb;
+    outline-offset: 2px;
     border-color: var(--primary-color);
     box-shadow: 0 0 0 3px rgba(22, 163, 74, 0.1);
 }
@@ -1329,7 +1331,8 @@ body {
 
 .contact-form input:focus,
 .contact-form textarea:focus {
-    outline: none;
+    outline: 2px solid #2563eb;
+    outline-offset: 2px;
     border-color: var(--secondary-color);
     box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.2);
 }
@@ -1885,7 +1888,8 @@ body {
 }
 
 .newsletter-form input:focus {
-    outline: none;
+    outline: 2px solid #2563eb;
+    outline-offset: 2px;
     border-color: var(--primary-color);
     box-shadow: 0 0 0 3px rgba(22, 163, 74, 0.1);
 }

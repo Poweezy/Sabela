@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (!validateEmail(email)) {
       formMessage.textContent = 'Please enter a valid email address.';
-      formMessage.style.color = 'red';
+      formMessage.classList.add('error', 'show');
       emailInput.focus();
       return;
     }
@@ -23,11 +23,16 @@ document.addEventListener('DOMContentLoaded', () => {
       await fakeSubmit(email);
 
       formMessage.textContent = 'Thank you for subscribing!';
-      formMessage.style.color = 'green';
+      formMessage.classList.add('success', 'show');
       form.reset();
+
+      // Hide the success message after 5 seconds
+      setTimeout(() => {
+        formMessage.classList.remove('show');
+      }, 5000);
     } catch (error) {
       formMessage.textContent = 'An error occurred. Please try again later.';
-      formMessage.style.color = 'red';
+      formMessage.classList.add('error', 'show');
     }
   });
 
