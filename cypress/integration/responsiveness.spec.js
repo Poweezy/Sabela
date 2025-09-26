@@ -44,7 +44,7 @@ describe('Website Mobile Responsiveness and UI Tests', () => {
       cy.get('input[name="email"]').type('test@example.com');
       cy.get('button[type="submit"]').click();
     });
-    cy.get('.form-message').should('be.visible');
+    cy.get('.form-message').should('be.visible').and('contain', 'Thank you for subscribing!');
   });
 
   it('should load images efficiently', () => {

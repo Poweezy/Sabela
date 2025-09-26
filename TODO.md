@@ -14,4 +14,7 @@
 
 ## 4. Test Fixes
 - [x] Run Cypress tests to verify fixes
-- [ ] Check load time optimization if needed
+- [x] Check load time optimization if needed
+- [x] Update test assertions to match CSS values (outline-color instead of outline)
+- [x] Fix newsletter form success message check
+- [x] Verify all images have alt attributes and loading="lazy"
