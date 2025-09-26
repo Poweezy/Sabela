@@ -1,6 +1,6 @@
 describe('Website Mobile Responsiveness and UI Tests', () => {
   beforeEach(() => {
-    cy.visit('http://localhost:3000'); // Adjust URL as needed
+    cy.visit('file:///c:/Users/nsiba/Desktop/Sabela/index.html');
   });
 
   it('should display the header and navigation correctly on desktop', () => {

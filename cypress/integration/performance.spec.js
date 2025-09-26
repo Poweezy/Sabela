@@ -1,6 +1,6 @@
 describe('Website Performance and Loading Tests', () => {
   beforeEach(() => {
-    cy.visit('http://localhost:3000'); // Adjust URL as needed
+    cy.visit('file:///c:/Users/nsiba/Desktop/Sabela/index.html');
   });
 
   it('should load main page within acceptable time', () => {
