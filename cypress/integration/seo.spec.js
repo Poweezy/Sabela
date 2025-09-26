@@ -1,6 +1,6 @@
 describe('SEO and Accessibility Tests', () => {
   beforeEach(() => {
-    cy.visit('file:///c:/Users/nsiba/Desktop/Sabela/index.html');
+    cy.visit('index.html');
   });
 
   it('should have meta description tags for each section', () => {

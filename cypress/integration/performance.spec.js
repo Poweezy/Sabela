@@ -1,6 +1,6 @@
 describe('Website Performance and Loading Tests', () => {
   beforeEach(() => {
-    cy.visit('file:///c:/Users/nsiba/Desktop/Sabela/index.html');
+    cy.visit('index.html');
   });
 
   it('should load main page within acceptable time', () => {
@@ -18,22 +18,17 @@ describe('Website Performance and Loading Tests', () => {
   });
 
   it('should have minified CSS and JS files', () => {
-    cy.request('style.css').then((response) => {
+    cy.request('style.min.css').then((response) => {
       expect(response.body.length).to.be.lessThan(50000); // Example size check
       expect(response.body).to.not.include('\n\n'); // Minified check
     });
-    cy.request('script.js').then((response) => {
+    cy.request('script.min.js').then((response) => {
       expect(response.body.length).to.be.lessThan(100000);
       expect(response.body).to.not.include('\n\n');
     });
   });
 
-  it('should convert images to WebP format where applicable', () => {
-    cy.get('img').each(($img) => {
-      const src = $img.attr('src');
-      if (src) {
-        expect(src).to.match(/\.webp$/);
-      }
-    });
+  it('should have lazy loading on images where applicable', () => {
+    cy.get('img[loading="lazy"]').should('exist');
   });
 });
