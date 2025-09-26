@@ -618,6 +618,17 @@ function initResourceSearch() {
     });
 }
 
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function() {
+    navigator.serviceWorker.register('/sw.js')
+      .then(function(registration) {
+        console.log('ServiceWorker registration successful with scope: ', registration.scope);
+      }, function(err) {
+        console.log('ServiceWorker registration failed: ', err);
+      });
+  });
+}
+
 // Add CSS classes for weather conditions, now moved to style.css for better maintainability.
 // The animation for .weather-card is also defined in style.css.
 

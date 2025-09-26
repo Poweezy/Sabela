@@ -1,5 +1,15 @@
 {
+  "scripts": {
+    "minify-css": "postcss style.css -o style.min.css --use cssnano",
+    "minify-js": "terser script.js -o script.min.js --compress --mangle",
+    "minify-newsletter": "terser newsletter.js -o newsletter.min.js --compress --mangle",
+    "minify-social": "terser social-share.js -o social-share.min.js --compress --mangle",
+    "minify-all": "npm run minify-css && npm run minify-js && npm run minify-newsletter && npm run minify-social"
+  },
   "devDependencies": {
-    "cypress": "^15.3.0"
+    "cssnano": "^7.1.1",
+    "cypress": "^15.3.0",
+    "postcss-cli": "^11.0.1",
+    "terser": "^5.44.0"
   }
 }
