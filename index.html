@@ -193,12 +193,13 @@
                 </div>
                 
                 <ul class="nav-links" id="navLinks" role="menubar">
-                    <li role="none"><a href="#home" class="nav-link" role="menuitem" tabindex="0">Home</a></li>
+                    <li role="none"><a href="#home" class="nav-link" role="menuitem" tabindex="-1">Home</a></li>
                     <li role="none"><a href="#what-we-do" class="nav-link" role="menuitem" tabindex="-1">What We Do</a></li>
                     <li role="none"><a href="#why-it-matters" class="nav-link" role="menuitem" tabindex="-1">Why It Matters</a></li>
                     <li role="none"><a href="#weather" class="nav-link" role="menuitem" tabindex="-1">Weather</a></li>
                     <li role="none"><a href="#get-involved" class="nav-link" role="menuitem" tabindex="-1">Get Involved</a></li>
                     <li role="none"><a href="#resources" class="nav-link" role="menuitem" tabindex="-1">Resources</a></li>
+                    <li role="none"><a href="#blog" class="nav-link" role="menuitem" tabindex="-1">Blog</a></li>
                     <li role="none"><a href="#contact" class="nav-link" role="menuitem" tabindex="-1">Contact</a></li>
                     <li role="none"><a href="#donate" class="btn btn-primary" id="donate-now-btn-header" aria-label="Donate Now" role="menuitem">Donate Now</a></li>
                 </ul>
@@ -723,6 +724,71 @@
                             </button>
                         </div>
                     </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog & News Section -->
+    <section id="blog" class="section blog" aria-label="Blog & News Section">
+        <div class="container">
+            <h2 class="section-title">Blog & News</h2>
+            <p class="section-intro">Stay informed with the latest updates, stories, and insights from our climate action work in Eswatini.</p>
+            
+            <div class="blog-filters">
+                <button class="filter-btn active" data-category="all" aria-label="Show all blog posts">All</button>
+                <button class="filter-btn" data-category="news" aria-label="Show news posts">News</button>
+                <button class="filter-btn" data-category="stories" aria-label="Show stories">Stories</button>
+                <button class="filter-btn" data-category="reports" aria-label="Show reports">Reports</button>
+                <button class="filter-btn" data-category="guides" aria-label="Show guides">Guides</button>
+            </div>
+
+            <div class="blog-grid">
+                <div class="blog-card" data-category="news" data-animation-delay="0.1s">
+                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?fm=webp&q=60&w=800&ixlib=rb-4.1.0" alt="Climate summit attendees discussing strategies in Eswatini" loading="lazy">
+                    <span class="blog-category">News</span>
+                    <h3>Eswatini's First Climate Summit Success</h3>
+                    <p>Our annual climate summit brought together leaders and communities to discuss adaptation strategies and future plans.</p>
+                    <a href="#!" class="blog-link">Read More <i data-lucide="arrow-right"></i></a>
+                </div>
+                <div class="blog-card" data-category="stories" data-animation-delay="0.2s">
+                    <img src="https://images.unsplash.com/photo-1511632765486-a01980e01a18?fm=webp&q=60&w=800&ixlib=rb-4.1.0" alt="Youth group participating in climate workshop in Eswatini" loading="lazy">
+                    <span class="blog-category">Stories</span>
+                    <h3>Youth Voices: Stories from the Frontlines</h3>
+                    <p>Hear from young leaders sharing their experiences in community-driven climate initiatives across Eswatini.</p>
+                    <a href="#!" class="blog-link">Read More <i data-lucide="arrow-right"></i></a>
+                </div>
+                <div class="blog-card" data-category="reports" data-animation-delay="0.3s">
+                    <img src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?fm=webp&q=60&w=800&ixlib=rb-4.1.0" alt="Data charts from climate report on Eswatini trends" loading="lazy">
+                    <span class="blog-category">Reports</span>
+                    <h3>2024 Climate Report Highlights</h3>
+                    <p>Key findings from our latest report on climate impacts and resilience measures in Eswatini.</p>
+                    <a href="#!" class="blog-link">Read More <i data-lucide="arrow-right"></i></a>
+                </div>
+                <div class="blog-card" data-category="guides" data-animation-delay="0.4s">
+                    <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?fm=webp&q=60&w=800&ixlib=rb-4.1.0" alt="Solar panel installation guide illustration" loading="lazy">
+                    <span class="blog-category">Guides</span>
+                    <h3>Guide to Home Solar Installation</h3>
+                    <p>Step-by-step instructions for setting up solar energy systems in rural Eswatini homes.</p>
+                    <a href="#!" class="blog-link">Read More <i data-lucide="arrow-right"></i></a>
+                </div>
+
+                <div class="blog-card" data-category="reports" data-animation-delay="0.5s">
+                    <img src="https://images.unsplash.com/photo-1558618047-3c8c76ca7e87?fm=webp&q=60&w=800&ixlib=rb-4.1.0" alt="Annual Climate Report" loading="lazy">
+                    <span class="blog-category">Reports</span>
+                    <h3>2023 Annual Climate Impact Report for Eswatini</h3>
+                    <p class="date">November 10, 2023</p>
+                    <p>Our comprehensive report highlights rising temperatures, water scarcity challenges, and successful adaptation projects across all four regions.</p>
+                    <a href="#" class="read-more">Read More</a>
+                </div>
+
+                <div class="blog-card" data-category="stories" data-animation-delay="0.6s">
+                    <img src="https://images.unsplash.com/photo-1511632765486-a01980e01a18?fm=webp&q=60&w=800&ixlib=rb-4.1.0" alt="Solar Project Impact" loading="lazy">
+                    <span class="blog-category">Stories</span>
+                    <h3>Solar Power Transforms Rural Shiselweni Village</h3>
+                    <p class="date">August 12, 2023</p>
+                    <p>A small solar mini-grid has brought electricity to 150 households, enabling evening education and small business growth.</p>
+                    <a href="#" class="read-more">Read More</a>
                 </div>
             </div>
         </div>

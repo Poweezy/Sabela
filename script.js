@@ -30,9 +30,11 @@ document.addEventListener('DOMContentLoaded', function() {
     initHeaderScroll();
     initScrollButtons();
     initResourceSearch();
+    initBlogFilter();
     initQuizModal();
     initFileUpload();
     initMap();
+    initLightboxGallery();
 });
 
 // Mobile Menu Functionality with Enhanced Keyboard Navigation
@@ -48,6 +50,20 @@ function initMobileMenu() {
             link.setAttribute('role', 'menuitem');
         });
 
+        // Helper function to close menu
+        function closeMenu() {
+            navLinks.classList.remove('active');
+            mobileMenuBtn.setAttribute('aria-expanded', 'false');
+            const icon = mobileMenuBtn.querySelector('i');
+            icon.setAttribute('data-lucide', 'menu');
+            mobileMenuBtn.setAttribute('aria-label', 'Open menu');
+            // Set all nav links to tabindex="-1" when closed
+            navLinkElements.forEach(link => link.setAttribute('tabindex', '-1'));
+            // Return focus to menu button when closed
+            mobileMenuBtn.focus();
+            lucide.createIcons();
+        }
+
         // Toggle menu function
         function toggleMenu() {
             const isOpened = navLinks.classList.toggle('active');
@@ -58,15 +74,14 @@ function initMobileMenu() {
             if (isOpened) {
                 icon.setAttribute('data-lucide', 'x');
                 mobileMenuBtn.setAttribute('aria-label', 'Close menu');
+                // Set all nav links to tabindex="0" when opened
+                navLinkElements.forEach(link => link.setAttribute('tabindex', '0'));
                 // Focus first menu item when opened
                 if (navLinkElements.length > 0) {
                     navLinkElements[0].focus();
                 }
             } else {
-                icon.setAttribute('data-lucide', 'menu');
-                mobileMenuBtn.setAttribute('aria-label', 'Open menu');
-                // Return focus to menu button when closed
-                mobileMenuBtn.focus();
+                closeMenu();
             }
             lucide.createIcons();
         }
@@ -85,14 +100,7 @@ function initMobileMenu() {
         // Close menu when clicking on a link
         navLinks.addEventListener('click', function(e) {
             if (e.target.classList.contains('nav-link')) {
-                navLinks.classList.remove('active');
-                const icon = mobileMenuBtn.querySelector('i');
-                icon.setAttribute('data-lucide', 'menu');
-                mobileMenuBtn.setAttribute('aria-label', 'Open menu');
-                mobileMenuBtn.setAttribute('aria-expanded', 'false');
-                lucide.createIcons();
-                // Return focus to menu button
-                mobileMenuBtn.focus();
+                closeMenu();
             }
         });
 
@@ -113,23 +121,12 @@ function initMobileMenu() {
                     break;
                 case 'Escape':
                     e.preventDefault();
-                    navLinks.classList.remove('active');
-                    const icon = mobileMenuBtn.querySelector('i');
-                    icon.setAttribute('data-lucide', 'menu');
-                    mobileMenuBtn.setAttribute('aria-label', 'Open menu');
-                    mobileMenuBtn.setAttribute('aria-expanded', 'false');
-                    lucide.createIcons();
-                    mobileMenuBtn.focus();
+                    closeMenu();
                     break;
                 case 'Tab':
                     // Allow normal tab behavior but close menu if tabbing out
                     if (!navLinks.contains(e.target)) {
-                        navLinks.classList.remove('active');
-                        const icon = mobileMenuBtn.querySelector('i');
-                        icon.setAttribute('data-lucide', 'menu');
-                        mobileMenuBtn.setAttribute('aria-label', 'Open menu');
-                        mobileMenuBtn.setAttribute('aria-expanded', 'false');
-                        lucide.createIcons();
+                        closeMenu();
                     }
                     break;
             }
@@ -138,12 +135,7 @@ function initMobileMenu() {
         // Close menu when clicking outside
         document.addEventListener('click', function(e) {
             if (!mobileMenuBtn.contains(e.target) && !navLinks.contains(e.target) && navLinks.classList.contains('active')) {
-                navLinks.classList.remove('active');
-                const icon = mobileMenuBtn.querySelector('i');
-                icon.setAttribute('data-lucide', 'menu');
-                mobileMenuBtn.setAttribute('aria-label', 'Open menu');
-                mobileMenuBtn.setAttribute('aria-expanded', 'false');
-                lucide.createIcons();
+                closeMenu();
             }
         });
     }
@@ -642,6 +634,42 @@ function initResourceSearch() {
     });
 }
 
+// Blog Filter Functionality
+function initBlogFilter() {
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    const blogCards = document.querySelectorAll('.blog-card');
+
+    if (!filterButtons.length || !blogCards.length) return;
+
+    // Function to filter blogs
+    function filterBlogs(category) {
+        blogCards.forEach(card => {
+            const cardCategory = card.getAttribute('data-category');
+            if (category === 'all' || cardCategory === category) {
+                card.style.display = 'block';
+            } else {
+                card.style.display = 'none';
+            }
+        });
+    }
+
+    // Add event listeners to filter buttons
+    filterButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            // Remove active class from all buttons
+            filterButtons.forEach(btn => btn.classList.remove('active'));
+            // Add active class to clicked button
+            this.classList.add('active');
+            // Filter blogs
+            const category = this.getAttribute('data-category');
+            filterBlogs(category);
+        });
+    });
+
+    // Show all blogs by default
+    filterBlogs('all');
+}
+
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', function() {
     navigator.serviceWorker.register('/sw.js')
@@ -1113,6 +1141,133 @@ function initFileUpload() {
             }, 2000);
         });
     }
+}
+
+// Lightbox Gallery Functionality
+function initLightboxGallery() {
+    const lightboxModal = document.getElementById('lightboxModal');
+    const lightboxImg = document.getElementById('lightboxImg');
+    const lightboxCaption = document.getElementById('lightboxCaption');
+    const closeBtn = lightboxModal.querySelector('.close');
+    const prevBtn = lightboxModal.querySelector('.prev');
+    const nextBtn = lightboxModal.querySelector('.next');
+
+    if (!lightboxModal || !lightboxImg || !lightboxCaption) return;
+
+    let currentIndex = 0;
+    let images = [];
+
+    // Collect all resource card images
+    function collectImages() {
+        images = [];
+        const resourceCards = document.querySelectorAll('.resource-card');
+        resourceCards.forEach(card => {
+            const img = card.querySelector('img');
+            if (img) {
+                const title = card.querySelector('h3').textContent;
+                const description = card.querySelector('p').textContent;
+                images.push({
+                    src: img.src,
+                    alt: img.alt,
+                    title: title,
+                    description: description
+                });
+            }
+        });
+    }
+
+    // Open lightbox
+    function openLightbox(index) {
+        currentIndex = index;
+        showImage(currentIndex);
+        lightboxModal.classList.add('show');
+        document.body.style.overflow = 'hidden';
+        lightboxModal.setAttribute('aria-hidden', 'false');
+    }
+
+    // Close lightbox
+    function closeLightbox() {
+        lightboxModal.classList.remove('show');
+        document.body.style.overflow = 'auto';
+        lightboxModal.setAttribute('aria-hidden', 'true');
+    }
+
+    // Show image at index
+    function showImage(index) {
+        const image = images[index];
+        lightboxImg.src = image.src;
+        lightboxImg.alt = image.alt;
+        lightboxCaption.innerHTML = `<h3>${image.title}</h3><p>${image.description}</p>`;
+
+        // Update navigation buttons
+        prevBtn.style.display = images.length > 1 ? 'block' : 'none';
+        nextBtn.style.display = images.length > 1 ? 'block' : 'none';
+
+        // Update button states
+        prevBtn.disabled = index === 0;
+        nextBtn.disabled = index === images.length - 1;
+    }
+
+    // Navigate to previous image
+    function prevImage() {
+        if (currentIndex > 0) {
+            currentIndex--;
+            showImage(currentIndex);
+        }
+    }
+
+    // Navigate to next image
+    function nextImage() {
+        if (currentIndex < images.length - 1) {
+            currentIndex++;
+            showImage(currentIndex);
+        }
+    }
+
+    // Event listeners
+    document.addEventListener('click', function(e) {
+        if (e.target.classList.contains('resource-card') || e.target.closest('.resource-card')) {
+            const card = e.target.closest('.resource-card');
+            if (card) {
+                collectImages();
+                const img = card.querySelector('img');
+                if (img) {
+                    const index = images.findIndex(image => image.src === img.src);
+                    if (index !== -1) {
+                        openLightbox(index);
+                    }
+                }
+            }
+        }
+    });
+
+    closeBtn.addEventListener('click', closeLightbox);
+    prevBtn.addEventListener('click', prevImage);
+    nextBtn.addEventListener('click', nextImage);
+
+    // Close on click outside
+    lightboxModal.addEventListener('click', function(e) {
+        if (e.target === lightboxModal) {
+            closeLightbox();
+        }
+    });
+
+    // Keyboard navigation
+    document.addEventListener('keydown', function(e) {
+        if (!lightboxModal.classList.contains('show')) return;
+
+        switch (e.key) {
+            case 'Escape':
+                closeLightbox();
+                break;
+            case 'ArrowLeft':
+                prevImage();
+                break;
+            case 'ArrowRight':
+                nextImage();
+                break;
+        }
+    });
 }
 
 // Add CSS classes for weather conditions, now moved to style.css for better maintainability.

@@ -27,7 +27,12 @@ Based on the approved plan from TODO-enhancements.md, breaking down into logical
 - [x] Step 4.2: Implement social media sharing buttons - Already implemented in social-share.js and index.html.
 - [x] Step 4.3: Add volunteer sign-up form with skill selection - Already implemented in index.html.
 - [x] Step 4.4: Create interactive maps showing project locations - Add Leaflet.js map with markers for Eswatini project sites.
-- [ ] Step 4.5: Implement photo gallery for community projects - Add lightbox gallery with images from resources section.
+- [x] Step 4.5: Implement photo gallery for community projects - Add lightbox gallery with images from resources section.
+
+## Section 5: Content Management
+- [ ] Step 5.1: Add blog/news section in index.html with sample articles and category filters.
+- [ ] Step 5.2: Implement category filtering in script.js.
+- [ ] Step 5.3: Add styles for blog section in style.css.
 
 ## Testing & Followup
 - After each section: Update TODO-enhancements.md to mark [x].
