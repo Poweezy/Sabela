@@ -64,6 +64,54 @@
     outline-offset: -2px;
 }
 
+/* Focus styles for Quiz Modal */
+.quiz-option:focus-within,
+#submitAnswer:focus,
+.results-actions .btn:focus {
+    outline: 3px solid #2563eb;
+    outline-offset: 2px;
+    box-shadow: 0 0 0 1px #ffffff, 0 0 0 6px #2563eb;
+    border-radius: 4px;
+}
+
+.quiz-close:focus {
+    outline: 3px solid #60a5fa;
+    box-shadow: 0 0 0 1px #ffffff, 0 0 0 6px #60a5fa;
+}
+
+/* Focus styles for File Upload */
+#uploadArea:focus,
+.remove-file:focus,
+#uploadBtn:focus {
+    outline: 3px solid #2563eb;
+    outline-offset: 2px;
+    box-shadow: 0 0 0 1px #ffffff, 0 0 0 6px #2563eb;
+    border-radius: 4px;
+}
+
+#uploadArea:focus {
+    border-color: #2563eb;
+}
+
+/* Focus styles for Share Modal */
+.share-option:focus,
+.share-modal-close:focus {
+    outline: 3px solid #2563eb;
+    outline-offset: 2px;
+    box-shadow: 0 0 0 1px #ffffff, 0 0 0 6px #2563eb;
+    border-radius: 4px;
+}
+
+/* General modal focus management */
+.modal:focus-within .modal-content {
+    outline: none;
+}
+
+.modal .close:focus {
+    outline: 3px solid #60a5fa;
+    box-shadow: 0 0 0 1px #1f2937, 0 0 0 6px #60a5fa;
+}
+
 :root {
     --primary-color: #16a34a; /* Contrast 4.5:1 on white, AA compliant */
     --primary-dark: #15803d;
@@ -71,7 +119,7 @@
     --accent-color: #06b6d4;
     --text-primary: #1f2937; /* High contrast on white */
     --text-secondary: #6b7280; /* 4.5:1 on white */
-    --text-light: #9ca3af; /* 2.5:1, use sparingly for non-essential text */
+    --text-light: #475569; /* Adjusted for ~4.2:1 contrast on white, AA compliant for non-essential text */
     --bg-primary: #ffffff;
     --bg-secondary: #f9fafb;
     --bg-accent: #f0fdf4;

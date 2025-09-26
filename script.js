@@ -41,6 +41,12 @@ function initMobileMenu() {
     const navLinkElements = navLinks ? navLinks.querySelectorAll('.nav-link') : [];
 
     if (mobileMenuBtn && navLinks) {
+        // Add ARIA roles
+        navLinks.setAttribute('role', 'menu');
+        navLinkElements.forEach(link => {
+            link.setAttribute('role', 'menuitem');
+        });
+
         // Toggle menu function
         function toggleMenu() {
             const isOpened = navLinks.classList.toggle('active');
@@ -273,11 +279,28 @@ function initWeatherDashboard() {
         { name: 'Shiselweni Region', lat: -27.1167, lon: 31.2000 }
     ];
     async function fetchWeatherData(lat, lon) {
+        const cacheKey = `weather_${lat}_${lon}`;
+        const cacheDuration = 10 * 60 * 1000; // 10 minutes in milliseconds
+
+        // Check localStorage for cached data
+        const cachedData = localStorage.getItem(cacheKey);
+        if (cachedData) {
+            const { data, timestamp } = JSON.parse(cachedData);
+            if (Date.now() - timestamp < cacheDuration) {
+                return data;
+            }
+        }
+
         const apiUrl = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=temperature_2m,relative_humidity_2m,weather_code,visibility,wind_speed_10m&hourly=temperature_2m&daily=temperature_2m_max,temperature_2m_min,precipitation_probability_max`;
         try {
             const response = await fetch(apiUrl);
             if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
-            return await response.json();
+            const data = await response.json();
+
+            // Cache the data
+            localStorage.setItem(cacheKey, JSON.stringify({ data, timestamp: Date.now() }));
+
+            return data;
         } catch (error) {
             console.error('Error fetching weather data:', error);
             return null;
@@ -926,15 +949,32 @@ function initFileUpload() {
         if (file.type.startsWith('image/')) {
             const reader = new FileReader();
             reader.onload = function(e) {
-                fileItem.innerHTML = `
-                    <img src="${e.target.result}" alt="${file.name}" class="file-preview">
-                    <div class="file-info">
-                        <p class="file-name">${file.name}</p>
-                        <p class="file-size">${formatFileSize(file.size)}</p>
-                    </div>
-                    <button class="remove-file" aria-label="Remove ${file.name}">×</button>
-                `;
-                fileList.appendChild(fileItem);
+                const img = new Image();
+                img.onload = function() {
+                    const canvas = document.createElement('canvas');
+                    const ctx = canvas.getContext('2d');
+                    canvas.width = 200;
+                    canvas.height = 200;
+
+                    // Calculate cropping to center the image
+                    const size = Math.min(img.width, img.height);
+                    const x = (img.width - size) / 2;
+                    const y = (img.height - size) / 2;
+
+                    ctx.drawImage(img, x, y, size, size, 0, 0, 200, 200);
+                    const croppedSrc = canvas.toDataURL('image/jpeg', 0.9);
+
+                    fileItem.innerHTML = `
+                        <img src="${croppedSrc}" alt="${file.name}" class="file-preview">
+                        <div class="file-info">
+                            <p class="file-name">${file.name}</p>
+                            <p class="file-size">${formatFileSize(file.size)}</p>
+                        </div>
+                        <button class="remove-file" aria-label="Remove ${file.name}">×</button>
+                    `;
+                    fileList.appendChild(fileItem);
+                };
+                img.src = e.target.result;
             };
             reader.readAsDataURL(file);
         } else {
