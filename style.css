@@ -23,93 +23,60 @@
     top: 6px;
 }
 
-/* Enhanced Focus Indicators for WCAG AA Compliance */
-*:focus {
-    outline: 3px solid #2563eb;
+/* Consistent Focus Indicators for WCAG AA Compliance - Standardized to green theme */
+*:focus-visible {
+    outline: 2px solid var(--primary-color);
     outline-offset: 2px;
     border-radius: 4px;
 }
 
-/* High contrast focus for interactive elements */
-.btn:focus,
-.nav-link:focus,
-.search-input:focus,
-.contact-form input:focus,
-.contact-form textarea:focus,
-.newsletter-form input:focus,
-.share-btn:focus,
-.share-toggle:focus,
-.mobile-menu-btn:focus,
-.resource-link:focus,
-.donation-cta button:focus {
-    outline: 3px solid #2563eb;
+/* Enhanced visibility on dark/light backgrounds with consistent green focus */
+*:focus-visible {
+    box-shadow: 0 0 0 3px rgba(22, 163, 74, 0.2);
+}
+
+/* Dark background adjustments - use lighter green for contrast */
+body.dark *:focus-visible,
+.impact *:focus-visible,
+.get-involved *:focus-visible,
+.contact *:focus-visible,
+.header *:focus-visible {
+    outline-color: #22c55e;
+    box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.3);
+}
+
+/* Mobile nav focus - consistent with global */
+.nav-links.active .nav-link:focus-visible {
+    background-color: rgba(22, 163, 74, 0.1);
+    color: var(--text-primary);
+    outline: 2px solid var(--primary-color);
     outline-offset: 2px;
-    box-shadow: 0 0 0 1px #ffffff, 0 0 0 6px #2563eb;
-    border-radius: 4px;
 }
 
-/* Ensure focus indicators are visible on dark backgrounds */
-.get-involved .btn:focus,
-.contact .btn:focus,
-.impact .btn:focus {
-    outline: 3px solid #60a5fa;
-    box-shadow: 0 0 0 1px #1f2937, 0 0 0 6px #60a5fa;
-}
-
-/* Focus for navigation menu items in mobile menu */
-.nav-links.active .nav-link:focus {
-    background-color: rgba(37, 99, 235, 0.1);
-    color: #ffffff;
-    outline: 2px solid #60a5fa;
-    outline-offset: -2px;
-}
-
-/* Focus styles for Quiz Modal */
+/* Modal and interactive elements - inherit global focus */
 .quiz-option:focus-within,
-#submitAnswer:focus,
-.results-actions .btn:focus {
-    outline: 3px solid #2563eb;
+#submitAnswer:focus-visible,
+.results-actions .btn:focus-visible,
+.share-option:focus-visible,
+.share-modal-close:focus-visible,
+.quiz-close:focus-visible,
+.modal .close:focus-visible,
+#uploadArea:focus-visible,
+.remove-file:focus-visible,
+#uploadBtn:focus-visible {
+    outline: 2px solid var(--primary-color);
     outline-offset: 2px;
-    box-shadow: 0 0 0 1px #ffffff, 0 0 0 6px #2563eb;
     border-radius: 4px;
+    box-shadow: 0 0 0 3px rgba(22, 163, 74, 0.2);
 }
 
-.quiz-close:focus {
-    outline: 3px solid #60a5fa;
-    box-shadow: 0 0 0 1px #ffffff, 0 0 0 6px #60a5fa;
+#uploadArea:focus-visible {
+    border-color: var(--primary-color);
 }
 
-/* Focus styles for File Upload */
-#uploadArea:focus,
-.remove-file:focus,
-#uploadBtn:focus {
-    outline: 3px solid #2563eb;
-    outline-offset: 2px;
-    box-shadow: 0 0 0 1px #ffffff, 0 0 0 6px #2563eb;
-    border-radius: 4px;
-}
-
-#uploadArea:focus {
-    border-color: #2563eb;
-}
-
-/* Focus styles for Share Modal */
-.share-option:focus,
-.share-modal-close:focus {
-    outline: 3px solid #2563eb;
-    outline-offset: 2px;
-    box-shadow: 0 0 0 1px #ffffff, 0 0 0 6px #2563eb;
-    border-radius: 4px;
-}
-
-/* General modal focus management */
+/* General modal focus management - no outline on container */
 .modal:focus-within .modal-content {
     outline: none;
-}
-
-.modal .close:focus {
-    outline: 3px solid #60a5fa;
-    box-shadow: 0 0 0 1px #1f2937, 0 0 0 6px #60a5fa;
 }
 
 :root {
@@ -187,11 +154,17 @@ body {
 
 .logo {
     display: flex;
+    flex-direction: column;
     align-items: center;
-    gap: 0.5rem;
     font-weight: 700;
-    font-size: 1.5rem;
+    font-size: 1.25rem;
     color: white;
+}
+
+.logo-img {
+    width: 30px;
+    height: 30px;
+    margin-bottom: 0.25rem;
 }
 
 .logo-icon {
@@ -425,9 +398,11 @@ body {
     color: rgba(255, 255, 255, 0.7);
 }
 
-.hero-form input:focus {
-    outline: 2px solid #2563eb;
+.hero-form input:focus-visible {
+    outline: 2px solid var(--primary-color);
     outline-offset: 2px;
+    border-radius: 4px;
+    box-shadow: 0 0 0 3px rgba(22, 163, 74, 0.2);
     background: rgba(255, 255, 255, 0.1);
 }
 
@@ -1125,11 +1100,12 @@ body {
     color: var(--text-primary);
 }
 
-.search-input:focus {
-    outline: 2px solid #2563eb;
+.search-input:focus-visible {
+    outline: 2px solid var(--primary-color);
     outline-offset: 2px;
     border-color: var(--primary-color);
-    box-shadow: 0 0 0 3px rgba(22, 163, 74, 0.1);
+    box-shadow: 0 0 0 3px rgba(22, 163, 74, 0.2);
+    border-radius: 4px;
 }
 
 .clear-search-btn {
@@ -1329,12 +1305,13 @@ body {
     color: rgba(255, 255, 255, 0.7);
 }
 
-.contact-form input:focus,
-.contact-form textarea:focus {
-    outline: 2px solid #2563eb;
+.contact-form input:focus-visible,
+.contact-form textarea:focus-visible {
+    outline: 2px solid var(--primary-color);
     outline-offset: 2px;
-    border-color: var(--secondary-color);
-    box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.2);
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(22, 163, 74, 0.2);
+    border-radius: 4px;
 }
 
 .form-message {
@@ -1410,6 +1387,37 @@ body {
     to {
         opacity: 1;
         transform: translateY(0);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeInSlide {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: scale(0.9) translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
     }
 }
 
@@ -1887,11 +1895,12 @@ body {
     color: var(--text-primary);
 }
 
-.newsletter-form input:focus {
-    outline: 2px solid #2563eb;
+.newsletter-form input:focus-visible {
+    outline: 2px solid var(--primary-color);
     outline-offset: 2px;
     border-color: var(--primary-color);
-    box-shadow: 0 0 0 3px rgba(22, 163, 74, 0.1);
+    box-shadow: 0 0 0 3px rgba(22, 163, 74, 0.2);
+    border-radius: 4px;
 }
 
 .btn-newsletter {
@@ -2060,25 +2069,6 @@ body {
 }
 
 /* Share Modal Animations */
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-    }
-    to {
-        opacity: 1;
-    }
-}
-
-@keyframes slideIn {
-    from {
-        opacity: 0;
-        transform: scale(0.9) translateY(-20px);
-    }
-    to {
-        opacity: 1;
-        transform: scale(1) translateY(0);
-    }
-}
 
 /* Share Modal Responsive */
 @media (max-width: 480px) {
@@ -2278,7 +2268,7 @@ body {
     margin: 1rem 0;
     text-align: center;
     font-weight: 500;
-    animation: fadeIn 0.3s ease;
+    animation: fadeInSlide 0.3s ease;
 }
 
 .upload-message.success {
@@ -2294,19 +2284,9 @@ body {
 }
 
 /* File Upload Animations */
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(10px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
 
 .file-item {
-    animation: fadeIn 0.3s ease;
+    animation: fadeInSlide 0.3s ease;
 }
 
 /* File Upload Responsive */
@@ -2568,27 +2548,6 @@ body {
 .results-actions .btn:focus {
     transform: translateY(-2px);
     box-shadow: var(--shadow-md);
-}
-
-/* Quiz Modal Animations */
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-    }
-    to {
-        opacity: 1;
-    }
-}
-
-@keyframes slideIn {
-    from {
-        opacity: 0;
-        transform: scale(0.9) translateY(-20px);
-    }
-    to {
-        opacity: 1;
-        transform: scale(1) translateY(0);
-    }
 }
 
 /* Quiz Modal Responsive */
