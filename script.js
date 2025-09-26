@@ -32,6 +32,7 @@ document.addEventListener('DOMContentLoaded', function() {
     initResourceSearch();
     initQuizModal();
     initFileUpload();
+    initMap();
 });
 
 // Mobile Menu Functionality with Enhanced Keyboard Navigation
@@ -650,6 +651,78 @@ if ('serviceWorker' in navigator) {
         console.log('ServiceWorker registration failed: ', err);
       });
   });
+}
+
+function initMap() {
+    const mapElement = document.getElementById('map');
+    if (!mapElement || typeof L === 'undefined') {
+        console.warn('Map element not found or Leaflet not loaded');
+        return;
+    }
+
+    // Initialize map centered on Eswatini
+    const map = L.map('map').setView([-26.5, 31.2], 8);
+
+    // Add OpenStreetMap tile layer
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(map);
+
+    // Project locations with coordinates, colors, and descriptions
+    const projects = [
+        {
+            name: 'Hhohho Region - Reforestation Project',
+            lat: -26.3167,
+            lon: 31.1333,
+            color: '#e74c3c', // Red for Reforestation
+            description: 'Community-led reforestation in the Highveld, planting native trees to restore degraded land and combat soil erosion.'
+        },
+        {
+            name: 'Lubombo Region - Sustainable Agriculture',
+            lat: -26.45,
+            lon: 31.95,
+            color: '#3498db', // Blue for Sustainable Agriculture
+            description: 'Climate-smart farming initiatives in the Lowveld, introducing drought-resistant crops and water conservation techniques.'
+        },
+        {
+            name: 'Manzini Region - Clean Energy Initiative',
+            lat: -26.4833,
+            lon: 31.3667,
+            color: '#2ecc71', // Green for Clean Energy
+            description: 'Solar mini-grid installations in rural communities, providing renewable energy access and reducing reliance on fossil fuels.'
+        },
+        {
+            name: 'Shiselweni Region - Community Education',
+            lat: -27.1167,
+            lon: 31.2,
+            color: '#f39c12', // Orange for Community Education
+            description: 'Youth-led climate education programs, training local leaders on adaptation strategies and environmental stewardship.'
+        }
+    ];
+
+    // Add colored circle markers
+    projects.forEach(project => {
+        L.circleMarker([project.lat, project.lon], {
+            radius: 8,
+            fillColor: project.color,
+            color: '#fff',
+            weight: 2,
+            opacity: 1,
+            fillOpacity: 0.8
+        }).addTo(map)
+        .bindPopup(`
+            <div class="map-popup">
+                <h4>${project.name}</h4>
+                <p>${project.description}</p>
+            </div>
+        `);
+    });
+
+    // Fit bounds to show all markers
+    if (projects.length > 0) {
+        const group = new L.featureGroup(projects.map(p => L.circleMarker([p.lat, p.lon])));
+        map.fitBounds(group.getBounds().pad(0.1));
+    }
 }
 
 // Add CSS classes for weather conditions, now moved to style.css for better maintainability.

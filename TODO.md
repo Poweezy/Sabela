@@ -11,19 +11,23 @@ Based on the approved plan from TODO-enhancements.md, breaking down into logical
 - [x] Step 2.1: Minify CSS and JS files - npm run minify-all executed and completed.
 - [x] Step 2.2: Update index.html to reference minified files (style.min.css, script.min.js, etc.).
 - [x] Step 2.3: Implement lazy loading for all images in resources section - Ensure all <img> tags in index.html have loading="lazy".
-- [ ] Step 2.4: Convert images to WebP format - Use ImageMagick or similar to convert local images (e.g., logo.png); update references.
-- [ ] Step 2.5: Enhance service worker in sw.js - Add caching for minified files, more images, and API responses.
-- [ ] Step 2.6: Optimize weather API calls with caching in script.js - Add localStorage caching for fetchWeatherData responses (e.g., cache for 5-10 min).
+- [x] Step 2.4: Convert images to WebP format - Use ImageMagick or similar to convert local images (e.g., logo.png); update references.
+- [x] Step 2.5: Enhance service worker in sw.js - Add caching for minified files, more images, and API responses.
+- [x] Step 2.6: Optimize weather API calls with caching in script.js - Add localStorage caching for fetchWeatherData responses (e.g., cache for 5-10 min).
 
 ## Section 3: SEO Improvements
-- [ ] Step 3.1: Enhance structured data (JSON-LD) in index.html - Add schema for sections (e.g., Organization events, articles).
-- [ ] Step 3.2: Implement additional meta descriptions for sections if needed - Add more targeted metas.
-- [ ] Step 3.3: Verify canonical URLs in index.html - Already present; ensure dynamic if multi-page.
-- [ ] Step 3.4: Update XML sitemap.xml - Add any new pages/resources.
-- [ ] Step 3.5: Optimize images - Ensure alt tags (mostly done); compress via command if needed.
+- [x] Step 3.1: Enhance structured data (JSON-LD) in index.html - Add schema for sections (e.g., Organization events, articles).
+- [x] Step 3.2: Implement additional meta descriptions for sections if needed - Add more targeted metas.
+- [x] Step 3.3: Verify canonical URLs in index.html - Already present; ensure dynamic if multi-page.
+- [x] Step 3.4: Update XML sitemap.xml - Add any new pages/resources.
+- [x] Step 3.5: Optimize images - Ensure alt tags (mostly done); compress via command if needed.
 
-## Later Sections (4-14)
-- Defer for now: Interactive features (maps, gallery), Content Management (blog, etc.), and others until core sections complete. Will add steps post-Section 3.
+## Section 4: Interactive Features
+- [x] Step 4.1: Add newsletter signup form with email validation - Already implemented in index.html.
+- [x] Step 4.2: Implement social media sharing buttons - Already implemented in social-share.js and index.html.
+- [x] Step 4.3: Add volunteer sign-up form with skill selection - Already implemented in index.html.
+- [x] Step 4.4: Create interactive maps showing project locations - Add Leaflet.js map with markers for Eswatini project sites.
+- [ ] Step 4.5: Implement photo gallery for community projects - Add lightbox gallery with images from resources section.
 
 ## Testing & Followup
 - After each section: Update TODO-enhancements.md to mark [x].

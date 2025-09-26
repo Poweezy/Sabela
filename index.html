@@ -1,9 +1,9 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Climate Watch - Building a Sustainable Eswatini</title>
     <title>The Climate Watch - Building a Sustainable Eswatini</title>
     <meta name="description" content="The Climate Watch is an Eswatini-based climate change NGO working to build a just, resilient, and sustainable future through community-driven climate action, advocacy, and education.">
     <meta name="keywords" content="climate change, Eswatini, NGO, sustainability, renewable energy, climate justice, environmental protection">
@@ -39,6 +39,10 @@
     <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
 
+    <!-- Leaflet CSS and JS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
     <!-- Font Awesome for Social Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     
@@ -70,6 +74,107 @@
         "https://twitter.com/yourprofile",
         "https://www.linkedin.com/company/yourcompany"
       ]
+    }
+    </script>
+
+    <!-- Structured Data for Articles -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": "Community-led Reforestation in the Lubombo Mountains",
+      "description": "Learn how local communities are working to restore native forests.",
+      "image": "https://images.unsplash.com/photo-1752341135601-d9252f5cdbdd?fm=webp&q=60&w=800&ixlib=rb-4.1.0",
+      "author": {
+        "@type": "Organization",
+        "name": "The Climate Watch"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "The Climate Watch"
+      },
+      "datePublished": "2024-01-01",
+      "url": "https://yourwebsiteurl.com/#resources"
+    }
+    </script>
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": "The State of Climate Change in Eswatini 2024",
+      "description": "Our annual report on climate data and impacts in Eswatini.",
+      "image": "https://images.unsplash.com/photo-1758347384057-8d47cf6fad1b?fm=webp&q=60&w=800&ixlib=rb-4.1.0",
+      "author": {
+        "@type": "Organization",
+        "name": "The Climate Watch"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "The Climate Watch"
+      },
+      "datePublished": "2024-01-01",
+      "url": "https://yourwebsiteurl.com/#resources"
+    }
+    </script>
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": "A Guide to Sustainable Agriculture in Eswatini",
+      "description": "Practical resources for climate-smart farming practices.",
+      "image": "https://images.unsplash.com/photo-1757880776486-5e5285dab685?fm=webp&q=60&w=800&ixlib=rb-4.1.0",
+      "author": {
+        "@type": "Organization",
+        "name": "The Climate Watch"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "The Climate Watch"
+      },
+      "datePublished": "2024-01-01",
+      "url": "https://yourwebsiteurl.com/#resources"
+    }
+    </script>
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": "Eswatini Joins Global Methane Pledge",
+      "description": "A look into Eswatini's commitment to reducing methane emissions and what it means for the country's climate goals.",
+      "image": "https://images.unsplash.com/photo-1629279598436-b1d5a893600c?fm=webp&q=60&w=800&ixlib=rb-4.1.0",
+      "author": {
+        "@type": "Organization",
+        "name": "The Climate Watch"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "The Climate Watch"
+      },
+      "datePublished": "2024-01-01",
+      "url": "https://yourwebsiteurl.com/#resources"
+    }
+    </script>
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": "The Future is Bright: Solar Power in Rural Eswatini",
+      "description": "A deep dive into how solar mini-grids are transforming lives and livelihoods in remote communities.",
+      "image": "https://images.unsplash.com/photo-1599691456121-26b24880067a?fm=webp&q=60&w=800&ixlib=rb-4.1.0",
+      "author": {
+        "@type": "Organization",
+        "name": "The Climate Watch"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "The Climate Watch"
+      },
+      "datePublished": "2024-01-01",
+      "url": "https://yourwebsiteurl.com/#resources"
     }
     </script>
 </head>
@@ -306,6 +411,39 @@
                     <span class="tag">📊 Data-Driven Decisions</span>
                     <span class="tag">🌱 Community Resilience</span>
                     <span class="tag">🔬 Scientific Approach</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Project Locations Map -->
+    <section id="maps" class="section maps" role="complementary" aria-label="Project Locations Map">
+        <div class="container">
+            <h2 class="section-title">📍 Our Project Locations</h2>
+            <p class="section-intro">
+                Explore the regions where we're actively working to build climate resilience
+                and sustainable communities across Eswatini.
+            </p>
+            <div id="map" style="height: 400px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);" aria-label="Interactive map showing project locations in Eswatini"></div>
+            <div class="map-legend">
+                <h3>Project Areas</h3>
+                <div class="legend-items">
+                    <div class="legend-item">
+                        <div class="legend-marker" style="background-color: #e74c3c;"></div>
+                        <span>Reforestation & Land Restoration</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-marker" style="background-color: #3498db;"></div>
+                        <span>Sustainable Agriculture</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-marker" style="background-color: #2ecc71;"></div>
+                        <span>Clean Energy Initiatives</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-marker" style="background-color: #f39c12;"></div>
+                        <span>Community Education</span>
+                    </div>
                 </div>
             </div>
         </div>
@@ -650,6 +788,19 @@
         </div>
     </div>
 
+    <!-- Lightbox Gallery Modal -->
+    <div id="lightboxModal" class="modal lightbox-modal" role="dialog" aria-labelledby="lightboxTitle" aria-hidden="true">
+        <div class="lightbox-content">
+            <span class="close">&times;</span>
+            <button class="nav-btn prev" aria-label="Previous image">‹</button>
+            <button class="nav-btn next" aria-label="Next image">›</button>
+            <div class="lightbox-image-container">
+                <img id="lightboxImg" src="" alt="" style="display: none;">
+                <div id="lightboxCaption" class="lightbox-caption"></div>
+            </div>
+        </div>
+    </div>
+
     </main>
 
     <!-- Footer -->
@@ -660,7 +811,7 @@
     </footer>
 
     <!-- JavaScript -->
-    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="script.min.js"></script>
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="script.js"></script>
     <script src="newsletter.min.js"></script>
     <script src="social-share.min.js"></script>
 </body>
