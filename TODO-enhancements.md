@@ -31,7 +31,7 @@
 
 ## 5. Content Management
 - [x] Add blog/news section with filtering by category
-- [ ] Create resources download section with PDF reports
+- [x] Create resources download section with PDF reports
 - [ ] Implement events calendar for workshops and campaigns
 - [ ] Add testimonials or success stories section
 - [ ] Create FAQ section for common questions
