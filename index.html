@@ -52,6 +52,9 @@
     
     <!-- Custom Styles -->
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="enhanced-styles.css">
+    <link rel="stylesheet" href="social-links.css">
+    <link rel="stylesheet" href="kuleszo-forms.css">
     <link rel="stylesheet" href="enhancements.min.css">
     <link rel="stylesheet" href="ux-improvements.min.css">
     <link rel="stylesheet" href="design-system.min.css">
@@ -113,11 +116,10 @@
     <header class="header" role="banner">
         <nav class="nav" role="navigation" aria-label="Primary Navigation">
             <div class="nav-container">
-                <a href="#home" class="logo" onclick="window.scrollTo({top: 0, behavior: 'smooth'});" aria-label="The Climate Watch - Go to Home">
+                <a href="#home" class="logo" onclick="window.scrollTo({top: 0, behavior: 'smooth'});" aria-label="Go to Home">
                     <div class="logo-icon">
-                        <img src="img/logo.webp" alt="Climate Watch Logo" loading="lazy">
+                        <i data-lucide="leaf" style="width: 24px; height: 24px;"></i>
                     </div>
-                    <span class="logo-text">The Climate Watch</span>
                 </a>
                 
                 <ul class="nav-links" id="navLinks" role="menubar">
@@ -199,12 +201,7 @@
                             Contact
                         </a>
                     </li>
-                    <li role="none">
-                        <button class="btn btn-primary btn-sm" id="donate-now-btn-header" onclick="document.getElementById('donationModal').style.display='block';" aria-label="Donate Now" role="menuitem">
-                            <i data-lucide="heart" style="width: 16px; height: 16px;"></i>
-                            Donate
-                        </button>
-                    </li>
+
                 </ul>
                 
                 <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Open menu" aria-controls="navLinks" aria-expanded="false" aria-haspopup="true" role="button">
@@ -219,10 +216,12 @@
     <!-- Hero Section -->
     <section id="home" class="hero" role="region" aria-label="Hero Section">
         <div class="hero-video">
-            <video autoplay muted loop playsinline poster="https://images.unsplash.com/photo-1569163139394-de44cb5894c6?q=80&w=2070&auto=format&fit=crop" title="A lush, green valley in Eswatini, representing the natural beauty the Climate Watch aims to protect." onerror="this.style.display='none'; this.nextElementSibling.style.display='block';" aria-label="Video showing a lush green valley in Eswatini">
+            <video id="heroVideo" autoplay muted loop playsinline preload="auto">
                 <source src="img/website-banner.mp4" type="video/mp4">
+                Your browser does not support the video tag.
             </video>
-           
+            <!-- Fallback background image -->
+            <div id="heroFallback" class="hero-background" style="background-image: url('https://images.unsplash.com/photo-1569163139394-de44cb5894c6?q=80&w=2070&auto=format&fit=crop'); background-size: cover; background-position: center; width: 100%; height: 100%; position: absolute; top: 0; left: 0; z-index: -4;"></div>
             <div class="hero-overlay"></div>
             <div class="dark-overlay"></div>
         </div>
@@ -243,27 +242,26 @@
                 </button>
             </div>
             
-            <div class="social-proof-container">
-                <div class="social-proof-stats">
-                    <div class="social-stat">
-                        <i class="fab fa-facebook-f"></i>
-                        <span class="stat-number" data-count="2500">0</span>
-                        <span class="stat-label">Followers</span>
-                    </div>
-                    <div class="social-stat">
-                        <i class="fab fa-twitter"></i>
-                        <span class="stat-number" data-count="1800">0</span>
-                        <span class="stat-label">Followers</span>
-                    </div>
-                    <div class="social-stat">
-                        <i class="fas fa-share-alt"></i>
-                        <span class="stat-number" data-count="5200">0</span>
-                        <span class="stat-label">Shares</span>
-                    </div>
-                    <div class="social-stat">
-                        <i class="fas fa-heart"></i>
-                        <span class="stat-number" data-count="8900">0</span>
-                        <span class="stat-label">Supporters</span>
+            <div class="hero-social-links">
+                <div class="social-links-container">
+                    <span class="social-label">Follow Our Impact</span>
+                    <div class="social-icons-row">
+                        <a href="https://facebook.com/theclimatewatch" class="social-link facebook" aria-label="Follow us on Facebook">
+                            <span class="social-icon">f</span>
+                            <span class="social-tooltip">Facebook</span>
+                        </a>
+                        <a href="https://twitter.com/theclimatewatch" class="social-link twitter" aria-label="Follow us on Twitter">
+                            <span class="social-icon">𝕏</span>
+                            <span class="social-tooltip">Twitter</span>
+                        </a>
+                        <a href="https://linkedin.com/company/theclimatewatch" class="social-link linkedin" aria-label="Follow us on LinkedIn">
+                            <span class="social-icon">in</span>
+                            <span class="social-tooltip">LinkedIn</span>
+                        </a>
+                        <a href="https://instagram.com/theclimatewatch" class="social-link instagram" aria-label="Follow us on Instagram">
+                            <span class="social-icon">📷</span>
+                            <span class="social-tooltip">Instagram</span>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -483,68 +481,465 @@
         </div>
     </section>
 
-    <!-- Weather Dashboard -->
-    <section id="weather" class="section weather" role="complementary" aria-label="Eswatini Weather Focus">
+    <!-- Enhanced Weather Dashboard -->
+    <section id="weather" class="section weather kuleszo-weather" role="complementary" aria-label="Eswatini Weather Focus">
         <div class="container">
-            <h2 class="section-title">🌤️ Eswatini Weather Focus</h2>
-            <p class="section-intro" id="weatherDesc">
-                Real-time monitoring of microclimates across Eswatini's regions to support
-                community adaptation strategies and climate resilience planning.
-            </p>
-            <div class="weather-status" role="status" aria-live="polite" aria-atomic="true">
-                <div class="status-indicator"></div>
-                <span>Live Data • Last updated: <span id="lastUpdated"></span></span>
-            </div>
-            
-            <div class="weather-grid" id="weatherGrid" role="list" aria-label="Weather information for regions">
-                <!-- Weather cards will be populated by JavaScript -->
-            </div>
-            
-            <div class="climate-note" role="note">
-                <div class="climate-note-icon">
-                    <i data-lucide="thermometer" aria-hidden="true"></i>
+            <div class="kuleszo-weather-header">
+                <div class="weather-icon-container">
+                    <div class="weather-icon">
+                        <i data-lucide="cloud-sun"></i>
+                    </div>
+                    <div class="weather-pulse"></div>
                 </div>
-                <h3>Climate Monitoring Matters</h3>
-                <p>
-                    Understanding regional weather patterns helps us develop targeted climate adaptation 
-                    strategies and support communities in building resilience to climate change impacts across Eswatini.
+                <h2 class="section-title">🌤️ Eswatini Weather Focus</h2>
+                <p class="section-intro" id="weatherDesc">
+                    Real-time monitoring of microclimates across Eswatini's four regions to support community adaptation strategies and evidence-based climate resilience planning.
                 </p>
-                <div class="climate-tags">
-                    <span class="tag">📊 Data-Driven Decisions</span>
-                    <span class="tag">🌱 Community Resilience</span>
-                    <span class="tag">🔬 Scientific Approach</span>
+            </div>
+
+            <!-- Weather Status & Controls -->
+            <div class="kuleszo-weather-controls">
+                <div class="weather-status" role="status" aria-live="polite" aria-atomic="true">
+                    <div class="status-indicator live"></div>
+                    <div class="status-content">
+                        <span class="status-label">Live Climate Data</span>
+                        <span class="status-time">Last updated: <span id="lastUpdated">Just now</span></span>
+                    </div>
+                </div>
+                
+                <div class="weather-filters">
+                    <button class="weather-filter active" data-filter="all">
+                        <i data-lucide="globe"></i>
+                        <span>All Regions</span>
+                    </button>
+                    <button class="weather-filter" data-filter="temperature">
+                        <i data-lucide="thermometer"></i>
+                        <span>Temperature</span>
+                    </button>
+                    <button class="weather-filter" data-filter="rainfall">
+                        <i data-lucide="cloud-rain"></i>
+                        <span>Rainfall</span>
+                    </button>
+                    <button class="weather-filter" data-filter="humidity">
+                        <i data-lucide="droplets"></i>
+                        <span>Humidity</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Enhanced Weather Grid -->
+            <div class="kuleszo-weather-grid" id="weatherGrid" role="list" aria-label="Weather information for regions">
+                <!-- Mbabane Weather Card -->
+                <div class="kuleszo-weather-card" data-region="mbabane">
+                    <div class="weather-card-header">
+                        <div class="region-info">
+                            <h3>Mbabane</h3>
+                            <span class="region-label">Hhohho Region</span>
+                        </div>
+                        <div class="weather-icon-display">
+                            <i data-lucide="cloud-sun"></i>
+                        </div>
+                    </div>
+                    
+                    <div class="weather-main">
+                        <div class="temperature">
+                            <span class="temp-value">22</span>
+                            <span class="temp-unit">°C</span>
+                        </div>
+                        <div class="weather-condition">Partly Cloudy</div>
+                    </div>
+                    
+                    <div class="weather-details">
+                        <div class="weather-detail">
+                            <i data-lucide="droplets"></i>
+                            <span class="detail-label">Humidity</span>
+                            <span class="detail-value">65%</span>
+                        </div>
+                        <div class="weather-detail">
+                            <i data-lucide="wind"></i>
+                            <span class="detail-label">Wind</span>
+                            <span class="detail-value">12 km/h</span>
+                        </div>
+                        <div class="weather-detail">
+                            <i data-lucide="cloud-rain"></i>
+                            <span class="detail-label">Rainfall</span>
+                            <span class="detail-value">2.5mm</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Manzini Weather Card -->
+                <div class="kuleszo-weather-card" data-region="manzini">
+                    <div class="weather-card-header">
+                        <div class="region-info">
+                            <h3>Manzini</h3>
+                            <span class="region-label">Manzini Region</span>
+                        </div>
+                        <div class="weather-icon-display">
+                            <i data-lucide="sun"></i>
+                        </div>
+                    </div>
+                    
+                    <div class="weather-main">
+                        <div class="temperature">
+                            <span class="temp-value">26</span>
+                            <span class="temp-unit">°C</span>
+                        </div>
+                        <div class="weather-condition">Sunny</div>
+                    </div>
+                    
+                    <div class="weather-details">
+                        <div class="weather-detail">
+                            <i data-lucide="droplets"></i>
+                            <span class="detail-label">Humidity</span>
+                            <span class="detail-value">58%</span>
+                        </div>
+                        <div class="weather-detail">
+                            <i data-lucide="wind"></i>
+                            <span class="detail-label">Wind</span>
+                            <span class="detail-value">8 km/h</span>
+                        </div>
+                        <div class="weather-detail">
+                            <i data-lucide="cloud-rain"></i>
+                            <span class="detail-label">Rainfall</span>
+                            <span class="detail-value">0mm</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Nhlangano Weather Card -->
+                <div class="kuleszo-weather-card" data-region="nhlangano">
+                    <div class="weather-card-header">
+                        <div class="region-info">
+                            <h3>Nhlangano</h3>
+                            <span class="region-label">Shiselweni Region</span>
+                        </div>
+                        <div class="weather-icon-display">
+                            <i data-lucide="cloud-rain"></i>
+                        </div>
+                    </div>
+                    
+                    <div class="weather-main">
+                        <div class="temperature">
+                            <span class="temp-value">19</span>
+                            <span class="temp-unit">°C</span>
+                        </div>
+                        <div class="weather-condition">Light Rain</div>
+                    </div>
+                    
+                    <div class="weather-details">
+                        <div class="weather-detail">
+                            <i data-lucide="droplets"></i>
+                            <span class="detail-label">Humidity</span>
+                            <span class="detail-value">78%</span>
+                        </div>
+                        <div class="weather-detail">
+                            <i data-lucide="wind"></i>
+                            <span class="detail-label">Wind</span>
+                            <span class="detail-value">15 km/h</span>
+                        </div>
+                        <div class="weather-detail">
+                            <i data-lucide="cloud-rain"></i>
+                            <span class="detail-label">Rainfall</span>
+                            <span class="detail-value">8.2mm</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Siteki Weather Card -->
+                <div class="kuleszo-weather-card" data-region="siteki">
+                    <div class="weather-card-header">
+                        <div class="region-info">
+                            <h3>Siteki</h3>
+                            <span class="region-label">Lubombo Region</span>
+                        </div>
+                        <div class="weather-icon-display">
+                            <i data-lucide="cloud"></i>
+                        </div>
+                    </div>
+                    
+                    <div class="weather-main">
+                        <div class="temperature">
+                            <span class="temp-value">24</span>
+                            <span class="temp-unit">°C</span>
+                        </div>
+                        <div class="weather-condition">Cloudy</div>
+                    </div>
+                    
+                    <div class="weather-details">
+                        <div class="weather-detail">
+                            <i data-lucide="droplets"></i>
+                            <span class="detail-label">Humidity</span>
+                            <span class="detail-value">72%</span>
+                        </div>
+                        <div class="weather-detail">
+                            <i data-lucide="wind"></i>
+                            <span class="detail-label">Wind</span>
+                            <span class="detail-value">10 km/h</span>
+                        </div>
+                        <div class="weather-detail">
+                            <i data-lucide="cloud-rain"></i>
+                            <span class="detail-label">Rainfall</span>
+                            <span class="detail-value">1.2mm</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Enhanced Climate Note -->
+            <div class="kuleszo-climate-note" role="note">
+                <div class="climate-note-header">
+                    <div class="climate-note-icon">
+                        <i data-lucide="thermometer"></i>
+                    </div>
+                    <h3>Climate Monitoring Matters</h3>
+                </div>
+                
+                <p class="climate-description">
+                    Understanding regional weather patterns helps us develop targeted climate adaptation strategies and support communities in building resilience to climate change impacts across Eswatini.
+                </p>
+                
+                <div class="climate-benefits">
+                    <div class="benefit-item">
+                        <div class="benefit-icon">
+                            <i data-lucide="trending-up"></i>
+                        </div>
+                        <div class="benefit-content">
+                            <h4>Data-Driven Decisions</h4>
+                            <p>Evidence-based climate strategies</p>
+                        </div>
+                    </div>
+                    
+                    <div class="benefit-item">
+                        <div class="benefit-icon">
+                            <i data-lucide="shield"></i>
+                        </div>
+                        <div class="benefit-content">
+                            <h4>Community Resilience</h4>
+                            <p>Building adaptive capacity</p>
+                        </div>
+                    </div>
+                    
+                    <div class="benefit-item">
+                        <div class="benefit-icon">
+                            <i data-lucide="microscope"></i>
+                        </div>
+                        <div class="benefit-content">
+                            <h4>Scientific Approach</h4>
+                            <p>Research-backed solutions</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Project Locations Map -->
-    <section id="maps" class="section maps" role="complementary" aria-label="Project Locations Map">
+    <!-- Enhanced Project Locations Map -->
+    <section id="maps" class="section maps kuleszo-maps" role="complementary" aria-label="Project Locations Map">
         <div class="container">
-            <h2 class="section-title">📍 Our Project Locations</h2>
-            <p class="section-intro">
-                Explore the regions where we're actively working to build climate resilience
-                and sustainable communities across Eswatini.
-            </p>
-            <div id="map" style="height: 400px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);" aria-label="Interactive map showing project locations in Eswatini"></div>
-            <div class="map-legend">
-                <h3>Project Areas</h3>
-                <div class="legend-items">
-                    <div class="legend-item">
-                        <div class="legend-marker" style="background-color: #e74c3c;"></div>
-                        <span>Reforestation & Land Restoration</span>
+            <div class="kuleszo-maps-header">
+                <div class="maps-icon-container">
+                    <div class="maps-icon">
+                        <i data-lucide="map-pin"></i>
                     </div>
-                    <div class="legend-item">
-                        <div class="legend-marker" style="background-color: #3498db;"></div>
-                        <span>Sustainable Agriculture</span>
+                    <div class="maps-pulse"></div>
+                </div>
+                <h2 class="section-title">📍 Our Project Locations</h2>
+                <p class="section-intro">
+                    Discover the regions where we're actively building climate resilience and empowering sustainable communities across all four regions of Eswatini.
+                </p>
+            </div>
+
+            <!-- Project Statistics Overview -->
+            <div class="kuleszo-project-stats">
+                <div class="project-stat">
+                    <div class="stat-icon">
+                        <i data-lucide="map"></i>
                     </div>
-                    <div class="legend-item">
-                        <div class="legend-marker" style="background-color: #2ecc71;"></div>
-                        <span>Clean Energy Initiatives</span>
+                    <div class="stat-content">
+                        <span class="stat-number">4</span>
+                        <span class="stat-label">Regions Covered</span>
                     </div>
-                    <div class="legend-item">
-                        <div class="legend-marker" style="background-color: #f39c12;"></div>
-                        <span>Community Education</span>
+                </div>
+                <div class="project-stat">
+                    <div class="stat-icon">
+                        <i data-lucide="building"></i>
+                    </div>
+                    <div class="stat-content">
+                        <span class="stat-number">25+</span>
+                        <span class="stat-label">Active Projects</span>
+                    </div>
+                </div>
+                <div class="project-stat">
+                    <div class="stat-icon">
+                        <i data-lucide="users"></i>
+                    </div>
+                    <div class="stat-content">
+                        <span class="stat-number">50+</span>
+                        <span class="stat-label">Communities</span>
+                    </div>
+                </div>
+                <div class="project-stat">
+                    <div class="stat-icon">
+                        <i data-lucide="target"></i>
+                    </div>
+                    <div class="stat-content">
+                        <span class="stat-number">100%</span>
+                        <span class="stat-label">Coverage Goal</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Enhanced Map Container -->
+            <div class="kuleszo-map-container">
+                <div class="map-wrapper">
+                    <div id="map" class="enhanced-map" aria-label="Interactive map showing project locations in Eswatini"></div>
+                    <div class="map-overlay">
+                        <div class="map-controls">
+                            <button class="map-control-btn" id="zoomIn" aria-label="Zoom in">
+                                <i data-lucide="plus"></i>
+                            </button>
+                            <button class="map-control-btn" id="zoomOut" aria-label="Zoom out">
+                                <i data-lucide="minus"></i>
+                            </button>
+                            <button class="map-control-btn" id="resetView" aria-label="Reset view">
+                                <i data-lucide="home"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Enhanced Legend -->
+                <div class="kuleszo-map-legend">
+                    <div class="legend-header">
+                        <div class="legend-icon">
+                            <i data-lucide="layers"></i>
+                        </div>
+                        <h3>Project Categories</h3>
+                    </div>
+                    
+                    <div class="kuleszo-legend-items">
+                        <div class="kuleszo-legend-item reforestation">
+                            <div class="legend-marker">
+                                <i data-lucide="tree-pine"></i>
+                            </div>
+                            <div class="legend-content">
+                                <h4>Reforestation & Land Restoration</h4>
+                                <p>12 active sites • 5,000+ trees planted</p>
+                            </div>
+                        </div>
+                        
+                        <div class="kuleszo-legend-item agriculture">
+                            <div class="legend-marker">
+                                <i data-lucide="wheat"></i>
+                            </div>
+                            <div class="legend-content">
+                                <h4>Sustainable Agriculture</h4>
+                                <p>8 farming cooperatives • 200+ farmers trained</p>
+                            </div>
+                        </div>
+                        
+                        <div class="kuleszo-legend-item energy">
+                            <div class="legend-marker">
+                                <i data-lucide="zap"></i>
+                            </div>
+                            <div class="legend-content">
+                                <h4>Clean Energy Initiatives</h4>
+                                <p>6 solar installations • 150 households powered</p>
+                            </div>
+                        </div>
+                        
+                        <div class="kuleszo-legend-item education">
+                            <div class="legend-marker">
+                                <i data-lucide="graduation-cap"></i>
+                            </div>
+                            <div class="legend-content">
+                                <h4>Community Education</h4>
+                                <p>15 training centers • 1,000+ people educated</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Regional Impact Summary -->
+            <div class="kuleszo-regional-impact">
+                <h3>Regional Impact Overview</h3>
+                <div class="regional-grid">
+                    <div class="region-card hhohho">
+                        <div class="region-header">
+                            <div class="region-icon">
+                                <i data-lucide="mountain"></i>
+                            </div>
+                            <h4>Hhohho Region</h4>
+                        </div>
+                        <div class="region-stats">
+                            <div class="region-stat">
+                                <span class="stat-value">8</span>
+                                <span class="stat-name">Projects</span>
+                            </div>
+                            <div class="region-stat">
+                                <span class="stat-value">15</span>
+                                <span class="stat-name">Communities</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="region-card manzini">
+                        <div class="region-header">
+                            <div class="region-icon">
+                                <i data-lucide="building-2"></i>
+                            </div>
+                            <h4>Manzini Region</h4>
+                        </div>
+                        <div class="region-stats">
+                            <div class="region-stat">
+                                <span class="stat-value">7</span>
+                                <span class="stat-name">Projects</span>
+                            </div>
+                            <div class="region-stat">
+                                <span class="stat-value">12</span>
+                                <span class="stat-name">Communities</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="region-card shiselweni">
+                        <div class="region-header">
+                            <div class="region-icon">
+                                <i data-lucide="wheat"></i>
+                            </div>
+                            <h4>Shiselweni Region</h4>
+                        </div>
+                        <div class="region-stats">
+                            <div class="region-stat">
+                                <span class="stat-value">6</span>
+                                <span class="stat-name">Projects</span>
+                            </div>
+                            <div class="region-stat">
+                                <span class="stat-value">11</span>
+                                <span class="stat-name">Communities</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="region-card lubombo">
+                        <div class="region-header">
+                            <div class="region-icon">
+                                <i data-lucide="tree-pine"></i>
+                            </div>
+                            <h4>Lubombo Region</h4>
+                        </div>
+                        <div class="region-stats">
+                            <div class="region-stat">
+                                <span class="stat-value">4</span>
+                                <span class="stat-name">Projects</span>
+                            </div>
+                            <div class="region-stat">
+                                <span class="stat-value">12</span>
+                                <span class="stat-name">Communities</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -615,86 +1010,179 @@
                 </div>
             </div>
 
-            <!-- File Upload Section -->
-            <div class="file-upload-section">
-                <h3>Upload Resources or Documents</h3>
-                <p>Share documents, photos, or resources related to climate action.</p>
-                <div id="uploadArea" class="upload-area">
-                    <i data-lucide="upload-cloud" class="upload-icon" aria-hidden="true"></i>
-                    <p>Drag and drop files here or <span class="click-to-upload">click to browse</span></p>
-                    <p class="upload-hint">Supports: Images (JPEG, PNG, GIF), PDFs (Max 5MB)</p>
+            <!-- Enhanced File Upload Section -->
+            <div class="kuleszo-form-section file-upload-section">
+                <div class="form-header">
+                    <div class="form-icon">
+                        <i data-lucide="upload-cloud"></i>
+                    </div>
+                    <h3>Share Your Resources</h3>
+                    <p>Upload documents, photos, or resources to support our climate action initiatives</p>
+                </div>
+                <div id="uploadArea" class="kuleszo-upload-area">
+                    <div class="upload-visual">
+                        <div class="upload-circle">
+                            <i data-lucide="upload-cloud" class="upload-icon"></i>
+                        </div>
+                        <div class="upload-animation"></div>
+                    </div>
+                    <div class="upload-content">
+                        <h4>Drop files here or <span class="click-to-upload">browse</span></h4>
+                        <p class="upload-hint">Images, PDFs • Max 5MB each</p>
+                    </div>
                     <input type="file" id="fileInput" multiple accept="image/*,application/pdf" style="display: none;">
                 </div>
-                <div id="fileList" class="file-list"></div>
-                <button id="uploadBtn" class="btn btn-primary">Upload Files</button>
+                <div id="fileList" class="kuleszo-file-list"></div>
+                <button id="uploadBtn" class="kuleszo-btn kuleszo-btn-primary">
+                    <span>Upload Files</span>
+                    <i data-lucide="arrow-right"></i>
+                </button>
             </div>
 
-            <!-- Volunteer Signup Form -->
-            <div class="volunteer-form-container">
-                <h3>Volunteer Signup</h3>
-                <form id="volunteerForm" aria-label="Volunteer signup form">
+            <!-- Enhanced Volunteer Signup Form -->
+            <div class="kuleszo-form-section volunteer-form-container">
+                <div class="form-header">
+                    <div class="form-icon">
+                        <i data-lucide="heart"></i>
+                    </div>
+                    <h3>Join Our Mission</h3>
+                    <p>Become a volunteer and help us build a climate-resilient Eswatini</p>
+                </div>
+                <form id="volunteerForm" class="kuleszo-form" aria-label="Volunteer signup form">
                     <div class="form-message" role="alert" aria-live="assertive"></div>
-                    <div class="form-row">
-                        <input type="text" name="name" placeholder="Full Name" required aria-required="true" aria-label="Full Name">
-                        <input type="email" name="email" placeholder="Email Address" required aria-required="true" aria-label="Email Address">
+                    
+                    <div class="kuleszo-form-row">
+                        <div class="kuleszo-input-group">
+                            <input type="text" name="name" id="volunteer-name" required aria-required="true">
+                            <label for="volunteer-name">Full Name</label>
+                            <div class="input-highlight"></div>
+                        </div>
+                        <div class="kuleszo-input-group">
+                            <input type="email" name="email" id="volunteer-email" required aria-required="true">
+                            <label for="volunteer-email">Email Address</label>
+                            <div class="input-highlight"></div>
+                        </div>
                     </div>
-                    <div class="form-row">
-                        <select name="skills" required aria-required="true" aria-label="Select your skills">
-                            <option value="">Select your skills</option>
-                            <option value="agriculture">Agriculture & Farming</option>
-                            <option value="education">Education & Training</option>
-                            <option value="advocacy">Advocacy & Policy</option>
-                            <option value="tech">Technology & Data</option>
-                            <option value="community">Community Organizing</option>
-                            <option value="other">Other</option>
-                        </select>
-                        <input type="text" name="availability" placeholder="Availability (e.g., weekends)" aria-label="Availability">
+                    
+                    <div class="kuleszo-form-row">
+                        <div class="kuleszo-select-group">
+                            <select name="skills" id="volunteer-skills" required aria-required="true">
+                                <option value=""></option>
+                                <option value="agriculture">Agriculture & Farming</option>
+                                <option value="education">Education & Training</option>
+                                <option value="advocacy">Advocacy & Policy</option>
+                                <option value="tech">Technology & Data</option>
+                                <option value="community">Community Organizing</option>
+                                <option value="other">Other</option>
+                            </select>
+                            <label for="volunteer-skills">Your Skills</label>
+                            <div class="select-highlight"></div>
+                        </div>
+                        <div class="kuleszo-input-group">
+                            <input type="text" name="availability" id="volunteer-availability">
+                            <label for="volunteer-availability">Availability</label>
+                            <div class="input-highlight"></div>
+                        </div>
                     </div>
-                    <textarea name="message" placeholder="Tell us about your interest in volunteering" rows="4" aria-label="Message about volunteering interest"></textarea>
-                    <button type="submit" class="btn btn-primary btn-full" aria-label="Submit volunteer application">Sign Up to Volunteer</button>
+                    
+                    <div class="kuleszo-textarea-group">
+                        <textarea name="message" id="volunteer-message" rows="4" required aria-required="true"></textarea>
+                        <label for="volunteer-message">Tell us about your interest</label>
+                        <div class="textarea-highlight"></div>
+                    </div>
+                    
+                    <button type="submit" class="kuleszo-btn kuleszo-btn-primary kuleszo-btn-full">
+                        <span>Join as Volunteer</span>
+                        <i data-lucide="arrow-right"></i>
+                    </button>
                 </form>
             </div>
         </div>
     </section>
 
-    <!-- Newsletter Signup Section -->
-    <section class="section newsletter" aria-label="Newsletter Signup Section">
+    <!-- Enhanced Newsletter Signup Section -->
+    <section class="section newsletter kuleszo-newsletter" aria-label="Newsletter Signup Section">
         <div class="container">
-            <div class="newsletter-content">
-                <div class="newsletter-text">
-                    <h2 class="section-title">Stay Connected</h2>
-                    <p class="section-intro">
-                        Join our community and receive the latest updates on climate action in Eswatini.
-                        Get exclusive insights, success stories, and opportunities to get involved.
+            <div class="kuleszo-newsletter-container">
+                <div class="newsletter-visual">
+                    <div class="newsletter-icon-container">
+                        <div class="newsletter-icon">
+                            <i data-lucide="mail"></i>
+                        </div>
+                        <div class="newsletter-pulse"></div>
+                    </div>
+                    <h2 class="newsletter-title">Stay Connected</h2>
+                    <p class="newsletter-subtitle">
+                        Join our climate community and receive exclusive insights, success stories, and opportunities to make a difference in Eswatini.
                     </p>
-                    <div class="newsletter-benefits">
-                        <div class="benefit-item">
-                            <i data-lucide="mail" aria-hidden="true"></i>
-                            <span>Monthly Climate Updates</span>
+                    
+                    <div class="kuleszo-benefits">
+                        <div class="kuleszo-benefit-item">
+                            <div class="benefit-icon">
+                                <i data-lucide="mail"></i>
+                            </div>
+                            <div class="benefit-content">
+                                <h4>Monthly Updates</h4>
+                                <p>Climate action insights</p>
+                            </div>
                         </div>
-                        <div class="benefit-item">
-                            <i data-lucide="users" aria-hidden="true"></i>
-                            <span>Community Stories</span>
+                        <div class="kuleszo-benefit-item">
+                            <div class="benefit-icon">
+                                <i data-lucide="users"></i>
+                            </div>
+                            <div class="benefit-content">
+                                <h4>Community Stories</h4>
+                                <p>Real impact narratives</p>
+                            </div>
                         </div>
-                        <div class="benefit-item">
-                            <i data-lucide="calendar" aria-hidden="true"></i>
-                            <span>Event Invitations</span>
+                        <div class="kuleszo-benefit-item">
+                            <div class="benefit-icon">
+                                <i data-lucide="calendar"></i>
+                            </div>
+                            <div class="benefit-content">
+                                <h4>Event Access</h4>
+                                <p>Exclusive invitations</p>
+                            </div>
                         </div>
                     </div>
                 </div>
 
-                <div class="newsletter-form-container">
-                    <form class="newsletter-form" id="newsletterForm" aria-label="Newsletter signup form" aria-describedby="newsletter-privacy">
+                <div class="kuleszo-newsletter-form">
+                    <form id="newsletterForm" class="newsletter-form-enhanced" aria-label="Newsletter signup form">
                         <div class="form-message" role="alert" aria-live="assertive"></div>
-                        <div class="form-group">
-                            <label for="newsletterEmail" class="sr-only">Email Address</label>
-                            <input type="email" id="newsletterEmail" name="email" placeholder="Enter your email address" required aria-required="true" aria-label="Email address for newsletter">
-                            <button type="submit" class="btn btn-primary btn-newsletter" aria-label="Subscribe to newsletter">
-                                Subscribe <i data-lucide="send"></i>
+                        
+                        <div class="kuleszo-email-group">
+                            <div class="email-input-container">
+                                <input type="email" id="newsletterEmail" name="email" required aria-required="true">
+                                <label for="newsletterEmail">Your email address</label>
+                                <div class="email-highlight"></div>
+                            </div>
+                            <button type="submit" class="kuleszo-subscribe-btn" aria-label="Subscribe to newsletter">
+                                <span>Subscribe</span>
+                                <i data-lucide="arrow-right"></i>
                             </button>
                         </div>
-                        <p class="privacy-note" id="newsletter-privacy">
-                            We respect your privacy. Unsubscribe at any time.
+                        
+                        <div class="newsletter-stats">
+                            <div class="stat-item">
+                                <span class="stat-number">2,500+</span>
+                                <span class="stat-label">Subscribers</span>
+                            </div>
+                            <div class="stat-divider"></div>
+                            <div class="stat-item">
+                                <span class="stat-number">Weekly</span>
+                                <span class="stat-label">Updates</span>
+                            </div>
+                            <div class="stat-divider"></div>
+                            <div class="stat-item">
+                                <span class="stat-number">100%</span>
+                                <span class="stat-label">Free</span>
+                            </div>
+                        </div>
+                        
+                        <p class="kuleszo-privacy-note">
+                            <i data-lucide="shield-check"></i>
+                            We respect your privacy. Unsubscribe anytime.
                         </p>
                     </form>
                 </div>
@@ -731,162 +1219,488 @@
         </div>
     </div>
 
-    <!-- Resources Section -->
-    <section id="resources" class="section resources" aria-label="Resources Section">
+    <!-- Enhanced Resources & Stories Section -->
+    <section id="resources" class="section resources kuleszo-resources" aria-label="Resources Section">
         <div class="container">
-            <h2 class="section-title">Resources & Stories</h2>
-            <p class="section-intro" id="resourcesDesc">
-                Explore our library of publications, reports, and discover the human stories
-                behind our climate action work.
-            </p>
-
-            <div class="search-container">
-                <input type="text" id="resourceSearch" placeholder="Search resources..." class="search-input" aria-label="Search resources">
-                <button type="button" id="clearSearch" class="clear-search-btn" aria-label="Clear search">✕</button>
+            <div class="kuleszo-resources-header">
+                <div class="resources-icon-container">
+                    <div class="resources-icon">
+                        <i data-lucide="library"></i>
+                    </div>
+                    <div class="resources-pulse"></div>
+                </div>
+                <h2 class="section-title">Resources & Stories</h2>
+                <p class="section-intro" id="resourcesDesc">
+                    Explore our comprehensive library of publications, reports, and discover the inspiring human stories behind our climate action work in Eswatini.
+                </p>
             </div>
 
-            <h3 class="download-section-title">Download Resources</h3>
-            <p class="download-section-intro">Access our PDF reports and guides on climate action in Eswatini.</p>
+            <!-- Enhanced Search Section -->
+            <div class="kuleszo-search-section">
+                <div class="kuleszo-search-container">
+                    <div class="search-icon">
+                        <i data-lucide="search"></i>
+                    </div>
+                    <input type="text" id="resourceSearch" placeholder="Search resources, stories, and reports..." class="kuleszo-search-input" aria-label="Search resources">
+                    <button type="button" id="clearSearch" class="kuleszo-clear-btn" aria-label="Clear search">
+                        <i data-lucide="x"></i>
+                    </button>
+                </div>
+                <div class="search-filters">
+                    <button class="filter-btn active" data-filter="all">All</button>
+                    <button class="filter-btn" data-filter="story">Stories</button>
+                    <button class="filter-btn" data-filter="report">Reports</button>
+                    <button class="filter-btn" data-filter="guide">Guides</button>
+                    <button class="filter-btn" data-filter="news">News</button>
+                </div>
+            </div>
 
-            <div class="resources-grid">
-                <div class="resource-card" data-animation-delay="0.1s">
-                    <img src="https://images.unsplash.com/photo-1752341135601-d9252f5cdbdd?fm=webp&q=60&w=800&ixlib=rb-4.1.0" alt="Local community members planting trees in the Lubombo Mountains, showcasing reforestation efforts in Eswatini" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';" decoding="async" fetchpriority="low">
-                    <div style="display: none; background: #f0fdf4; padding: 2rem; text-align: center; color: #16a34a;">Image Unavailable</div>
-                    <div class="resource-content">
-                        <span class="resource-category">Story</span>
+            <!-- Resource Categories Overview -->
+            <div class="kuleszo-categories-overview">
+                <div class="category-item">
+                    <div class="category-icon">
+                        <i data-lucide="book-open"></i>
+                    </div>
+                    <div class="category-content">
+                        <h4>Research Reports</h4>
+                        <p>In-depth analysis & data</p>
+                    </div>
+                </div>
+                <div class="category-item">
+                    <div class="category-icon">
+                        <i data-lucide="users"></i>
+                    </div>
+                    <div class="category-content">
+                        <h4>Community Stories</h4>
+                        <p>Real impact narratives</p>
+                    </div>
+                </div>
+                <div class="category-item">
+                    <div class="category-icon">
+                        <i data-lucide="download"></i>
+                    </div>
+                    <div class="category-content">
+                        <h4>Practical Guides</h4>
+                        <p>Actionable resources</p>
+                    </div>
+                </div>
+                <div class="category-item">
+                    <div class="category-icon">
+                        <i data-lucide="newspaper"></i>
+                    </div>
+                    <div class="category-content">
+                        <h4>Latest News</h4>
+                        <p>Current developments</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Enhanced Resources Grid -->
+            <div class="kuleszo-resources-grid">
+                <div class="kuleszo-resource-card" data-animation-delay="0.1s" data-category="story">
+                    <div class="resource-image-container">
+                        <img src="https://images.unsplash.com/photo-1752341135601-d9252f5cdbdd?fm=webp&q=60&w=800&ixlib=rb-4.1.0" alt="Local community members planting trees in the Lubombo Mountains, showcasing reforestation efforts in Eswatini" loading="lazy">
+                        <div class="resource-overlay">
+                            <div class="resource-category-badge story">Story</div>
+                        </div>
+                    </div>
+                    <div class="kuleszo-resource-content">
                         <h3>Community-led Reforestation in the Lubombo Mountains</h3>
-                        <p>Learn how local communities are working to restore native forests.</p>
-                        <div class="resource-actions">
-                            <a href="#!" class="resource-link">
-                                Read More <i data-lucide="external-link"></i>
+                        <p>Discover how local communities are working together to restore native forests and build climate resilience through traditional knowledge and modern techniques.</p>
+                        <div class="resource-meta">
+                            <span class="meta-item">
+                                <i data-lucide="calendar"></i>
+                                Nov 2024
+                            </span>
+                            <span class="meta-item">
+                                <i data-lucide="clock"></i>
+                                5 min read
+                            </span>
+                        </div>
+                        <div class="kuleszo-resource-actions">
+                            <a href="#!" class="kuleszo-btn kuleszo-btn-secondary">
+                                <span>Read Story</span>
+                                <i data-lucide="arrow-right"></i>
                             </a>
-                            <a href="reports/reforestation-guide.pdf" download class="download-link" aria-label="Download reforestation guide PDF">
-                                Download PDF <i data-lucide="download"></i>
+                            <a href="reports/reforestation-guide.pdf" download class="kuleszo-download-btn" aria-label="Download reforestation guide PDF">
+                                <i data-lucide="download"></i>
                             </a>
-                            <button class="share-resource-btn" data-title="Community-led Reforestation in the Lubombo Mountains" data-url="#!" aria-label="Share this resource">
-                                <i class="fas fa-share-alt"></i>
+                            <button class="kuleszo-share-btn" data-title="Community-led Reforestation in the Lubombo Mountains" data-url="#!" aria-label="Share this resource">
+                                <i data-lucide="share-2"></i>
                             </button>
                         </div>
                     </div>
                 </div>
-                <div class="resource-card" data-animation-delay="0.2s">
-                    <img src="https://images.unsplash.com/photo-1758347384057-8d47cf6fad1b?fm=webp&q=60&w=800&ixlib=rb-4.1.0" alt="Annual climate change report document with charts and data visualizations showing Eswatini's environmental trends" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';" decoding="async" fetchpriority="low">
-                    <div style="display: none; background: #f0fdf4; padding: 2rem; text-align: center; color: #16a34a;">Image Unavailable</div>
-                    <div class="resource-content">
-                        <span class="resource-category">Report</span>
+
+                <div class="kuleszo-resource-card" data-animation-delay="0.2s" data-category="report">
+                    <div class="resource-image-container">
+                        <img src="https://images.unsplash.com/photo-1758347384057-8d47cf6fad1b?fm=webp&q=60&w=800&ixlib=rb-4.1.0" alt="Annual climate change report document with charts and data visualizations showing Eswatini's environmental trends" loading="lazy">
+                        <div class="resource-overlay">
+                            <div class="resource-category-badge report">Report</div>
+                        </div>
+                    </div>
+                    <div class="kuleszo-resource-content">
                         <h3>The State of Climate Change in Eswatini 2024</h3>
-                        <p>Our annual report on climate data and impacts in Eswatini.</p>
-                        <div class="resource-actions">
-                            <a href="#!" class="resource-link">
-                                Read More <i data-lucide="external-link"></i>
+                        <p>Our comprehensive annual report analyzing climate data, environmental trends, and the impacts of climate change across all regions of Eswatini.</p>
+                        <div class="resource-meta">
+                            <span class="meta-item">
+                                <i data-lucide="calendar"></i>
+                                Oct 2024
+                            </span>
+                            <span class="meta-item">
+                                <i data-lucide="file-text"></i>
+                                45 pages
+                            </span>
+                        </div>
+                        <div class="kuleszo-resource-actions">
+                            <a href="#!" class="kuleszo-btn kuleszo-btn-secondary">
+                                <span>View Report</span>
+                                <i data-lucide="arrow-right"></i>
                             </a>
-                            <a href="reports/climate-report-2024.pdf" download class="download-link" aria-label="Download climate report 2024 PDF">
-                                Download PDF <i data-lucide="download"></i>
+                            <a href="reports/climate-report-2024.pdf" download class="kuleszo-download-btn" aria-label="Download climate report 2024 PDF">
+                                <i data-lucide="download"></i>
                             </a>
-                            <button class="share-resource-btn" data-title="The State of Climate Change in Eswatini 2024" data-url="#!" aria-label="Share this resource">
-                                <i class="fas fa-share-alt"></i>
+                            <button class="kuleszo-share-btn" data-title="The State of Climate Change in Eswatini 2024" data-url="#!" aria-label="Share this resource">
+                                <i data-lucide="share-2"></i>
                             </button>
                         </div>
                     </div>
                 </div>
-                <div class="resource-card" data-animation-delay="0.3s">
-                    <img src="https://images.unsplash.com/photo-1757880776486-5e5285dab685?fm=webp&q=60&w=800&ixlib=rb-4.1.0" alt="Farmer in Eswatini practicing sustainable agriculture with traditional farming tools and climate-resilient crops" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';" decoding="async" fetchpriority="low">
-                    <div style="display: none; background: #f0fdf4; padding: 2rem; text-align: center; color: #16a34a;">Image Unavailable</div>
-                    <div class="resource-content">
-                        <span class="resource-category">Guide</span>
+
+                <div class="kuleszo-resource-card" data-animation-delay="0.3s" data-category="guide">
+                    <div class="resource-image-container">
+                        <img src="https://images.unsplash.com/photo-1757880776486-5e5285dab685?fm=webp&q=60&w=800&ixlib=rb-4.1.0" alt="Farmer in Eswatini practicing sustainable agriculture with traditional farming tools and climate-resilient crops" loading="lazy">
+                        <div class="resource-overlay">
+                            <div class="resource-category-badge guide">Guide</div>
+                        </div>
+                    </div>
+                    <div class="kuleszo-resource-content">
                         <h3>A Guide to Sustainable Agriculture in Eswatini</h3>
-                        <p>Practical resources for climate-smart farming practices.</p>
-                        <div class="resource-actions">
-                            <a href="#!" class="resource-link">
-                                Read More <i data-lucide="external-link"></i>
+                        <p>Practical resources and step-by-step guidance for implementing climate-smart farming practices that increase resilience and productivity.</p>
+                        <div class="resource-meta">
+                            <span class="meta-item">
+                                <i data-lucide="calendar"></i>
+                                Sep 2024
+                            </span>
+                            <span class="meta-item">
+                                <i data-lucide="users"></i>
+                                For Farmers
+                            </span>
+                        </div>
+                        <div class="kuleszo-resource-actions">
+                            <a href="#!" class="kuleszo-btn kuleszo-btn-secondary">
+                                <span>Read Guide</span>
+                                <i data-lucide="arrow-right"></i>
                             </a>
-                            <a href="reports/sustainable-agriculture-guide.pdf" download class="download-link" aria-label="Download sustainable agriculture guide PDF">
-                                Download PDF <i data-lucide="download"></i>
+                            <a href="reports/sustainable-agriculture-guide.pdf" download class="kuleszo-download-btn" aria-label="Download sustainable agriculture guide PDF">
+                                <i data-lucide="download"></i>
                             </a>
-                            <button class="share-resource-btn" data-title="A Guide to Sustainable Agriculture in Eswatini" data-url="#!" aria-label="Share this resource">
-                                <i class="fas fa-share-alt"></i>
+                            <button class="kuleszo-share-btn" data-title="A Guide to Sustainable Agriculture in Eswatini" data-url="#!" aria-label="Share this resource">
+                                <i data-lucide="share-2"></i>
                             </button>
                         </div>
                     </div>
                 </div>
-                <div class="resource-card" data-animation-delay="0.4s">
-                    <img src="https://images.unsplash.com/photo-1629279598436-b1d5a893600c?fm=webp&q=60&w=800&ixlib=rb-4.1.0" alt="Scenic landscape of Eswatini showing rolling hills and traditional homesteads, representing the natural beauty being protected" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';" decoding="async" fetchpriority="low">
-                    <div style="display: none; background: #f0fdf4; padding: 2rem; text-align: center; color: #16a34a;">Image Unavailable</div>
-                    <div class="resource-content">
-                        <span class="resource-category">News</span>
+
+                <div class="kuleszo-resource-card" data-animation-delay="0.4s" data-category="news">
+                    <div class="resource-image-container">
+                        <img src="https://images.unsplash.com/photo-1629279598436-b1d5a893600c?fm=webp&q=60&w=800&ixlib=rb-4.1.0" alt="Scenic landscape of Eswatini showing rolling hills and traditional homesteads, representing the natural beauty being protected" loading="lazy">
+                        <div class="resource-overlay">
+                            <div class="resource-category-badge news">News</div>
+                        </div>
+                    </div>
+                    <div class="kuleszo-resource-content">
                         <h3>Eswatini Joins Global Methane Pledge</h3>
-                        <p>A look into Eswatini's commitment to reducing methane emissions and what it means for the country's climate goals.</p>
-                        <div class="resource-actions">
-                            <a href="#!" class="resource-link">
-                                Read More <i data-lucide="external-link"></i>
+                        <p>An in-depth look at Eswatini's commitment to reducing methane emissions by 30% by 2030 and what this means for the country's climate goals and agricultural sector.</p>
+                        <div class="resource-meta">
+                            <span class="meta-item">
+                                <i data-lucide="calendar"></i>
+                                Nov 2024
+                            </span>
+                            <span class="meta-item">
+                                <i data-lucide="trending-up"></i>
+                                Trending
+                            </span>
+                        </div>
+                        <div class="kuleszo-resource-actions">
+                            <a href="#!" class="kuleszo-btn kuleszo-btn-secondary">
+                                <span>Read News</span>
+                                <i data-lucide="arrow-right"></i>
                             </a>
-                            <a href="reports/methane-pledge-report.pdf" download class="download-link" aria-label="Download methane pledge report PDF">
-                                Download PDF <i data-lucide="download"></i>
+                            <a href="reports/methane-pledge-report.pdf" download class="kuleszo-download-btn" aria-label="Download methane pledge report PDF">
+                                <i data-lucide="download"></i>
                             </a>
-                            <button class="share-resource-btn" data-title="Eswatini Joins Global Methane Pledge" data-url="#!" aria-label="Share this resource">
-                                <i class="fas fa-share-alt"></i>
+                            <button class="kuleszo-share-btn" data-title="Eswatini Joins Global Methane Pledge" data-url="#!" aria-label="Share this resource">
+                                <i data-lucide="share-2"></i>
                             </button>
                         </div>
                     </div>
                 </div>
-                <div class="resource-card" data-animation-delay="0.5s">
-                    <img src="https://images.unsplash.com/photo-1599691456121-26b24880067a?fm=webp&q=60&w=800&ixlib=rb-4.1.0" alt="Solar panels installed on a rural homestead in Eswatini, demonstrating renewable energy adoption in African communities" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';" decoding="async" fetchpriority="low">
-                    <div style="display: none; background: #f0fdf4; padding: 2rem; text-align: center; color: #16a34a;">Image Unavailable</div>
-                    <div class="resource-content">
-                        <span class="resource-category">Blog</span>
+
+                <div class="kuleszo-resource-card" data-animation-delay="0.5s" data-category="story">
+                    <div class="resource-image-container">
+                        <img src="https://images.unsplash.com/photo-1599691456121-26b24880067a?fm=webp&q=60&w=800&ixlib=rb-4.1.0" alt="Solar panels installed on a rural homestead in Eswatini, demonstrating renewable energy adoption in African communities" loading="lazy">
+                        <div class="resource-overlay">
+                            <div class="resource-category-badge story">Story</div>
+                        </div>
+                    </div>
+                    <div class="kuleszo-resource-content">
                         <h3>The Future is Bright: Solar Power in Rural Eswatini</h3>
-                        <p>A deep dive into how solar mini-grids are transforming lives and livelihoods in remote communities.</p>
-                        <div class="resource-actions">
-                            <a href="#!" class="resource-link">
-                                Read More <i data-lucide="external-link"></i>
+                        <p>A deep dive into how solar mini-grids are transforming lives and livelihoods in remote communities, bringing clean energy and new opportunities.</p>
+                        <div class="resource-meta">
+                            <span class="meta-item">
+                                <i data-lucide="calendar"></i>
+                                Oct 2024
+                            </span>
+                            <span class="meta-item">
+                                <i data-lucide="clock"></i>
+                                8 min read
+                            </span>
+                        </div>
+                        <div class="kuleszo-resource-actions">
+                            <a href="#!" class="kuleszo-btn kuleszo-btn-secondary">
+                                <span>Read Story</span>
+                                <i data-lucide="arrow-right"></i>
                             </a>
-                            <a href="reports/solar-power-report.pdf" download class="download-link" aria-label="Download solar power report PDF">
-                                Download PDF <i data-lucide="download"></i>
+                            <a href="reports/solar-power-report.pdf" download class="kuleszo-download-btn" aria-label="Download solar power report PDF">
+                                <i data-lucide="download"></i>
                             </a>
-                            <button class="share-resource-btn" data-title="The Future is Bright: Solar Power in Rural Eswatini" data-url="#!" aria-label="Share this resource">
-                                <i class="fas fa-share-alt"></i>
+                            <button class="kuleszo-share-btn" data-title="The Future is Bright: Solar Power in Rural Eswatini" data-url="#!" aria-label="Share this resource">
+                                <i data-lucide="share-2"></i>
                             </button>
                         </div>
                     </div>
+                </div>
+
+                <div class="kuleszo-resource-card" data-animation-delay="0.6s" data-category="guide">
+                    <div class="resource-image-container">
+                        <img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?fm=webp&q=60&w=800&ixlib=rb-4.1.0" alt="Forest conservation area in Eswatini with diverse wildlife and vegetation" loading="lazy">
+                        <div class="resource-overlay">
+                            <div class="resource-category-badge guide">Guide</div>
+                        </div>
+                    </div>
+                    <div class="kuleszo-resource-content">
+                        <h3>Community-Based Conservation Handbook</h3>
+                        <p>Essential strategies for protecting biodiversity and natural resources while supporting local livelihoods and traditional practices.</p>
+                        <div class="resource-meta">
+                            <span class="meta-item">
+                                <i data-lucide="calendar"></i>
+                                Aug 2024
+                            </span>
+                            <span class="meta-item">
+                                <i data-lucide="leaf"></i>
+                                Conservation
+                            </span>
+                        </div>
+                        <div class="kuleszo-resource-actions">
+                            <a href="#!" class="kuleszo-btn kuleszo-btn-secondary">
+                                <span>Read Guide</span>
+                                <i data-lucide="arrow-right"></i>
+                            </a>
+                            <a href="reports/conservation-handbook.pdf" download class="kuleszo-download-btn" aria-label="Download conservation handbook PDF">
+                                <i data-lucide="download"></i>
+                            </a>
+                            <button class="kuleszo-share-btn" data-title="Community-Based Conservation Handbook" data-url="#!" aria-label="Share this resource">
+                                <i data-lucide="share-2"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Resource Statistics -->
+            <div class="kuleszo-resources-stats">
+                <div class="stat-item">
+                    <span class="stat-number">50+</span>
+                    <span class="stat-label">Resources Available</span>
+                </div>
+                <div class="stat-divider"></div>
+                <div class="stat-item">
+                    <span class="stat-number">10K+</span>
+                    <span class="stat-label">Downloads</span>
+                </div>
+                <div class="stat-divider"></div>
+                <div class="stat-item">
+                    <span class="stat-number">Monthly</span>
+                    <span class="stat-label">Updates</span>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Latest Updates Section -->
-    <section id="social-feeds" class="section social-feeds" aria-label="Latest Updates from Social Media">
+    <!-- Enhanced Latest Updates Section -->
+    <section id="social-feeds" class="section social-feeds kuleszo-updates" aria-label="Latest Updates from Social Media">
         <div class="container">
-            <h2 class="section-title">Latest Updates</h2>
-            <p class="section-intro">
-                Follow our latest activities, community stories, and climate action updates on social media.
-            </p>
-            <div class="social-feeds-grid">
-                <!-- Twitter Feed -->
-                <div class="social-feed twitter-feed">
-                    <h3>Twitter Feed</h3>
-                    <a class="twitter-timeline" 
-                       data-width="100%" 
-                       data-height="600" 
-                       href="https://twitter.com/TheClimateWatch?ref_src=twsrc%5Etfw">Tweets by TheClimateWatch</a> 
-                    <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+            <div class="kuleszo-updates-header">
+                <div class="updates-icon-container">
+                    <div class="updates-icon">
+                        <i data-lucide="rss"></i>
+                    </div>
+                    <div class="updates-pulse"></div>
+                </div>
+                <h2 class="section-title">Latest Updates</h2>
+                <p class="section-intro">
+                    Stay connected with our real-time climate action updates, community stories, and environmental initiatives across all our social platforms.
+                </p>
+            </div>
+
+            <!-- Social Platform Overview -->
+            <div class="kuleszo-platform-overview">
+                <div class="platform-item twitter">
+                    <div class="platform-icon">
+                        <i data-lucide="twitter"></i>
+                    </div>
+                    <div class="platform-content">
+                        <h4>Twitter Updates</h4>
+                        <p>Real-time climate news</p>
+                    </div>
+                    <div class="platform-badge">Live</div>
+                </div>
+                <div class="platform-item facebook">
+                    <div class="platform-icon">
+                        <i data-lucide="facebook"></i>
+                    </div>
+                    <div class="platform-content">
+                        <h4>Facebook Stories</h4>
+                        <p>Community highlights</p>
+                    </div>
+                    <div class="platform-badge">Active</div>
+                </div>
+                <div class="platform-item linkedin">
+                    <div class="platform-icon">
+                        <i data-lucide="linkedin"></i>
+                    </div>
+                    <div class="platform-content">
+                        <h4>LinkedIn Insights</h4>
+                        <p>Professional updates</p>
+                    </div>
+                    <div class="platform-badge">Weekly</div>
+                </div>
+                <div class="platform-item instagram">
+                    <div class="platform-icon">
+                        <i data-lucide="instagram"></i>
+                    </div>
+                    <div class="platform-content">
+                        <h4>Instagram Visual</h4>
+                        <p>Behind the scenes</p>
+                    </div>
+                    <div class="platform-badge">Daily</div>
+                </div>
+            </div>
+
+            <!-- Enhanced Social Feeds Grid -->
+            <div class="kuleszo-social-feeds-grid">
+                <!-- Enhanced Twitter Feed -->
+                <div class="kuleszo-social-feed twitter-feed">
+                    <div class="feed-header">
+                        <div class="feed-icon twitter">
+                            <i data-lucide="twitter"></i>
+                        </div>
+                        <div class="feed-info">
+                            <h3>Twitter Feed</h3>
+                            <p>Latest climate action tweets</p>
+                        </div>
+                        <div class="feed-status live">
+                            <div class="status-dot"></div>
+                            <span>Live</span>
+                        </div>
+                    </div>
+                    <div class="feed-content">
+                        <a class="twitter-timeline" 
+                           data-width="100%" 
+                           data-height="500" 
+                           data-theme="light"
+                           data-chrome="noheader nofooter noborders transparent"
+                           href="https://twitter.com/TheClimateWatch?ref_src=twsrc%5Etfw">Tweets by TheClimateWatch</a> 
+                        <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+                    </div>
                 </div>
 
-                <!-- Facebook Feed -->
-                <div class="social-feed facebook-feed">
-                    <h3>Facebook Feed</h3>
-                    <div class="fb-page" 
-                         data-href="https://www.facebook.com/TheClimateWatch" 
-                         data-tabs="timeline" 
-                         data-width="100%" 
-                         data-height="600" 
-                         data-small-header="false" 
-                         data-adapt-container-width="true" 
-                         data-hide-cover="false" 
-                         data-show-facepile="true">
-                        <blockquote cite="https://www.facebook.com/TheClimateWatch" class="fb-xfbml-parse-ignore">
-                            <a href="https://www.facebook.com/TheClimateWatch">The Climate Watch</a>
-                        </blockquote>
+                <!-- Enhanced Facebook Feed -->
+                <div class="kuleszo-social-feed facebook-feed">
+                    <div class="feed-header">
+                        <div class="feed-icon facebook">
+                            <i data-lucide="facebook"></i>
+                        </div>
+                        <div class="feed-info">
+                            <h3>Facebook Feed</h3>
+                            <p>Community stories & updates</p>
+                        </div>
+                        <div class="feed-status active">
+                            <div class="status-dot"></div>
+                            <span>Active</span>
+                        </div>
                     </div>
+                    <div class="feed-content">
+                        <div class="fb-page" 
+                             data-href="https://www.facebook.com/TheClimateWatch" 
+                             data-tabs="timeline" 
+                             data-width="100%" 
+                             data-height="500" 
+                             data-small-header="true" 
+                             data-adapt-container-width="true" 
+                             data-hide-cover="false" 
+                             data-show-facepile="false">
+                            <blockquote cite="https://www.facebook.com/TheClimateWatch" class="fb-xfbml-parse-ignore">
+                                <a href="https://www.facebook.com/TheClimateWatch">The Climate Watch</a>
+                            </blockquote>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Social Media Statistics -->
+            <div class="kuleszo-social-stats">
+                <div class="stat-item">
+                    <div class="stat-icon">
+                        <i data-lucide="users"></i>
+                    </div>
+                    <span class="stat-number">5K+</span>
+                    <span class="stat-label">Followers</span>
+                </div>
+                <div class="stat-divider"></div>
+                <div class="stat-item">
+                    <div class="stat-icon">
+                        <i data-lucide="heart"></i>
+                    </div>
+                    <span class="stat-number">15K+</span>
+                    <span class="stat-label">Engagements</span>
+                </div>
+                <div class="stat-divider"></div>
+                <div class="stat-item">
+                    <div class="stat-icon">
+                        <i data-lucide="share-2"></i>
+                    </div>
+                    <span class="stat-number">2K+</span>
+                    <span class="stat-label">Shares</span>
+                </div>
+                <div class="stat-divider"></div>
+                <div class="stat-item">
+                    <div class="stat-icon">
+                        <i data-lucide="trending-up"></i>
+                    </div>
+                    <span class="stat-number">Daily</span>
+                    <span class="stat-label">Updates</span>
+                </div>
+            </div>
+
+            <!-- Call to Action -->
+            <div class="kuleszo-social-cta">
+                <h3>Join Our Climate Community</h3>
+                <p>Follow us on social media for daily climate action updates and community stories</p>
+                <div class="social-cta-buttons">
+                    <a href="https://twitter.com/theclimatewatch" class="kuleszo-social-btn twitter" target="_blank">
+                        <i data-lucide="twitter"></i>
+                        <span>Follow on Twitter</span>
+                    </a>
+                    <a href="https://facebook.com/theclimatewatch" class="kuleszo-social-btn facebook" target="_blank">
+                        <i data-lucide="facebook"></i>
+                        <span>Like on Facebook</span>
+                    </a>
+                    <a href="https://linkedin.com/company/theclimatewatch" class="kuleszo-social-btn linkedin" target="_blank">
+                        <i data-lucide="linkedin"></i>
+                        <span>Connect on LinkedIn</span>
+                    </a>
                 </div>
             </div>
         </div>
@@ -928,173 +1742,495 @@
         </div>
     </section>
 
-    <!-- Events Calendar Section -->
-    <section id="events" class="section events" aria-label="Events Calendar Section">
+    <!-- Enhanced Events Calendar Section -->
+    <section id="events" class="section events kuleszo-events" aria-label="Events Calendar Section">
         <div class="container">
-            <h2 class="section-title">Upcoming Events</h2>
-            <p class="section-intro" id="eventsDesc">
-                Join our workshops, campaigns, and community events to learn, connect, and take action
-                for a sustainable Eswatini.
-            </p>
-
-            <div class="events-grid">
-                <div class="event-card" data-animation-delay="0.1s">
-                    <div class="event-date">
-                        <span class="event-day">15</span>
-                        <span class="event-month">Nov</span>
+            <div class="kuleszo-events-header">
+                <div class="events-icon-container">
+                    <div class="events-icon">
+                        <i data-lucide="calendar"></i>
                     </div>
-                    <div class="event-content">
-                        <span class="event-type">Workshop</span>
+                    <div class="events-pulse"></div>
+                </div>
+                <h2 class="section-title">Upcoming Events</h2>
+                <p class="section-intro" id="eventsDesc">
+                    Join our workshops, campaigns, and community events to learn, connect, and take meaningful climate action for a sustainable Eswatini.
+                </p>
+            </div>
+
+            <!-- Event Categories -->
+            <div class="kuleszo-event-categories">
+                <div class="category-filter active" data-category="all">
+                    <i data-lucide="calendar"></i>
+                    <span>All Events</span>
+                </div>
+                <div class="category-filter" data-category="workshop">
+                    <i data-lucide="book-open"></i>
+                    <span>Workshops</span>
+                </div>
+                <div class="category-filter" data-category="campaign">
+                    <i data-lucide="users"></i>
+                    <span>Campaigns</span>
+                </div>
+                <div class="category-filter" data-category="webinar">
+                    <i data-lucide="monitor"></i>
+                    <span>Webinars</span>
+                </div>
+            </div>
+
+            <div class="kuleszo-events-grid">
+                <div class="kuleszo-event-card" data-animation-delay="0.1s" data-category="workshop">
+                    <div class="event-image">
+                        <div class="event-date-badge">
+                            <span class="event-day">15</span>
+                            <span class="event-month">Nov</span>
+                        </div>
+                        <div class="event-type-badge workshop">Workshop</div>
+                    </div>
+                    <div class="kuleszo-event-content">
                         <h3>Climate-Smart Agriculture Training</h3>
-                        <p class="event-location">Mbabane Community Center</p>
-                        <p class="event-description">Learn sustainable farming techniques to build resilience against climate change.</p>
-                        <div class="event-details">
-                            <span><i data-lucide="clock"></i> 9:00 AM - 4:00 PM</span>
-                            <span><i data-lucide="users"></i> 50 spots available</span>
+                        <div class="event-location">
+                            <i data-lucide="map-pin"></i>
+                            <span>Mbabane Community Center</span>
                         </div>
-                        <button class="btn btn-secondary event-register" aria-label="Register for Climate-Smart Agriculture Training">Register</button>
+                        <p class="event-description">Learn sustainable farming techniques to build resilience against climate change impacts.</p>
+                        <div class="event-meta">
+                            <div class="meta-item">
+                                <i data-lucide="clock"></i>
+                                <span>9:00 AM - 4:00 PM</span>
+                            </div>
+                            <div class="meta-item">
+                                <i data-lucide="users"></i>
+                                <span>50 spots available</span>
+                            </div>
+                        </div>
+                        <button class="kuleszo-btn kuleszo-btn-event" aria-label="Register for Climate-Smart Agriculture Training">
+                            <span>Register Now</span>
+                            <i data-lucide="arrow-right"></i>
+                        </button>
                     </div>
                 </div>
 
-                <div class="event-card" data-animation-delay="0.2s">
-                    <div class="event-date">
-                        <span class="event-day">22</span>
-                        <span class="event-month">Nov</span>
+                <div class="kuleszo-event-card" data-animation-delay="0.2s" data-category="campaign">
+                    <div class="event-image">
+                        <div class="event-date-badge">
+                            <span class="event-day">22</span>
+                            <span class="event-month">Nov</span>
+                        </div>
+                        <div class="event-type-badge campaign">Campaign</div>
                     </div>
-                    <div class="event-content">
-                        <span class="event-type">Campaign</span>
+                    <div class="kuleszo-event-content">
                         <h3>Tree Planting Drive</h3>
-                        <p class="event-location">Lubombo Mountains</p>
-                        <p class="event-description">Join us for a community tree planting event to restore native forests.</p>
-                        <div class="event-details">
-                            <span><i data-lucide="clock"></i> 8:00 AM - 12:00 PM</span>
-                            <span><i data-lucide="users"></i> 100 spots available</span>
+                        <div class="event-location">
+                            <i data-lucide="map-pin"></i>
+                            <span>Lubombo Mountains</span>
                         </div>
-                        <button class="btn btn-secondary event-register" aria-label="Register for Tree Planting Drive">Register</button>
+                        <p class="event-description">Join us for a community tree planting event to restore native forests and biodiversity.</p>
+                        <div class="event-meta">
+                            <div class="meta-item">
+                                <i data-lucide="clock"></i>
+                                <span>8:00 AM - 12:00 PM</span>
+                            </div>
+                            <div class="meta-item">
+                                <i data-lucide="users"></i>
+                                <span>100 spots available</span>
+                            </div>
+                        </div>
+                        <button class="kuleszo-btn kuleszo-btn-event" aria-label="Register for Tree Planting Drive">
+                            <span>Register Now</span>
+                            <i data-lucide="arrow-right"></i>
+                        </button>
                     </div>
                 </div>
 
-                <div class="event-card" data-animation-delay="0.3s">
-                    <div class="event-date">
-                        <span class="event-day">5</span>
-                        <span class="event-month">Dec</span>
+                <div class="kuleszo-event-card" data-animation-delay="0.3s" data-category="webinar">
+                    <div class="event-image">
+                        <div class="event-date-badge">
+                            <span class="event-day">5</span>
+                            <span class="event-month">Dec</span>
+                        </div>
+                        <div class="event-type-badge webinar">Webinar</div>
                     </div>
-                    <div class="event-content">
-                        <span class="event-type">Webinar</span>
+                    <div class="kuleszo-event-content">
                         <h3>Youth Climate Leadership Summit</h3>
-                        <p class="event-location">Online</p>
+                        <div class="event-location">
+                            <i data-lucide="monitor"></i>
+                            <span>Online Event</span>
+                        </div>
                         <p class="event-description">Virtual summit bringing together young climate leaders from across Eswatini.</p>
-                        <div class="event-details">
-                            <span><i data-lucide="clock"></i> 2:00 PM - 5:00 PM</span>
-                            <span><i data-lucide="users"></i> Free event</span>
+                        <div class="event-meta">
+                            <div class="meta-item">
+                                <i data-lucide="clock"></i>
+                                <span>2:00 PM - 5:00 PM</span>
+                            </div>
+                            <div class="meta-item">
+                                <i data-lucide="gift"></i>
+                                <span>Free Event</span>
+                            </div>
                         </div>
-                        <button class="btn btn-secondary event-register" aria-label="Register for Youth Climate Leadership Summit">Register</button>
+                        <button class="kuleszo-btn kuleszo-btn-event" aria-label="Register for Youth Climate Leadership Summit">
+                            <span>Register Now</span>
+                            <i data-lucide="arrow-right"></i>
+                        </button>
                     </div>
                 </div>
 
-                <div class="event-card" data-animation-delay="0.4s">
-                    <div class="event-date">
-                        <span class="event-day">12</span>
-                        <span class="event-month">Dec</span>
+                <div class="kuleszo-event-card" data-animation-delay="0.4s" data-category="workshop">
+                    <div class="event-image">
+                        <div class="event-date-badge">
+                            <span class="event-day">12</span>
+                            <span class="event-month">Dec</span>
+                        </div>
+                        <div class="event-type-badge workshop">Workshop</div>
                     </div>
-                    <div class="event-content">
-                        <span class="event-type">Workshop</span>
+                    <div class="kuleszo-event-content">
                         <h3>Renewable Energy Solutions</h3>
-                        <p class="event-location">Manzini Technical College</p>
-                        <p class="event-description">Explore solar and wind energy options for rural communities.</p>
-                        <div class="event-details">
-                            <span><i data-lucide="clock"></i> 10:00 AM - 3:00 PM</span>
-                            <span><i data-lucide="users"></i> 30 spots available</span>
+                        <div class="event-location">
+                            <i data-lucide="map-pin"></i>
+                            <span>Manzini Technical College</span>
                         </div>
-                        <button class="btn btn-secondary event-register" aria-label="Register for Renewable Energy Solutions Workshop">Register</button>
+                        <p class="event-description">Explore solar and wind energy options for rural communities and sustainable development.</p>
+                        <div class="event-meta">
+                            <div class="meta-item">
+                                <i data-lucide="clock"></i>
+                                <span>10:00 AM - 3:00 PM</span>
+                            </div>
+                            <div class="meta-item">
+                                <i data-lucide="users"></i>
+                                <span>30 spots available</span>
+                            </div>
+                        </div>
+                        <button class="kuleszo-btn kuleszo-btn-event" aria-label="Register for Renewable Energy Solutions Workshop">
+                            <span>Register Now</span>
+                            <i data-lucide="arrow-right"></i>
+                        </button>
                     </div>
                 </div>
             </div>
 
-            <div class="events-cta">
-                <h3>Can't find an event that fits your schedule?</h3>
-                <p>Subscribe to our newsletter to stay updated on new events and opportunities.</p>
-                <a href="#newsletter" class="btn btn-primary" aria-label="Subscribe to newsletter">Subscribe Now</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Carbon Calculator Section -->
-    <section class="section carbon-calculator" aria-label="Carbon Footprint Calculator">
-        <div class="container">
-            <h2 class="section-title">🌱 Carbon Footprint Calculator</h2>
-            <p class="section-intro">
-                Calculate your household's carbon footprint and discover ways to reduce your environmental impact.
-            </p>
-            <div class="calculator-container">
-                <div class="calculator-form">
-                    <div class="form-group">
-                        <label for="electricity">Monthly Electricity Usage (kWh)</label>
-                        <input type="number" id="electricity" placeholder="300" min="0">
-                    </div>
-                    <div class="form-group">
-                        <label for="transport">Monthly Transport (km driven)</label>
-                        <input type="number" id="transport" placeholder="1000" min="0">
-                    </div>
-                    <div class="form-group">
-                        <label for="waste">Weekly Waste (kg)</label>
-                        <input type="number" id="waste" placeholder="20" min="0">
-                    </div>
-                    <button class="btn btn-primary" id="calculateCarbon">Calculate Footprint</button>
-                </div>
-                <div class="calculator-results" id="carbonResults" style="display: none;">
-                    <h3>Your Monthly Carbon Footprint</h3>
-                    <div class="result-value">
-                        <span id="carbonValue">0</span> kg CO₂
-                    </div>
-                    <div class="recommendations" id="recommendations"></div>
+            <div class="kuleszo-events-cta">
+                <div class="cta-content">
+                    <h3>Can't find an event that fits your schedule?</h3>
+                    <p>Subscribe to our newsletter to stay updated on new events and opportunities.</p>
+                    <a href="#newsletter" class="kuleszo-btn kuleszo-btn-primary" aria-label="Subscribe to newsletter">
+                        <span>Subscribe Now</span>
+                        <i data-lucide="mail"></i>
+                    </a>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Contact Section -->
-    <section id="contact" class="section contact" role="region" aria-label="Contact and Donate">
+    <!-- Enhanced Carbon Calculator Section -->
+    <section class="section carbon-calculator kuleszo-calculator" aria-label="Carbon Footprint Calculator">
         <div class="container">
-            <h2 class="section-title">Contact & Donate</h2>
-            <p class="section-intro" id="contactDesc">
-                Your support is vital to our mission. Help us create a climate-resilient Eswatini
-                through financial contributions, in-kind support, or sharing your skills.
-            </p>
-            <div class="contact-grid">
-                <div class="contact-info">
-                    <h3>Get in Touch</h3>
-                    <div class="contact-item">
-                        <i data-lucide="mail" aria-hidden="true"></i>
-                        <span><a href="mailto:info.climate@sabela.ngo" aria-label="Email address info.climate@sabela.ngo">info.climate@sabela.ngo</a></span>
+            <div class="kuleszo-calculator-header">
+                <div class="calculator-icon-container">
+                    <div class="calculator-icon">
+                        <i data-lucide="leaf"></i>
                     </div>
-                    <div class="contact-item">
-                        <i data-lucide="phone" aria-hidden="true"></i>
-                        <span><a href="tel:+26825052000" aria-label="Phone number +268 2505 2000">+268 2505 2000</a></span>
-                    </div>
-                    <div class="contact-item">
-                        <i data-lucide="map-pin" aria-hidden="true"></i>
-                        <span>Mbabane, Eswatini</span>
+                    <div class="calculator-pulse"></div>
+                </div>
+                <h2 class="section-title">🌱 Carbon Footprint Calculator</h2>
+                <p class="section-intro">
+                    Calculate your household's carbon footprint and discover personalized ways to reduce your environmental impact for a sustainable future.
+                </p>
+            </div>
+
+            <div class="kuleszo-calculator-container">
+                <div class="kuleszo-calculator-form">
+                    <div class="form-header">
+                        <h3>Calculate Your Impact</h3>
+                        <p>Enter your monthly usage data below</p>
                     </div>
                     
-                    <div class="donation-cta">
-                        <h4>Make a Difference Today</h4>
-                        <p>Every donation helps us fight climate change and build resilient communities.</p>
-<button class="btn btn-primary" onclick="document.getElementById('donationModal').style.display='block';" aria-label="Donate Now">Donate Now</button>
+                    <div class="kuleszo-input-group">
+                        <div class="input-icon">
+                            <i data-lucide="zap"></i>
+                        </div>
+                        <input type="number" id="electricity" placeholder="300" min="0">
+                        <label for="electricity">Monthly Electricity Usage (kWh)</label>
+                        <div class="input-highlight"></div>
+                    </div>
+                    
+                    <div class="kuleszo-input-group">
+                        <div class="input-icon">
+                            <i data-lucide="car"></i>
+                        </div>
+                        <input type="number" id="transport" placeholder="1000" min="0">
+                        <label for="transport">Monthly Transport (km driven)</label>
+                        <div class="input-highlight"></div>
+                    </div>
+                    
+                    <div class="kuleszo-input-group">
+                        <div class="input-icon">
+                            <i data-lucide="trash-2"></i>
+                        </div>
+                        <input type="number" id="waste" placeholder="20" min="0">
+                        <label for="waste">Weekly Waste (kg)</label>
+                        <div class="input-highlight"></div>
+                    </div>
+                    
+                    <button class="kuleszo-btn kuleszo-btn-calculate" id="calculateCarbon">
+                        <span>Calculate Footprint</span>
+                        <i data-lucide="calculator"></i>
+                    </button>
+                </div>
+                
+                <div class="kuleszo-calculator-results" id="carbonResults" style="display: none;">
+                    <div class="results-header">
+                        <div class="results-icon">
+                            <i data-lucide="pie-chart"></i>
+                        </div>
+                        <h3>Your Monthly Carbon Footprint</h3>
+                    </div>
+                    
+                    <div class="result-display">
+                        <div class="result-circle">
+                            <span class="result-value" id="carbonValue">0</span>
+                            <span class="result-unit">kg CO₂</span>
+                        </div>
+                    </div>
+                    
+                    <div class="impact-comparison">
+                        <div class="comparison-item">
+                            <i data-lucide="tree-pine"></i>
+                            <span>Equivalent to <strong id="treesNeeded">0</strong> trees needed</span>
+                        </div>
+                        <div class="comparison-item">
+                            <i data-lucide="car"></i>
+                            <span><strong id="carDistance">0</strong> km of car travel</span>
+                        </div>
+                    </div>
+                    
+                    <div class="kuleszo-recommendations" id="recommendations">
+                        <h4>Personalized Recommendations</h4>
+                        <div class="recommendation-list"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Carbon Tips -->
+            <div class="kuleszo-carbon-tips">
+                <h3>Quick Carbon Reduction Tips</h3>
+                <div class="tips-grid">
+                    <div class="tip-item">
+                        <div class="tip-icon">
+                            <i data-lucide="lightbulb"></i>
+                        </div>
+                        <h4>Energy Efficiency</h4>
+                        <p>Switch to LED bulbs and unplug devices when not in use</p>
+                    </div>
+                    <div class="tip-item">
+                        <div class="tip-icon">
+                            <i data-lucide="bike"></i>
+                        </div>
+                        <h4>Sustainable Transport</h4>
+                        <p>Walk, cycle, or use public transport for short distances</p>
+                    </div>
+                    <div class="tip-item">
+                        <div class="tip-icon">
+                            <i data-lucide="recycle"></i>
+                        </div>
+                        <h4>Waste Reduction</h4>
+                        <p>Reduce, reuse, and recycle to minimize waste generation</p>
+                    </div>
+                    <div class="tip-item">
+                        <div class="tip-icon">
+                            <i data-lucide="droplets"></i>
+                        </div>
+                        <h4>Water Conservation</h4>
+                        <p>Fix leaks and use water-efficient appliances</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Enhanced Contact & Donate Section -->
+    <section id="contact" class="section contact kuleszo-contact" role="region" aria-label="Contact and Donate">
+        <div class="container">
+            <div class="kuleszo-contact-header">
+                <div class="contact-icon-container">
+                    <div class="contact-icon">
+                        <i data-lucide="heart-handshake"></i>
+                    </div>
+                    <div class="contact-pulse"></div>
+                </div>
+                <h2 class="section-title">Contact & Donate</h2>
+                <p class="section-intro" id="contactDesc">
+                    Your support is vital to our mission. Help us create a climate-resilient Eswatini through financial contributions, partnerships, or sharing your expertise with our community.
+                </p>
+            </div>
+
+            <!-- Support Options Overview -->
+            <div class="kuleszo-support-options">
+                <div class="support-option">
+                    <div class="support-icon">
+                        <i data-lucide="heart"></i>
+                    </div>
+                    <h4>Financial Support</h4>
+                    <p>Direct donations</p>
+                </div>
+                <div class="support-option">
+                    <div class="support-icon">
+                        <i data-lucide="handshake"></i>
+                    </div>
+                    <h4>Partnerships</h4>
+                    <p>Corporate collaboration</p>
+                </div>
+                <div class="support-option">
+                    <div class="support-icon">
+                        <i data-lucide="users"></i>
+                    </div>
+                    <h4>Volunteer Skills</h4>
+                    <p>Share your expertise</p>
+                </div>
+                <div class="support-option">
+                    <div class="support-icon">
+                        <i data-lucide="gift"></i>
+                    </div>
+                    <h4>In-Kind Support</h4>
+                    <p>Resources & materials</p>
+                </div>
+            </div>
+
+            <div class="kuleszo-contact-grid">
+                <!-- Enhanced Contact Info -->
+                <div class="kuleszo-contact-info">
+                    <div class="contact-info-header">
+                        <div class="info-icon">
+                            <i data-lucide="message-circle"></i>
+                        </div>
+                        <h3>Get in Touch</h3>
+                        <p>Ready to make a difference? Contact us today</p>
+                    </div>
+                    
+                    <div class="kuleszo-contact-items">
+                        <div class="kuleszo-contact-item">
+                            <div class="contact-item-icon email">
+                                <i data-lucide="mail"></i>
+                            </div>
+                            <div class="contact-item-content">
+                                <h4>Email Us</h4>
+                                <a href="mailto:info.climate@sabela.ngo" aria-label="Email address info.climate@sabela.ngo">info.climate@sabela.ngo</a>
+                            </div>
+                        </div>
+                        
+                        <div class="kuleszo-contact-item">
+                            <div class="contact-item-icon phone">
+                                <i data-lucide="phone"></i>
+                            </div>
+                            <div class="contact-item-content">
+                                <h4>Call Us</h4>
+                                <a href="tel:+26825052000" aria-label="Phone number +268 2505 2000">+268 2505 2000</a>
+                            </div>
+                        </div>
+                        
+                        <div class="kuleszo-contact-item">
+                            <div class="contact-item-icon location">
+                                <i data-lucide="map-pin"></i>
+                            </div>
+                            <div class="contact-item-content">
+                                <h4>Visit Us</h4>
+                                <span>Mbabane, Eswatini</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Enhanced Donation CTA -->
+                    <div class="kuleszo-donation-cta">
+                        <div class="donation-header">
+                            <div class="donation-icon">
+                                <i data-lucide="heart"></i>
+                            </div>
+                            <h4>Make a Difference Today</h4>
+                        </div>
+                        <p>Every donation helps us fight climate change and build resilient communities across Eswatini.</p>
+                        <div class="donation-stats">
+                            <div class="stat">
+                                <span class="stat-number">$50</span>
+                                <span class="stat-label">Plants 10 trees</span>
+                            </div>
+                            <div class="stat">
+                                <span class="stat-number">$100</span>
+                                <span class="stat-label">Trains 1 farmer</span>
+                            </div>
+                            <div class="stat">
+                                <span class="stat-number">$250</span>
+                                <span class="stat-label">Solar kit for family</span>
+                            </div>
+                        </div>
+                        <button class="kuleszo-btn kuleszo-btn-donate" onclick="document.getElementById('donationModal').style.display='block';" aria-label="Donate Now">
+                            <span>Donate Now</span>
+                            <i data-lucide="heart"></i>
+                        </button>
                     </div>
                 </div>
                 
-                <div class="contact-form-container">
-                    <h3>Send us a Message</h3>
-                    <form class="contact-form" id="contactForm" aria-label="Contact form" aria-describedby="contactDesc">
-                        <div class="form-message" role="alert" aria-live="assertive"></div>
-                        <div class="form-row">
-                            <input type="text" name="name" placeholder="Your Name" required aria-required="true" aria-label="Your Name">
-                            <input type="email" name="email" placeholder="Your Email" required aria-required="true" aria-label="Your Email">
+                <!-- Enhanced Contact Form -->
+                <div class="kuleszo-contact-form-container">
+                    <div class="form-header">
+                        <div class="form-icon">
+                            <i data-lucide="send"></i>
                         </div>
-                        <textarea name="message" placeholder="Your Message" rows="5" required aria-required="true" aria-label="Your Message"></textarea>
-                        <button type="submit" class="btn btn-primary btn-full" aria-label="Send Message">Send Message</button>
+                        <h3>Send us a Message</h3>
+                        <p>Have questions or want to collaborate? We'd love to hear from you</p>
+                    </div>
+                    
+                    <form class="kuleszo-contact-form" id="contactForm" aria-label="Contact form" aria-describedby="contactDesc">
+                        <div class="form-message" role="alert" aria-live="assertive"></div>
+                        
+                        <div class="kuleszo-form-row">
+                            <div class="kuleszo-input-group">
+                                <input type="text" name="name" id="contact-name" required aria-required="true">
+                                <label for="contact-name">Your Name</label>
+                                <div class="input-highlight"></div>
+                            </div>
+                            <div class="kuleszo-input-group">
+                                <input type="email" name="email" id="contact-email" required aria-required="true">
+                                <label for="contact-email">Your Email</label>
+                                <div class="input-highlight"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="kuleszo-input-group">
+                            <input type="text" name="subject" id="contact-subject">
+                            <label for="contact-subject">Subject (Optional)</label>
+                            <div class="input-highlight"></div>
+                        </div>
+                        
+                        <div class="kuleszo-textarea-group">
+                            <textarea name="message" id="contact-message" rows="5" required aria-required="true"></textarea>
+                            <label for="contact-message">Your Message</label>
+                            <div class="textarea-highlight"></div>
+                        </div>
+                        
+                        <button type="submit" class="kuleszo-btn kuleszo-btn-primary kuleszo-btn-full" aria-label="Send Message">
+                            <span>Send Message</span>
+                            <i data-lucide="send"></i>
+                        </button>
                     </form>
+                </div>
+            </div>
+
+            <!-- Impact Statement -->
+            <div class="kuleszo-impact-statement">
+                <h3>Your Support Creates Real Impact</h3>
+                <p>Together, we're building a sustainable future for Eswatini. Every contribution, whether financial, in-kind, or through volunteering, directly supports our climate action initiatives and helps communities adapt to environmental challenges.</p>
+                <div class="impact-highlights">
+                    <div class="highlight-item">
+                        <i data-lucide="shield-check"></i>
+                        <span>Transparent use of funds</span>
+                    </div>
+                    <div class="highlight-item">
+                        <i data-lucide="users"></i>
+                        <span>Community-driven projects</span>
+                    </div>
+                    <div class="highlight-item">
+                        <i data-lucide="trending-up"></i>
+                        <span>Measurable climate impact</span>
+                    </div>
                 </div>
             </div>
         </div>
@@ -1161,58 +2297,169 @@
     </main>
 
     <!-- Enhanced Footer -->
-    <footer class="footer section-climate" style="padding: 3rem 0 2rem;">
+    <footer class="footer kuleszo-footer" role="contentinfo">
         <div class="container">
-            <div class="grid-3" style="margin-bottom: 2rem;">
-                <div>
-                    <div class="logo" style="margin-bottom: 1rem;">
-                        <div class="logo-icon" style="width: 2.5rem; height: 2.5rem;">
-                            <img src="img/logo.webp" alt="Climate Watch Logo" loading="lazy">
-                        </div>
-                        <span class="logo-text" style="font-size: 1.2rem;">The Climate Watch</span>
+            <!-- Footer Header -->
+            <div class="kuleszo-footer-header">
+                <div class="footer-icon-container">
+                    <div class="footer-icon">
+                        <i data-lucide="leaf"></i>
                     </div>
-                    <p style="color: rgba(255, 255, 255, 0.8); margin-bottom: 1rem;">Building a climate-resilient Eswatini through community-driven action and sustainable development.</p>
-                    <div style="display: flex; gap: 1rem;">
-                        <a href="#" class="btn btn-icon btn-ghost" aria-label="Facebook">
-                            <i class="fab fa-facebook-f"></i>
+                    <div class="footer-pulse"></div>
+                </div>
+                <h2>Join the Climate Movement</h2>
+                <p>Together, we're building a sustainable and resilient future for Eswatini</p>
+            </div>
+
+            <!-- Footer Content Grid -->
+            <div class="kuleszo-footer-grid">
+                <!-- Organization Info -->
+                <div class="footer-section organization">
+                    <div class="kuleszo-logo">
+                        <div class="logo-icon">
+                            <i data-lucide="leaf"></i>
+                        </div>
+                        <span class="logo-text">The Climate Watch</span>
+                    </div>
+                    <p class="organization-description">
+                        Building a climate-resilient Eswatini through community-driven action, sustainable development, and environmental justice.
+                    </p>
+                    
+                    <!-- Mission Statement -->
+                    <div class="mission-highlight">
+                        <div class="mission-icon">
+                            <i data-lucide="target"></i>
+                        </div>
+                        <div class="mission-content">
+                            <h4>Our Mission</h4>
+                            <p>Empowering communities to adapt and thrive in a changing climate</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quick Links -->
+                <div class="footer-section links">
+                    <h4>Quick Links</h4>
+                    <div class="footer-links">
+                        <a href="#what-we-do" class="footer-link">
+                            <i data-lucide="leaf"></i>
+                            <span>Our Work</span>
                         </a>
-                        <a href="#" class="btn btn-icon btn-ghost" aria-label="Twitter">
-                            <i class="fab fa-twitter"></i>
+                        <a href="#get-involved" class="footer-link">
+                            <i data-lucide="heart"></i>
+                            <span>Get Involved</span>
                         </a>
-                        <a href="#" class="btn btn-icon btn-ghost" aria-label="LinkedIn">
-                            <i class="fab fa-linkedin-in"></i>
+                        <a href="#resources" class="footer-link">
+                            <i data-lucide="library"></i>
+                            <span>Resources</span>
+                        </a>
+                        <a href="#events" class="footer-link">
+                            <i data-lucide="calendar"></i>
+                            <span>Events</span>
+                        </a>
+                        <a href="#contact" class="footer-link">
+                            <i data-lucide="message-circle"></i>
+                            <span>Contact</span>
                         </a>
                     </div>
                 </div>
-                <div>
-                    <h4 style="color: white; margin-bottom: 1rem; font-weight: 600;">Quick Links</h4>
-                    <div style="display: flex; flex-direction: column; gap: 0.5rem;">
-                        <a href="#what-we-do" style="color: rgba(255, 255, 255, 0.8); text-decoration: none; transition: color 0.3s ease;" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255, 255, 255, 0.8)'">Our Work</a>
-                        <a href="#get-involved" style="color: rgba(255, 255, 255, 0.8); text-decoration: none; transition: color 0.3s ease;" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255, 255, 255, 0.8)'">Get Involved</a>
-                        <a href="#resources" style="color: rgba(255, 255, 255, 0.8); text-decoration: none; transition: color 0.3s ease;" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255, 255, 255, 0.8)'">Resources</a>
-                        <a href="#contact" style="color: rgba(255, 255, 255, 0.8); text-decoration: none; transition: color 0.3s ease;" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255, 255, 255, 0.8)'">Contact</a>
+
+                <!-- Contact Information -->
+                <div class="footer-section contact">
+                    <h4>Contact Info</h4>
+                    <div class="footer-contact-items">
+                        <div class="footer-contact-item">
+                            <div class="contact-icon email">
+                                <i data-lucide="mail"></i>
+                            </div>
+                            <div class="contact-content">
+                                <span class="contact-label">Email</span>
+                                <a href="mailto:info.climate@sabela.ngo">info.climate@sabela.ngo</a>
+                            </div>
+                        </div>
+                        
+                        <div class="footer-contact-item">
+                            <div class="contact-icon phone">
+                                <i data-lucide="phone"></i>
+                            </div>
+                            <div class="contact-content">
+                                <span class="contact-label">Phone</span>
+                                <a href="tel:+26825052000">+268 2505 2000</a>
+                            </div>
+                        </div>
+                        
+                        <div class="footer-contact-item">
+                            <div class="contact-icon location">
+                                <i data-lucide="map-pin"></i>
+                            </div>
+                            <div class="contact-content">
+                                <span class="contact-label">Location</span>
+                                <span>Mbabane, Eswatini</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div>
-                    <h4 style="color: white; margin-bottom: 1rem; font-weight: 600;">Contact Info</h4>
-                    <div style="display: flex; flex-direction: column; gap: 0.75rem;">
-                        <div style="display: flex; align-items: center; gap: 0.5rem; color: rgba(255, 255, 255, 0.8);">
-                            <i data-lucide="mail" style="width: 16px; height: 16px;"></i>
-                            <span>info.climate@sabela.ngo</span>
-                        </div>
-                        <div style="display: flex; align-items: center; gap: 0.5rem; color: rgba(255, 255, 255, 0.8);">
-                            <i data-lucide="phone" style="width: 16px; height: 16px;"></i>
-                            <span>+268 2505 2000</span>
-                        </div>
-                        <div style="display: flex; align-items: center; gap: 0.5rem; color: rgba(255, 255, 255, 0.8);">
-                            <i data-lucide="map-pin" style="width: 16px; height: 16px;"></i>
-                            <span>Mbabane, Eswatini</span>
+
+                <!-- Social & Newsletter -->
+                <div class="footer-section social">
+                    <h4>Stay Connected</h4>
+                    <p class="social-description">Follow our climate action journey and join our community</p>
+                    
+                    <div class="kuleszo-footer-social">
+                        <a href="https://facebook.com/theclimatewatch" class="footer-social-btn facebook" aria-label="Facebook">
+                            <i data-lucide="facebook"></i>
+                            <span>Facebook</span>
+                        </a>
+                        <a href="https://twitter.com/theclimatewatch" class="footer-social-btn twitter" aria-label="Twitter">
+                            <i data-lucide="twitter"></i>
+                            <span>Twitter</span>
+                        </a>
+                        <a href="https://linkedin.com/company/theclimatewatch" class="footer-social-btn linkedin" aria-label="LinkedIn">
+                            <i data-lucide="linkedin"></i>
+                            <span>LinkedIn</span>
+                        </a>
+                        <a href="https://instagram.com/theclimatewatch" class="footer-social-btn instagram" aria-label="Instagram">
+                            <i data-lucide="instagram"></i>
+                            <span>Instagram</span>
+                        </a>
+                    </div>
+                    
+                    <!-- Newsletter Signup -->
+                    <div class="footer-newsletter">
+                        <h5>Newsletter</h5>
+                        <div class="newsletter-form">
+                            <input type="email" placeholder="Your email" class="newsletter-input">
+                            <button class="newsletter-btn">
+                                <i data-lucide="arrow-right"></i>
+                            </button>
                         </div>
                     </div>
                 </div>
             </div>
-            <div style="border-top: 1px solid rgba(255, 255, 255, 0.2); padding-top: 2rem; text-align: center;">
-                <p style="color: rgba(255, 255, 255, 0.7); margin: 0;">&copy; 2024 The Climate Watch. All rights reserved. Building a sustainable future for Eswatini.</p>
+
+            <!-- Footer Bottom -->
+            <div class="kuleszo-footer-bottom">
+                <div class="footer-bottom-content">
+                    <div class="copyright">
+                        <p>&copy; 2024 The Climate Watch. All rights reserved.</p>
+                        <p class="tagline">Building a sustainable future for Eswatini, one community at a time.</p>
+                    </div>
+                    
+                    <div class="footer-badges">
+                        <div class="badge">
+                            <i data-lucide="shield-check"></i>
+                            <span>Verified NGO</span>
+                        </div>
+                        <div class="badge">
+                            <i data-lucide="award"></i>
+                            <span>Climate Action</span>
+                        </div>
+                        <div class="badge">
+                            <i data-lucide="users"></i>
+                            <span>Community Driven</span>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </footer>
@@ -1236,6 +2483,24 @@
     <script src="micro-interactions.min.js"></script>
     <script src="accessibility-enhancements.min.js"></script>
     <script src="performance.min.js"></script>
+    
+    <!-- Hero Video Handler -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const video = document.getElementById('heroVideo');
+            const fallback = document.getElementById('heroFallback');
+            
+            if (video) {
+                video.addEventListener('canplay', () => {
+                    console.log('Video loaded successfully');
+                    fallback.style.zIndex = '-5'; // Move fallback behind video
+                });
+                video.addEventListener('error', () => {
+                    console.log('Video failed to load, using fallback');
+                });
+            }
+        });
+    </script>
     
     <!-- PWA Service Worker -->
     <script>
