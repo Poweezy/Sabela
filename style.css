@@ -23,15 +23,11 @@
     top: 6px;
 }
 
-/* Consistent Focus Indicators for WCAG AA Compliance - Standardized to green theme */
+/* Consistent Focus Indicators for WCAG AA Compliance - Standardized to green theme with enhanced visibility */
 *:focus-visible {
     outline: 2px solid var(--primary-color);
     outline-offset: 2px;
     border-radius: 4px;
-}
-
-/* Enhanced visibility on dark/light backgrounds with consistent green focus */
-*:focus-visible {
     box-shadow: 0 0 0 3px rgba(22, 163, 74, 0.2);
 }
 
@@ -54,21 +50,6 @@ body.dark *:focus-visible,
 }
 
 /* Modal and interactive elements - inherit global focus */
-.quiz-option:focus-within,
-#submitAnswer:focus-visible,
-.results-actions .btn:focus-visible,
-.share-option:focus-visible,
-.share-modal-close:focus-visible,
-.quiz-close:focus-visible,
-.modal .close:focus-visible,
-#uploadArea:focus-visible,
-.remove-file:focus-visible,
-#uploadBtn:focus-visible {
-    outline: 2px solid var(--primary-color);
-    outline-offset: 2px;
-    border-radius: 4px;
-    box-shadow: 0 0 0 3px rgba(22, 163, 74, 0.2);
-}
 
 #uploadArea:focus-visible {
     border-color: var(--primary-color);
@@ -630,6 +611,44 @@ body {
 }
 
 .program-card p {
+    color: var(--text-secondary);
+    line-height: 1.6;
+}
+
+/* FAQ Section */
+.faq-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+}
+
+.faq-item {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    padding: 1.5rem;
+    border-radius: 0.5rem;
+    box-shadow: var(--shadow-sm);
+    text-align: center;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.faq-item:hover {
+    transform: translateY(-0.5rem);
+    box-shadow: var(--shadow-xl), 0 0 20px rgba(6, 182, 212, 0.3);
+    background: linear-gradient(135deg, var(--bg-primary), #dbeafe);
+    border-color: #3b82f6;
+}
+
+.faq-item h3 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: var(--text-primary);
+}
+
+.faq-item p {
     color: var(--text-secondary);
     line-height: 1.6;
 }
@@ -1421,13 +1440,13 @@ body {
 }
 
 /* Card Animations */
-.value-card, .program-card, .impact-card, .involvement-card, .resource-card, .matter-card {
+.value-card, .program-card, .impact-card, .involvement-card, .resource-card, .matter-card, .faq-item {
     opacity: 0;
     transform: translateY(30px);
     transition: opacity 0.6s ease-out, transform 0.6s ease-out, box-shadow 0.3s ease;
 }
 
-.visible.value-card, .visible.program-card, .visible.impact-card, .visible.involvement-card, .visible.resource-card, .visible.matter-card {
+.visible.value-card, .visible.program-card, .visible.impact-card, .visible.involvement-card, .visible.resource-card, .visible.matter-card, .visible.faq-item {
     opacity: 1;
     transform: translateY(0);
 }
