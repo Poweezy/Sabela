@@ -3,21 +3,37 @@ const fs = require('fs');
 const path = require('path');
 
 async function convertToWebP() {
-  const inputPath = 'img/logo.png';
-  const outputPath = 'img/logo.webp';
+  const imgDir = 'img';
+  const supportedExtensions = ['.png', '.jpg', '.jpeg'];
 
-  if (!fs.existsSync(inputPath)) {
-    console.error('Input file not found:', inputPath);
+  if (!fs.existsSync(imgDir)) {
+    console.error('Image directory not found:', imgDir);
     return;
   }
 
-  try {
-    await sharp(inputPath)
-      .webp({ quality: 80 })
-      .toFile(outputPath);
-    console.log('Converted logo.png to logo.webp successfully.');
-  } catch (error) {
-    console.error('Error converting image:', error);
+  const files = fs.readdirSync(imgDir);
+
+  for (const file of files) {
+    const ext = path.extname(file).toLowerCase();
+    if (supportedExtensions.includes(ext)) {
+      const inputPath = path.join(imgDir, file);
+      const outputFileName = path.basename(file, ext) + '.webp';
+      const outputPath = path.join(imgDir, outputFileName);
+
+      if (fs.existsSync(outputPath)) {
+        console.log(`WebP already exists: ${outputFileName}`);
+        continue;
+      }
+
+      try {
+        await sharp(inputPath)
+          .webp({ quality: 80 })
+          .toFile(outputPath);
+        console.log(`Converted ${file} to ${outputFileName} successfully.`);
+      } catch (error) {
+        console.error(`Error converting ${file}:`, error);
+      }
+    }
   }
 }
 

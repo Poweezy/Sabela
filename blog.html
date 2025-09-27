@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog - The Climate Watch - Building a Sustainable Eswatini</title>
+    <meta name="description" content="Latest news, stories, and reports on climate action in Eswatini from The Climate Watch.">
+    <meta name="keywords" content="climate change blog, Eswatini news, sustainability stories, NGO reports">
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://yourwebsiteurl.com/blog.html" />
+
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Blog - The Climate Watch">
+    <meta property="og:description" content="Stay informed with our latest updates on climate action, community stories, and environmental reports.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://images.unsplash.com/photo-1754693196922-be18f7750518?fm=jpg&q=60&w=1200&ixlib=rb-4.1.0">
+    
+    <!-- Favicon -->
+    <link rel="icon" href="https://public-frontend-cos.metadl.com/mgx/img/favicon.png" type="image/png">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;700&display=swap');
+        body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; }
+        h1, h2, h3, h4, h5, h6 { font-family: 'Playfair Display', Georgia, serif; }
+    </style>
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="style.min.css">
+</head>
+<body>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <!-- Header -->
+    <header class="header" role="banner">
+        <nav class="nav" role="navigation" aria-label="Primary Navigation">
+            <div class="nav-container">
+                <div class="logo">
+                    <a href="index.html" class="logo-icon" aria-label="Go to Home">
+                        <img src="img/logo.webp" alt="The Climate Watch Logo" loading="lazy">
+                    </a>
+                    <span class="logo-text">The Climate Watch</span>
+                </div>
+                
+                <ul class="nav-links" id="navLinks" role="menubar">
+                    <li role="none"><a href="index.html#home" class="nav-link" role="menuitem">Home</a></li>
+                    <li role="none"><a href="index.html#what-we-do" class="nav-link" role="menuitem">What We Do</a></li>
+                    <li role="none"><a href="index.html#why-it-matters" class="nav-link" role="menuitem">Why It Matters</a></li>
+                    <li role="none"><a href="index.html#weather" class="nav-link" role="menuitem">Weather</a></li>
+                    <li role="none"><a href="index.html#get-involved" class="nav-link" role="menuitem">Get Involved</a></li>
+                    <li role="none"><a href="index.html#resources" class="nav-link" role="menuitem">Resources</a></li>
+                    <li role="none"><a href="blog.html" class="nav-link active" role="menuitem">Blog</a></li>
+                    <li role="none"><a href="index.html#contact" class="nav-link" role="menuitem">Contact</a></li>
+                    <li role="none"><a href="#donate" class="btn btn-primary" id="donate-now-btn-header" aria-label="Donate Now" role="menuitem">Donate Now</a></li>
+                </ul>
+                
+                <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Open menu" aria-controls="navLinks" aria-expanded="false">
+                    <i data-lucide="menu"></i>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main id="main-content" role="main">
+        <section class="section blog-hero" aria-label="Blog Hero">
+            <div class="container">
+                <h1 class="section-title">Blog & News</h1>
+                <p class="section-intro">Stay updated with the latest stories, news, and insights on climate action in Eswatini.</p>
+            </div>
+        </section>
+
+        <section class="section blog" aria-label="Blog Posts">
+            <div class="container">
+                <!-- Search -->
+                <div class="search-container">
+                    <input type="text" id="blogSearch" placeholder="Search posts..." class="search-input" aria-label="Search blog posts">
+                    <button type="button" id="clearSearch" class="clear-search-btn" aria-label="Clear search">✕</button>
+                </div>
+
+                <!-- Category Filters -->
+                <div class="category-filters" role="tablist" aria-label="Filter blog posts by category">
+                    <button class="filter-btn active" data-category="all" role="tab" aria-selected="true" aria-controls="blogGrid">All</button>
+                    <button class="filter-btn" data-category="news" role="tab" aria-selected="false" aria-controls="blogGrid">News</button>
+                    <button class="filter-btn" data-category="stories" role="tab" aria-selected="false" aria-controls="blogGrid">Stories</button>
+                    <button class="filter-btn" data-category="reports" role="tab" aria-selected="false" aria-controls="blogGrid">Reports</button>
+                </div>
+
+                <!-- Blog Posts Grid -->
+                <div class="blog-grid" id="blogGrid" role="tabpanel" aria-labelledby="category-filters">
+                    <article class="blog-post" data-category="news">
+                        <img src="https://images.unsplash.com/photo-1629279598436-b1d5a893600c?fm=webp&q=60&w=800" alt="Eswatini landscape with rolling hills" loading="lazy">
+                        <div class="blog-content">
+                            <span class="post-category">News</span>
+                            <h2>Eswatini Joins Global Methane Pledge</h2>
+                            <p class="post-meta">By Admin • October 15, 2024</p>
+                            <p class="post-excerpt">Eswatini has committed to the global methane pledge, aiming to reduce emissions by 30% by 2030. This initiative will focus on agriculture and waste management sectors.</p>
+                            <a href="#" class="read-more">Read More <i data-lucide="arrow-right"></i></a>
+                        </div>
+                    </article>
+
+                    <article class="blog-post" data-category="stories">
+                        <img src="https://images.unsplash.com/photo-1752341135601-d9252f5cdbdd?fm=webp&q=60&w=800" alt="Community planting trees in Lubombo Mountains" loading="lazy">
+                        <div class="blog-content">
+                            <span class="post-category">Stories</span>
+                            <h2>Community Reforestation Success in Lubombo</h2>
+                            <p class="post-meta">By Jane Doe • September 20, 2024</p>
+                            <p class="post-excerpt">Local communities in the Lubombo Mountains have restored over 500 hectares of degraded land through collaborative reforestation efforts.</p>
+                            <a href="#" class="read-more">Read More <i data-lucide="arrow-right"></i></a>
+                        </div>
+                    </article>
+
+                    <article class="blog-post" data-category="reports">
+                        <img src="https://images.unsplash.com/photo-1758347384057-8d47cf6fad1b?fm=webp&q=60&w=800" alt="Climate report with charts" loading="lazy">
+                        <div class="blog-content">
+                            <span class="post-category">Reports</span>
+                            <h2>2024 Climate Impact Report for Eswatini</h2>
+                            <p class="post-meta">By Research Team • August 10, 2024</p>
+                            <p class="post-excerpt">Our latest report highlights the increasing frequency of droughts and their effects on agriculture and water resources in Eswatini.</p>
+                            <a href="#" class="read-more">Read More <i data-lucide="arrow-right"></i></a>
+                        </div>
+                    </article>
+
+                    <article class="blog-post" data-category="news">
+                        <img src="https://images.unsplash.com/photo-1757880776486-5e5285dab685?fm=webp&q=60&w=800" alt="Sustainable farming in Eswatini" loading="lazy">
+                        <div class="blog-content">
+                            <span class="post-category">News</span>
+                            <h2>New Grants for Sustainable Farming Initiatives</h2>
+                            <p class="post-meta">By Admin • July 25, 2024</p>
+                            <p class="post-excerpt">The Climate Watch announces new funding opportunities for farmers adopting climate-resilient practices.</p>
+                            <a href="#" class="read-more">Read More <i data-lucide="arrow-right"></i></a>
+                        </div>
+                    </article>
+
+                    <article class="blog-post" data-category="stories">
+                        <img src="https://images.unsplash.com/photo-1599691456121-26b24880067a?fm=webp&q=60&w=800" alt="Solar panels in rural Eswatini" loading="lazy">
+                        <div class="blog-content">
+                            <span class="post-category">Stories</span>
+                            <h2>Solar Power Transforming Rural Lives</h2>
+                            <p class="post-meta">By John Smith • June 12, 2024</p>
+                            <p class="post-excerpt">How solar mini-grids are bringing reliable energy to remote communities and boosting local economies.</p>
+                            <a href="#" class="read-more">Read More <i data-lucide="arrow-right"></i></a>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 The Climate Watch. All rights reserved. Building a sustainable future for Eswatini.</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="script.min.js"></script>
+    <script>
+        // Category Filtering
+        document.addEventListener('DOMContentLoaded', function() {
+            const filterBtns = document.querySelectorAll('.filter-btn');
+            const blogPosts = document.querySelectorAll('.blog-post');
+            const searchInput = document.getElementById('blogSearch');
+            const clearSearch = document.getElementById('clearSearch');
+
+            function filterPosts(category = 'all') {
+                blogPosts.forEach(post => {
+                    if (category === 'all' || post.dataset.category === category) {
+                        post.style.display = 'block';
+                    } else {
+                        post.style.display = 'none';
+                    }
+                });
+            }
+
+            function searchPosts(query) {
+                blogPosts.forEach(post => {
+                    const title = post.querySelector('h2').textContent.toLowerCase();
+                    const excerpt = post.querySelector('.post-excerpt').textContent.toLowerCase();
+                    if (title.includes(query.toLowerCase()) || excerpt.includes(query.toLowerCase())) {
+                        post.style.display = 'block';
+                    } else {
+                        post.style.display = 'none';
+                    }
+                });
+            }
+
+            filterBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    filterBtns.forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                    const category = btn.dataset.category;
+                    filterPosts(category);
+                });
+            });
+
+            searchInput.addEventListener('input', (e) => {
+                const query = e.target.value;
+                if (query.length > 0) {
+                    clearSearch.style.display = 'block';
+                    searchPosts(query);
+                } else {
+                    clearSearch.style.display = 'none';
+                    filterPosts('all');
+                }
+            });
+
+            clearSearch.addEventListener('click', () => {
+                searchInput.value = '';
+                clearSearch.style.display = 'none';
+                filterPosts('all');
+                searchInput.focus();
+            });
+
+            // Initialize Lucide icons
+            lucide.createIcons();
+        });
+    </script>
+</body>
+</html>
