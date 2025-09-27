@@ -51,7 +51,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     
     <!-- Custom Styles -->
-    <link rel="stylesheet" href="style.min.css">
+    <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="enhancements.min.css">
     <link rel="stylesheet" href="ux-improvements.min.css">
     <link rel="stylesheet" href="design-system.min.css">
@@ -109,27 +109,102 @@
 <body>
     <a href="#home" class="skip-link">Skip to main content</a>
 
-    <!-- Header -->
+    <!-- Enhanced Header with Modern Design -->
     <header class="header" role="banner">
         <nav class="nav" role="navigation" aria-label="Primary Navigation">
             <div class="nav-container">
-                <div class="logo">
-                <a href="#home" class="logo-icon" aria-label="Go to Home" onclick="window.scrollTo({top: 0, behavior: 'smooth'});" role="link">
-                    <img src="img/logo.webp" alt="Sabela Logo" style="height: 40px; width: auto;" loading="lazy">
+                <a href="#home" class="logo" onclick="window.scrollTo({top: 0, behavior: 'smooth'});" aria-label="The Climate Watch - Go to Home">
+                    <div class="logo-icon">
+                        <img src="img/logo.webp" alt="Climate Watch Logo" loading="lazy">
+                    </div>
+                    <span class="logo-text">The Climate Watch</span>
                 </a>
-                <span class="logo-text">The Climate Watch</span>
-                </div>
                 
                 <ul class="nav-links" id="navLinks" role="menubar">
-                    <li role="none"><a href="#home" class="nav-link" role="menuitem" tabindex="-1" data-i18n="nav.home">Home</a></li>
-                    <li role="none"><a href="#what-we-do" class="nav-link" role="menuitem" tabindex="-1" data-i18n="nav.what-we-do">What We Do</a></li>
-                    <li role="none"><a href="#why-it-matters" class="nav-link" role="menuitem" tabindex="-1" data-i18n="nav.why-it-matters">Why It Matters</a></li>
-                    <li role="none"><a href="#weather" class="nav-link" role="menuitem" tabindex="-1">Weather</a></li>
-                    <li role="none"><a href="#get-involved" class="nav-link" role="menuitem" tabindex="-1">Get Involved</a></li>
-                    <li role="none"><a href="#resources" class="nav-link" role="menuitem" tabindex="-1">Resources</a></li>
-                    <li role="none"><a href="#events" class="nav-link" role="menuitem" tabindex="-1">Events</a></li>
-                    <li role="none"><a href="#contact" class="nav-link" role="menuitem" tabindex="-1">Contact</a></li>
-<li role="none"><button class="btn btn-primary" id="donate-now-btn-header" onclick="document.getElementById('donationModal').style.display='block';" aria-label="Donate Now" role="menuitem" tabindex="-1">Donate Now</button></li>
+                    <li class="nav-item" role="none">
+                        <a href="#home" class="nav-link active" role="menuitem" data-i18n="nav.home">
+                            <i data-lucide="home" style="width: 16px; height: 16px;"></i>
+                            Home
+                        </a>
+                    </li>
+                    <li class="nav-item" role="none">
+                        <a href="#what-we-do" class="nav-link" role="menuitem" data-i18n="nav.what-we-do">
+                            <i data-lucide="leaf" style="width: 16px; height: 16px;"></i>
+                            Our Work
+                        </a>
+                        <div class="dropdown">
+                            <a href="#what-we-do" class="dropdown-item">
+                                <i data-lucide="tree-pine"></i>
+                                Adaptation & Resilience
+                            </a>
+                            <a href="#what-we-do" class="dropdown-item">
+                                <i data-lucide="users"></i>
+                                Sustainable Livelihoods
+                            </a>
+                            <a href="#what-we-do" class="dropdown-item">
+                                <i data-lucide="zap"></i>
+                                Clean Energy
+                            </a>
+                            <a href="#what-we-do" class="dropdown-item">
+                                <i data-lucide="book-open"></i>
+                                Education & Awareness
+                            </a>
+                        </div>
+                    </li>
+                    <li class="nav-item" role="none">
+                        <a href="#why-it-matters" class="nav-link" role="menuitem" data-i18n="nav.why-it-matters">
+                            <i data-lucide="alert-triangle" style="width: 16px; height: 16px;"></i>
+                            Impact
+                        </a>
+                    </li>
+                    <li class="nav-item" role="none">
+                        <a href="#weather" class="nav-link" role="menuitem">
+                            <i data-lucide="cloud-sun" style="width: 16px; height: 16px;"></i>
+                            Climate Data
+                        </a>
+                    </li>
+                    <li class="nav-item" role="none">
+                        <a href="#get-involved" class="nav-link" role="menuitem">
+                            <i data-lucide="heart" style="width: 16px; height: 16px;"></i>
+                            Get Involved
+                        </a>
+                        <div class="dropdown">
+                            <a href="#get-involved" class="dropdown-item">
+                                <i data-lucide="user-plus"></i>
+                                Volunteer
+                            </a>
+                            <a href="#get-involved" class="dropdown-item">
+                                <i data-lucide="handshake"></i>
+                                Partner With Us
+                            </a>
+                            <a href="#events" class="dropdown-item">
+                                <i data-lucide="calendar"></i>
+                                Events
+                            </a>
+                            <a href="#newsletter" class="dropdown-item">
+                                <i data-lucide="mail"></i>
+                                Newsletter
+                            </a>
+                        </div>
+                    </li>
+                    <li class="nav-item" role="none">
+                        <a href="#resources" class="nav-link" role="menuitem">
+                            <i data-lucide="library" style="width: 16px; height: 16px;"></i>
+                            Resources
+                        </a>
+                    </li>
+                    <li class="nav-item" role="none">
+                        <a href="#contact" class="nav-link" role="menuitem">
+                            <i data-lucide="message-circle" style="width: 16px; height: 16px;"></i>
+                            Contact
+                        </a>
+                    </li>
+                    <li role="none">
+                        <button class="btn btn-primary btn-sm" id="donate-now-btn-header" onclick="document.getElementById('donationModal').style.display='block';" aria-label="Donate Now" role="menuitem">
+                            <i data-lucide="heart" style="width: 16px; height: 16px;"></i>
+                            Donate
+                        </button>
+                    </li>
                 </ul>
                 
                 <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Open menu" aria-controls="navLinks" aria-expanded="false" aria-haspopup="true" role="button">
@@ -158,11 +233,13 @@
             </h1>
 
             <div class="hero-buttons">
-                <button class="btn btn-primary btn-lg" id="discover-mission-btn" data-tooltip="Learn about our climate mission">
-                    Discover Our Mission <i data-lucide="arrow-right"></i>
+                <button class="btn btn-primary btn-lg floating" id="discover-mission-btn" data-tooltip="Learn about our climate mission">
+                    <i data-lucide="compass" style="width: 20px; height: 20px;"></i>
+                    Discover Our Mission
                 </button>
-                <button class="btn btn-primary btn-lg" id="take-action-btn" data-tooltip="Join our climate action">
-                    Take Action Now <i data-lucide="play-circle"></i>
+                <button class="btn btn-ghost btn-lg wave-animation" id="take-action-btn" data-tooltip="Join our climate action">
+                    <i data-lucide="zap" style="width: 20px; height: 20px;"></i>
+                    Take Action Now
                 </button>
             </div>
             
@@ -201,37 +278,60 @@
     </section>
 
     <!-- Who We Are Section -->
-    <section class="section who-we-are" aria-label="Who We Are Section">
+    <section class="section who-we-are section-alt" aria-label="Who We Are Section">
         <div class="container">
-            <h2 class="section-title heading-2">Who We Are</h2>
-            <p class="section-intro body-lg" id="whoWeAreDesc">
+            <h2 class="section-title">Who We Are</h2>
+            <p class="section-intro" id="whoWeAreDesc">
                 We are an Eswatini-based climate change NGO, grounded in local realities and communities. 
                 Our mission is to drive climate action through advocacy, education, and policy change, 
                 focusing on adaptation and mitigation strategies that align with local priorities.
             </p>
-            <div class="values-grid">
-                <div class="value-card card interactive" data-animation-delay="0.1s">
-                    <div class="value-icon icon icon-primary">
+            <div class="grid-3">
+                <div class="card card-climate interactive breathe-animation" data-animation-delay="0.1s">
+                    <div class="value-icon" style="font-size: 3rem; color: var(--primary-color); margin-bottom: 1rem; text-align: center;">
                         <i data-lucide="heart"></i>
                     </div>
-                    <h3 class="heading-3">Climate Justice</h3>
-                    <p>Fighting for equitable climate solutions</p>
+                    <h3 style="text-align: center; margin-bottom: 1rem; color: var(--primary-color);">Climate Justice</h3>
+                    <p style="text-align: center; color: var(--text-secondary);">Fighting for equitable climate solutions that protect the most vulnerable communities in Eswatini</p>
+                    <div class="impact-indicator impact-positive" style="margin-top: 1rem; justify-self: center;">
+                        <i data-lucide="check-circle" style="width: 16px; height: 16px;"></i>
+                        Community-Focused
+                    </div>
                 </div>
-                <div class="value-card" data-animation-delay="0.2s">
-                    <div class="value-icon">
+                <div class="card card-forest interactive" data-animation-delay="0.2s">
+                    <div class="value-icon" style="font-size: 3rem; color: var(--secondary-color); margin-bottom: 1rem; text-align: center;">
                         <i data-lucide="users"></i>
                     </div>
-                    <h3>Community-Led</h3>
-                    <p>Locally-driven solutions and collaboration</p>
+                    <h3 style="text-align: center; margin-bottom: 1rem; color: var(--secondary-color);">Community-Led</h3>
+                    <p style="text-align: center; color: var(--text-secondary);">Locally-driven solutions and collaboration that empower communities to lead their own climate adaptation</p>
+                    <div class="impact-indicator impact-positive" style="margin-top: 1rem; justify-self: center;">
+                        <i data-lucide="users" style="width: 16px; height: 16px;"></i>
+                        Grassroots Approach
+                    </div>
                 </div>
-                <div class="value-card" data-animation-delay="0.3s">
-                    <div class="value-icon">
+                <div class="card card-ocean interactive pulse-green" data-animation-delay="0.3s">
+                    <div class="value-icon" style="font-size: 3rem; color: var(--accent-color); margin-bottom: 1rem; text-align: center;">
                         <i data-lucide="graduation-cap"></i>
                     </div>
-                    <h3>Scientific Integrity</h3>
-                    <p>Evidence-based climate action</p>
+                    <h3 style="text-align: center; margin-bottom: 1rem; color: var(--accent-color);">Scientific Integrity</h3>
+                    <p style="text-align: center; color: var(--text-secondary);">Evidence-based climate action grounded in the latest research and traditional knowledge systems</p>
+                    <div class="impact-indicator impact-neutral" style="margin-top: 1rem; justify-self: center;">
+                        <i data-lucide="microscope" style="width: 16px; height: 16px;"></i>
+                        Research-Based
+                    </div>
                 </div>
             </div>
+        </div>
+        
+        <!-- Floating Climate Elements -->
+        <div class="floating-element floating-leaf" style="top: 10%; left: 5%; animation-delay: 0s;">
+            <i data-lucide="leaf"></i>
+        </div>
+        <div class="floating-element floating-cloud" style="top: 20%; right: 10%; animation-delay: 2s;">
+            <i data-lucide="cloud"></i>
+        </div>
+        <div class="floating-element floating-leaf" style="bottom: 15%; left: 15%; animation-delay: 4s;">
+            <i data-lucide="tree-pine"></i>
         </div>
     </section>
 
@@ -291,45 +391,57 @@
     </section>
 
     <!-- Impact Section -->
-    <section class="section impact" aria-label="Our Impact Section">
+    <section class="section impact section-climate" aria-label="Our Impact Section">
         <div class="container">
-            <h2 class="section-title">Our Impact</h2>
-            <p class="section-intro" id="impactDesc">
+            <h2 class="section-title" style="color: white;">Our Impact</h2>
+            <p class="section-intro" id="impactDesc" style="color: rgba(255, 255, 255, 0.9);">
                 Measurable change across Eswatini through community-driven climate action
                 and sustainable development initiatives.
             </p>
-            <div class="impact-grid">
-                <div class="impact-card" data-animation-delay="0.1s">
-                    <div class="impact-icon">
+            <div class="grid-4">
+                <div class="data-card" data-animation-delay="0.1s">
+                    <div style="font-size: 3rem; margin-bottom: 1rem; color: var(--primary-color);">
                         <i data-lucide="users"></i>
                     </div>
-                    <div class="impact-number" data-count="10000">0+</div>
-                    <h3>People Empowered</h3>
-                    <p>Community members trained and supported</p>
+                    <div class="stat-counter" data-count="10000">10,000+</div>
+                    <h3 style="color: white; margin-bottom: 0.5rem;">People Empowered</h3>
+                    <p class="data-label">Community members trained and supported</p>
+                    <div class="progress-container" style="margin-top: 1rem;">
+                        <div class="progress-bar" style="width: 85%;"></div>
+                    </div>
                 </div>
-                <div class="impact-card" data-animation-delay="0.2s">
-                    <div class="impact-icon">
+                <div class="data-card" data-animation-delay="0.2s">
+                    <div style="font-size: 3rem; margin-bottom: 1rem; color: var(--secondary-color);">
                         <i data-lucide="tree-pine"></i>
                     </div>
-                    <div class="impact-number" data-count="5000">0+</div>
-                    <h3>Hectares Restored</h3>
-                    <p>Land rehabilitated through our programs</p>
+                    <div class="stat-counter" data-count="5000">5,000+</div>
+                    <h3 style="color: white; margin-bottom: 0.5rem;">Hectares Restored</h3>
+                    <p class="data-label">Land rehabilitated through our programs</p>
+                    <div class="progress-container" style="margin-top: 1rem;">
+                        <div class="progress-bar" style="width: 70%;"></div>
+                    </div>
                 </div>
-                <div class="impact-card" data-animation-delay="0.3s">
-                    <div class="impact-icon">
+                <div class="data-card" data-animation-delay="0.3s">
+                    <div style="font-size: 3rem; margin-bottom: 1rem; color: var(--accent-color);">
                         <i data-lucide="building"></i>
                     </div>
-                    <div class="impact-number" data-count="50">0+</div>
-                    <h3>Community Projects</h3>
-                    <p>Successful climate adaptation initiatives</p>
+                    <div class="stat-counter" data-count="50">50+</div>
+                    <h3 style="color: white; margin-bottom: 0.5rem;">Community Projects</h3>
+                    <p class="data-label">Successful climate adaptation initiatives</p>
+                    <div class="progress-container" style="margin-top: 1rem;">
+                        <div class="progress-bar" style="width: 90%;"></div>
+                    </div>
                 </div>
-                <div class="impact-card" data-animation-delay="0.4s">
-                    <div class="impact-icon">
+                <div class="data-card" data-animation-delay="0.4s">
+                    <div style="font-size: 3rem; margin-bottom: 1rem; color: #fbbf24;">
                         <i data-lucide="file-text"></i>
                     </div>
-                    <div class="impact-number" data-count="15">0+</div>
-                    <h3>Policies Influenced</h3>
-                    <p>National and regional policy changes</p>
+                    <div class="stat-counter" data-count="15">15+</div>
+                    <h3 style="color: white; margin-bottom: 0.5rem;">Policies Influenced</h3>
+                    <p class="data-label">National and regional policy changes</p>
+                    <div class="progress-container" style="margin-top: 1rem;">
+                        <div class="progress-bar" style="width: 60%;"></div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -590,8 +702,13 @@
         </div>
     </section>
 
+    <!-- Modern Floating Action Button -->
+    <button class="fab pulse-green" id="climateActionFab" aria-label="Quick Climate Action" title="Take Climate Action">
+        <i data-lucide="leaf"></i>
+    </button>
+    
     <!-- Floating Share Button -->
-    <div class="floating-share" id="floatingShare" aria-label="Share this page" role="region">
+    <div class="floating-share" id="floatingShare" aria-label="Share this page" role="region" style="bottom: 6rem;">
         <button class="share-toggle" id="shareToggle" aria-label="Toggle share options" aria-expanded="false">
             <i data-lucide="share-2" aria-hidden="true"></i>
         </button>
@@ -1043,15 +1160,67 @@
 
     </main>
 
-    <!-- Footer -->
-    <footer class="footer">
+    <!-- Enhanced Footer -->
+    <footer class="footer section-climate" style="padding: 3rem 0 2rem;">
         <div class="container">
-            <p>&copy; 2024 The Climate Watch. All rights reserved. Building a sustainable future for Eswatini.</p>
+            <div class="grid-3" style="margin-bottom: 2rem;">
+                <div>
+                    <div class="logo" style="margin-bottom: 1rem;">
+                        <div class="logo-icon" style="width: 2.5rem; height: 2.5rem;">
+                            <img src="img/logo.webp" alt="Climate Watch Logo" loading="lazy">
+                        </div>
+                        <span class="logo-text" style="font-size: 1.2rem;">The Climate Watch</span>
+                    </div>
+                    <p style="color: rgba(255, 255, 255, 0.8); margin-bottom: 1rem;">Building a climate-resilient Eswatini through community-driven action and sustainable development.</p>
+                    <div style="display: flex; gap: 1rem;">
+                        <a href="#" class="btn btn-icon btn-ghost" aria-label="Facebook">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="btn btn-icon btn-ghost" aria-label="Twitter">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="btn btn-icon btn-ghost" aria-label="LinkedIn">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                    </div>
+                </div>
+                <div>
+                    <h4 style="color: white; margin-bottom: 1rem; font-weight: 600;">Quick Links</h4>
+                    <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+                        <a href="#what-we-do" style="color: rgba(255, 255, 255, 0.8); text-decoration: none; transition: color 0.3s ease;" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255, 255, 255, 0.8)'">Our Work</a>
+                        <a href="#get-involved" style="color: rgba(255, 255, 255, 0.8); text-decoration: none; transition: color 0.3s ease;" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255, 255, 255, 0.8)'">Get Involved</a>
+                        <a href="#resources" style="color: rgba(255, 255, 255, 0.8); text-decoration: none; transition: color 0.3s ease;" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255, 255, 255, 0.8)'">Resources</a>
+                        <a href="#contact" style="color: rgba(255, 255, 255, 0.8); text-decoration: none; transition: color 0.3s ease;" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255, 255, 255, 0.8)'">Contact</a>
+                    </div>
+                </div>
+                <div>
+                    <h4 style="color: white; margin-bottom: 1rem; font-weight: 600;">Contact Info</h4>
+                    <div style="display: flex; flex-direction: column; gap: 0.75rem;">
+                        <div style="display: flex; align-items: center; gap: 0.5rem; color: rgba(255, 255, 255, 0.8);">
+                            <i data-lucide="mail" style="width: 16px; height: 16px;"></i>
+                            <span>info.climate@sabela.ngo</span>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 0.5rem; color: rgba(255, 255, 255, 0.8);">
+                            <i data-lucide="phone" style="width: 16px; height: 16px;"></i>
+                            <span>+268 2505 2000</span>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 0.5rem; color: rgba(255, 255, 255, 0.8);">
+                            <i data-lucide="map-pin" style="width: 16px; height: 16px;"></i>
+                            <span>Mbabane, Eswatini</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div style="border-top: 1px solid rgba(255, 255, 255, 0.2); padding-top: 2rem; text-align: center;">
+                <p style="color: rgba(255, 255, 255, 0.7); margin: 0;">&copy; 2024 The Climate Watch. All rights reserved. Building a sustainable future for Eswatini.</p>
+            </div>
         </div>
     </footer>
 
     <!-- JavaScript -->
-    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="script.min.js"></script>
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+    <script src="modern-interactions.js"></script>
+    <script src="script.min.js"></script>
     <script src="newsletter.min.js"></script>
     <script src="social-share.min.js"></script>
     <script src="security.min.js"></script>
