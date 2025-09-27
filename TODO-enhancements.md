@@ -2,18 +2,18 @@
 
 ## 1. Accessibility Enhancements
 - [x] Add skip-to-content link for keyboard navigation
-- [ ] Implement focus indicators for all interactive elements
+- [x] Implement focus indicators for all interactive elements
 - [x] Add missing alt text for images
 - [x] Ensure color contrast meets WCAG standards
 - [x] Add ARIA labels where needed for screen readers
-- [ ] Improve keyboard navigation for mobile menu
+- [x] Improve keyboard navigation for mobile menu
 
 ## 2. Performance Optimizations
-- [ ] Implement lazy loading for images in resources section
+- [x] Implement lazy loading for images in resources section
 - [ ] Minify CSS and JavaScript files
 - [ ] Convert images to WebP format
-- [ ] Add service worker for caching static assets
-- [ ] Optimize weather API calls with caching
+- [x] Add service worker for caching static assets
+- [x] Optimize weather API calls with caching
 
 ## 3. SEO Improvements
 - [ ] Add structured data (JSON-LD) for NGO information
