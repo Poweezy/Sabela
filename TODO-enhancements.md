@@ -34,11 +34,11 @@
 - [x] Create resources download section with PDF reports
 - [ ] Implement events calendar for workshops and campaigns
 - [ ] Add testimonials or success stories section
-- [ ] Create FAQ section for common questions
+- [x] Create FAQ section for common questions
 
 ## 6. Social Integration
 - [x] Add social media sharing buttons for resources
-- [ ] Integrate live social media feeds
+- [x] Integrate live social media feeds
 - [ ] Add donation sharing functionality
 - [ ] Implement social proof counters (followers, shares)
 
