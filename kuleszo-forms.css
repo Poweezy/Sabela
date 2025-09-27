@@ -4668,3 +4668,13 @@
         grid-template-columns: 1fr;
     }
 }
+/* Fix text visibility in Join Our Climate Community section */
+.cta-header h3,
+.kuleszo-social-cta h3 {
+    color: var(--text-primary) !important;
+}
+
+.cta-header p,
+.kuleszo-social-cta p {
+    color: var(--text-secondary) !important;
+}
