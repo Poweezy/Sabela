@@ -4678,3 +4678,111 @@
 .kuleszo-social-cta p {
     color: var(--text-secondary) !important;
 }
+/* Global text visibility and alignment fixes */
+* {
+    color: inherit;
+}
+
+/* Ensure all text elements are visible */
+h1, h2, h3, h4, h5, h6 {
+    color: var(--text-primary) !important;
+}
+
+p, span, div {
+    color: var(--text-secondary) !important;
+}
+
+/* Section titles */
+.section-title {
+    color: var(--text-primary) !important;
+}
+
+.section-intro {
+    color: var(--text-secondary) !important;
+}
+
+/* Platform cards text */
+.platform-content h4,
+.kuleszo-platform-card h4 {
+    color: var(--text-primary) !important;
+}
+
+.platform-content p,
+.kuleszo-platform-card p {
+    color: var(--text-secondary) !important;
+}
+
+/* Social buttons text */
+.btn-title {
+    color: var(--text-primary) !important;
+}
+
+.btn-subtitle {
+    color: var(--text-secondary) !important;
+}
+
+/* Statistics text */
+.stat-number {
+    color: var(--primary-color) !important;
+}
+
+.stat-label {
+    color: var(--text-secondary) !important;
+}
+
+/* Form labels and inputs */
+label {
+    color: var(--text-secondary) !important;
+}
+
+/* Footer text */
+.footer-section h4 {
+    color: white !important;
+}
+
+.footer-section p,
+.footer-section span {
+    color: rgba(255, 255, 255, 0.8) !important;
+}
+
+/* Icon alignment fixes */
+i {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+
+.fab, .fas, .far {
+    font-family: "Font Awesome 6 Brands", "Font Awesome 6 Free" !important;
+}
+
+/* Button alignment */
+.kuleszo-btn,
+.kuleszo-social-btn {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 0.75rem !important;
+}
+
+/* Card content alignment */
+.kuleszo-platform-card,
+.kuleszo-stat-card,
+.kuleszo-social-feed {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
+}
+
+/* Text alignment in cards */
+.platform-content,
+.stat-content,
+.feed-info {
+    text-align: left !important;
+}
+
+/* Center aligned sections */
+.kuleszo-updates-header,
+.kuleszo-social-cta .cta-header {
+    text-align: center !important;
+}
