@@ -885,7 +885,14 @@ body {
     .container {
         padding: 0 1rem;
     }
-}top: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.hero-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
     margin-top: 3rem;
 }
 
@@ -976,7 +983,14 @@ body {
     .container {
         padding: 0 1rem;
     }
-}top: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.hero-stats-alt {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
     max-width: 40rem;
     margin: 0 auto;
 }
