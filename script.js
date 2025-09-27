@@ -36,6 +36,9 @@ document.addEventListener('DOMContentLoaded', function() {
     initFileUpload();
     initMap();
     initLightboxGallery();
+    initDonationModal();
+    initEventsCalendar();
+    initCarbonCalculator();
 });
 
 // Mobile Menu Functionality with Enhanced Keyboard Navigation
@@ -240,6 +243,47 @@ function initCounterAnimations() {
     counters.forEach(counter => {
         counterObserver.observe(counter);
     });
+    
+    // Initialize social proof counters on page load
+    initSocialProofCounters();
+}
+
+// Social Proof Counter Animation
+function initSocialProofCounters() {
+    const socialCounters = document.querySelectorAll('.social-proof-stats .stat-number');
+    
+    const socialObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                animateSocialCounter(entry.target);
+                socialObserver.unobserve(entry.target);
+            }
+        });
+    }, {
+        threshold: 0.3
+    });
+    
+    socialCounters.forEach(counter => {
+        socialObserver.observe(counter);
+    });
+}
+
+function animateSocialCounter(element) {
+    const target = parseInt(element.getAttribute('data-count'));
+    const duration = 1500;
+    const steps = 50;
+    const increment = target / steps;
+    let current = 0;
+    
+    const timer = setInterval(() => {
+        current += increment;
+        if (current >= target) {
+            element.textContent = target.toLocaleString();
+            clearInterval(timer);
+        } else {
+            element.textContent = Math.floor(current).toLocaleString();
+        }
+    }, duration / steps);
 }
 
 function animateCounter(element) {
@@ -575,6 +619,15 @@ function initVolunteerForm() {
             formMessage.textContent = 'Thank you for signing up to volunteer! We will contact you soon with opportunities.';
             formMessage.classList.add('success', 'show');
             
+            // Track volunteer signup conversion
+            if (typeof gtag !== 'undefined') {
+                gtag('event', 'conversion', {
+                    send_to: 'GA_MEASUREMENT_ID/volunteer_signup',
+                    event_category: 'engagement',
+                    event_label: skills
+                });
+            }
+            
             volunteerForm.reset();
             [nameInput, emailInput, skillsSelect, availabilityInput, messageInput].forEach(input => {
                 input.classList.remove('is-valid');
@@ -656,6 +709,14 @@ function initContactForm() {
         setTimeout(() => {
             formMessage.textContent = 'Thank you for your message! We will get back to you soon.';
             formMessage.classList.add('success', 'show');
+            
+            // Track contact form conversion
+            if (typeof gtag !== 'undefined') {
+                gtag('event', 'conversion', {
+                    send_to: 'GA_MEASUREMENT_ID/contact_form',
+                    event_category: 'engagement'
+                });
+            }
             
             contactForm.reset();
             [nameInput, emailInput, messageInput].forEach(input => {
@@ -760,15 +821,36 @@ function initBlogFilter() {
     filterBlogs('all');
 }
 
+// Enhanced PWA Service Worker Registration
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', function() {
     navigator.serviceWorker.register('/sw.js')
       .then(function(registration) {
-        console.log('ServiceWorker registration successful with scope: ', registration.scope);
-      }, function(err) {
-        console.log('ServiceWorker registration failed: ', err);
-      });
+        console.log('ServiceWorker registration successful');
+        
+        // Check for updates
+        registration.addEventListener('updatefound', () => {
+          const newWorker = registration.installing;
+          newWorker.addEventListener('statechange', () => {
+            if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
+              showUpdateNotification();
+            }
+          });
+        });
+      })
+      .catch(err => console.log('ServiceWorker registration failed:', err));
   });
+}
+
+function showUpdateNotification() {
+  const notification = document.createElement('div');
+  notification.className = 'update-notification';
+  notification.innerHTML = `
+    <p>New version available!</p>
+    <button onclick="window.location.reload()">Update</button>
+    <button onclick="this.parentElement.remove()">Later</button>
+  `;
+  document.body.appendChild(notification);
 }
 
 function initMap() {
@@ -1356,6 +1438,173 @@ function initLightboxGallery() {
             case 'ArrowRight':
                 nextImage();
                 break;
+        }
+    });
+}
+
+// Donation Modal Functionality
+function initDonationModal() {
+    const donationModal = document.getElementById('donationModal');
+    const closeBtn = donationModal.querySelector('.close');
+
+    if (!donationModal || !closeBtn) return;
+
+    // Close modal when clicking the close button
+    closeBtn.addEventListener('click', function() {
+        donationModal.style.display = 'none';
+    });
+
+    // Close modal when clicking outside the modal content
+    window.addEventListener('click', function(e) {
+        if (e.target === donationModal) {
+            donationModal.style.display = 'none';
+        }
+    });
+
+    // Close modal on Escape key
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && donationModal.style.display === 'block') {
+            donationModal.style.display = 'none';
+        }
+    });
+
+    // Handle opening the modal (buttons already have inline onclick)
+    // But add accessibility: set aria-hidden when opened
+    const openButtons = document.querySelectorAll('[onclick*="donationModal"]');
+    openButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            donationModal.setAttribute('aria-hidden', 'false');
+            // Focus the close button when opened
+            setTimeout(() => closeBtn.focus(), 100);
+        });
+    });
+
+    // When closing, set aria-hidden to true
+    const closeModal = function() {
+        donationModal.style.display = 'none';
+        donationModal.setAttribute('aria-hidden', 'true');
+    };
+
+    // Override the inline onclick to use our close function
+    closeBtn.onclick = closeModal;
+}
+
+// Events Calendar Functionality
+function initEventsCalendar() {
+    const registerButtons = document.querySelectorAll('.event-register');
+    
+    registerButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            const eventCard = this.closest('.event-card');
+            const eventTitle = eventCard.querySelector('h3').textContent;
+            const eventDate = eventCard.querySelector('.event-day').textContent + ' ' + eventCard.querySelector('.event-month').textContent;
+            
+            // Simple registration simulation
+            const originalText = this.textContent;
+            this.textContent = 'Registering...';
+            this.disabled = true;
+            
+            setTimeout(() => {
+                this.textContent = 'Registered ✓';
+                this.classList.add('registered');
+                
+                // Show success message
+                const message = document.createElement('div');
+                message.className = 'registration-success';
+                message.textContent = `Successfully registered for "${eventTitle}" on ${eventDate}`;
+                eventCard.appendChild(message);
+                
+                setTimeout(() => {
+                    message.remove();
+                }, 3000);
+            }, 1500);
+        });
+    });
+}
+
+// Carbon Calculator Functionality
+function initCarbonCalculator() {
+    const calculateBtn = document.getElementById('calculateCarbon');
+    const resultsDiv = document.getElementById('carbonResults');
+    const carbonValue = document.getElementById('carbonValue');
+    const recommendations = document.getElementById('recommendations');
+    
+    if (!calculateBtn) return;
+    
+    calculateBtn.addEventListener('click', function() {
+        const electricity = parseFloat(document.getElementById('electricity').value) || 0;
+        const transport = parseFloat(document.getElementById('transport').value) || 0;
+        const waste = parseFloat(document.getElementById('waste').value) || 0;
+        
+        // Simple carbon footprint calculation (kg CO2 per month)
+        const electricityCarbon = electricity * 0.5; // 0.5 kg CO2 per kWh
+        const transportCarbon = transport * 0.2; // 0.2 kg CO2 per km
+        const wasteCarbon = waste * 4 * 0.5; // weekly to monthly, 0.5 kg CO2 per kg waste
+        
+        const totalCarbon = Math.round(electricityCarbon + transportCarbon + wasteCarbon);
+        
+        carbonValue.textContent = totalCarbon;
+        
+        // Generate recommendations
+        let tips = [];
+        if (electricityCarbon > 150) tips.push('⚡ Switch to LED bulbs and unplug devices when not in use');
+        if (transportCarbon > 200) tips.push('🚗 Consider carpooling or using public transport');
+        if (wasteCarbon > 40) tips.push('♾️ Reduce waste by composting and recycling');
+        if (totalCarbon < 300) tips.push('🌱 Great job! Your footprint is below average');
+        
+        recommendations.innerHTML = tips.map(tip => `<p>${tip}</p>`).join('');
+        
+        resultsDiv.style.display = 'block';
+        resultsDiv.scrollIntoView({ behavior: 'smooth' });
+        
+        // Track calculator usage
+        if (typeof gtag !== 'undefined') {
+            gtag('event', 'carbon_calculator_used', {
+                event_category: 'engagement',
+                carbon_footprint: totalCarbon
+            });
+        }
+    });
+}
+
+// Carbon Calculator Functionality
+function initCarbonCalculator() {
+    const calculateBtn = document.getElementById('calculateCarbon');
+    const resultsDiv = document.getElementById('carbonResults');
+    const carbonValue = document.getElementById('carbonValue');
+    const recommendations = document.getElementById('recommendations');
+    
+    if (!calculateBtn) return;
+    
+    calculateBtn.addEventListener('click', function() {
+        const electricity = parseFloat(document.getElementById('electricity').value) || 0;
+        const transport = parseFloat(document.getElementById('transport').value) || 0;
+        const waste = parseFloat(document.getElementById('waste').value) || 0;
+        
+        // Carbon footprint calculation (kg CO2 per month)
+        const electricityCarbon = electricity * 0.5;
+        const transportCarbon = transport * 0.2;
+        const wasteCarbon = waste * 4 * 0.5;
+        
+        const totalCarbon = Math.round(electricityCarbon + transportCarbon + wasteCarbon);
+        carbonValue.textContent = totalCarbon;
+        
+        // Generate recommendations
+        let tips = [];
+        if (electricityCarbon > 150) tips.push('⚡ Switch to LED bulbs and solar power');
+        if (transportCarbon > 200) tips.push('🚗 Use public transport or electric vehicles');
+        if (wasteCarbon > 40) tips.push('♻️ Compost organic waste and recycle');
+        if (totalCarbon < 300) tips.push('🌱 Excellent! Your footprint is below average');
+        
+        recommendations.innerHTML = tips.map(tip => `<p>${tip}</p>`).join('');
+        resultsDiv.style.display = 'block';
+        resultsDiv.scrollIntoView({ behavior: 'smooth' });
+        
+        if (typeof gtag !== 'undefined') {
+            gtag('event', 'carbon_calculator_used', {
+                event_category: 'engagement',
+                carbon_footprint: totalCarbon
+            });
         }
     });
 }

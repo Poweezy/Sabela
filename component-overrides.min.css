@@ -1,0 +1,210 @@
+/* Component Standardization */
+
+/* Apply consistent card styling */
+.value-card,
+.program-card,
+.impact-card,
+.involvement-card,
+.testimonial-card,
+.resource-card,
+.matter-card,
+.faq-item,
+.weather-card {
+    background: white;
+    border-radius: var(--radius-xl);
+    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+    border: 1px solid var(--border-color);
+    padding: var(--space-8);
+    transition: all var(--duration-normal) var(--ease-out);
+}
+
+.value-card:hover,
+.program-card:hover,
+.impact-card:hover,
+.involvement-card:hover,
+.testimonial-card:hover,
+.resource-card:hover,
+.matter-card:hover,
+.faq-item:hover,
+.weather-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.15);
+}
+
+/* Dark section cards */
+.impact .impact-card,
+.get-involved .involvement-card,
+.testimonials .testimonial-card,
+.contact .contact-form-container {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: white;
+}
+
+/* Consistent section titles */
+.section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(var(--text-2xl), 5vw, var(--text-4xl));
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: var(--space-6);
+    color: var(--text-primary);
+}
+
+.section-intro {
+    font-size: var(--text-lg);
+    line-height: 1.7;
+    text-align: center;
+    color: var(--text-secondary);
+    max-width: 65ch;
+    margin: 0 auto var(--space-12);
+}
+
+/* Consistent icon styling */
+.icon {
+    width: var(--space-12);
+    height: var(--space-12);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--radius-lg);
+    font-size: var(--text-xl);
+    margin: 0 auto var(--space-6);
+}
+
+.icon-primary {
+    background: linear-gradient(135deg, var(--primary-500), var(--primary-600));
+    color: white;
+}
+
+.icon-secondary {
+    background: var(--primary-50);
+    color: var(--primary-500);
+}
+
+/* Enhanced modal system */
+.modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(8px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10000;
+    opacity: 0;
+    visibility: hidden;
+    transition: all var(--duration-normal) var(--ease-out);
+}
+
+.modal.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+.modal-content {
+    background: white;
+    border-radius: var(--radius-2xl);
+    box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.25);
+    max-width: 500px;
+    width: 90%;
+    max-height: 90vh;
+    overflow-y: auto;
+    transform: scale(0.95);
+    transition: transform var(--duration-normal) var(--ease-out);
+}
+
+.modal.show .modal-content {
+    transform: scale(1);
+}
+
+/* Consistent form styling */
+.form-floating {
+    position: relative;
+    margin-bottom: var(--space-6);
+}
+
+.form-floating input,
+.form-floating textarea,
+.form-floating select {
+    width: 100%;
+    padding: var(--space-4) var(--space-4) var(--space-3);
+    border: 2px solid var(--border-color);
+    border-radius: var(--radius-md);
+    font-size: var(--text-base);
+    background: white;
+    transition: all var(--duration-normal) var(--ease-out);
+}
+
+.form-floating input:focus,
+.form-floating textarea:focus,
+.form-floating select:focus {
+    border-color: var(--primary-500);
+    box-shadow: 0 0 0 3px rgba(22, 163, 74, 0.1);
+    outline: none;
+}
+
+.form-floating label {
+    position: absolute;
+    top: var(--space-4);
+    left: var(--space-4);
+    color: var(--text-secondary);
+    font-size: var(--text-base);
+    transition: all var(--duration-normal) var(--ease-out);
+    pointer-events: none;
+    background: white;
+    padding: 0 var(--space-1);
+}
+
+.form-floating input:focus + label,
+.form-floating textarea:focus + label,
+.form-floating select:focus + label,
+.form-floating input:not(:placeholder-shown) + label,
+.form-floating textarea:not(:placeholder-shown) + label {
+    top: -var(--space-2);
+    font-size: var(--text-sm);
+    color: var(--primary-500);
+    font-weight: 500;
+}
+
+/* Status indicators */
+.form-floating input.is-valid,
+.form-floating textarea.is-valid {
+    border-color: var(--success);
+}
+
+.form-floating input.is-invalid,
+.form-floating textarea.is-invalid {
+    border-color: var(--error);
+}
+
+/* Loading spinner */
+.spinner {
+    width: 20px;
+    height: 20px;
+    border: 2px solid transparent;
+    border-top: 2px solid currentColor;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* Consistent hover states */
+.interactive:hover {
+    transform: translateY(-2px);
+    transition: transform var(--duration-fast) var(--ease-out);
+}
+
+/* Focus management */
+.keyboard-user *:focus {
+    outline: 2px solid var(--primary-500);
+    outline-offset: 2px;
+}
+
+.mouse-user *:focus {
+    outline: none;
+}

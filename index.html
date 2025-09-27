@@ -28,6 +28,10 @@
     <!-- Favicon -->
     <link rel="icon" href="https://public-frontend-cos.metadl.com/mgx/img/favicon.png" type="image/png">
     
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#16a34a">
+    
     <!-- Google Fonts with fallback -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
     <style>
@@ -48,6 +52,30 @@
     
     <!-- Custom Styles -->
     <link rel="stylesheet" href="style.min.css">
+    <link rel="stylesheet" href="enhancements.min.css">
+    <link rel="stylesheet" href="ux-improvements.min.css">
+    <link rel="stylesheet" href="design-system.min.css">
+    <link rel="stylesheet" href="component-overrides.min.css">
+    
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-XXXXXXXXXX', {
+            page_title: 'The Climate Watch',
+            page_location: window.location.href
+        });
+        
+        // Track form submissions
+        function trackEvent(action, category, label) {
+            gtag('event', action, {
+                event_category: category,
+                event_label: label
+            });
+        }
+    </script>
 
     <!-- Structured Data JSON-LD for NGO -->
     <script type="application/ld+json">
@@ -93,15 +121,15 @@
                 </div>
                 
                 <ul class="nav-links" id="navLinks" role="menubar">
-                    <li role="none"><a href="#home" class="nav-link" role="menuitem" tabindex="-1">Home</a></li>
-                    <li role="none"><a href="#what-we-do" class="nav-link" role="menuitem" tabindex="-1">What We Do</a></li>
-                    <li role="none"><a href="#why-it-matters" class="nav-link" role="menuitem" tabindex="-1">Why It Matters</a></li>
+                    <li role="none"><a href="#home" class="nav-link" role="menuitem" tabindex="-1" data-i18n="nav.home">Home</a></li>
+                    <li role="none"><a href="#what-we-do" class="nav-link" role="menuitem" tabindex="-1" data-i18n="nav.what-we-do">What We Do</a></li>
+                    <li role="none"><a href="#why-it-matters" class="nav-link" role="menuitem" tabindex="-1" data-i18n="nav.why-it-matters">Why It Matters</a></li>
                     <li role="none"><a href="#weather" class="nav-link" role="menuitem" tabindex="-1">Weather</a></li>
                     <li role="none"><a href="#get-involved" class="nav-link" role="menuitem" tabindex="-1">Get Involved</a></li>
                     <li role="none"><a href="#resources" class="nav-link" role="menuitem" tabindex="-1">Resources</a></li>
                     <li role="none"><a href="#events" class="nav-link" role="menuitem" tabindex="-1">Events</a></li>
                     <li role="none"><a href="#contact" class="nav-link" role="menuitem" tabindex="-1">Contact</a></li>
-                    <li role="none"><a href="#donate" class="btn btn-primary" id="donate-now-btn-header" aria-label="Donate Now" role="menuitem" tabindex="-1">Donate Now</a></li>
+<li role="none"><button class="btn btn-primary" id="donate-now-btn-header" onclick="document.getElementById('donationModal').style.display='block';" aria-label="Donate Now" role="menuitem" tabindex="-1">Donate Now</button></li>
                 </ul>
                 
                 <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Open menu" aria-controls="navLinks" aria-expanded="false" aria-haspopup="true" role="button">
@@ -130,12 +158,37 @@
             </h1>
 
             <div class="hero-buttons">
-                <button class="btn btn-primary btn-lg" id="discover-mission-btn">
+                <button class="btn btn-primary btn-lg" id="discover-mission-btn" data-tooltip="Learn about our climate mission">
                     Discover Our Mission <i data-lucide="arrow-right"></i>
                 </button>
-                <button class="btn btn-primary btn-lg" id="take-action-btn">
+                <button class="btn btn-primary btn-lg" id="take-action-btn" data-tooltip="Join our climate action">
                     Take Action Now <i data-lucide="play-circle"></i>
                 </button>
+            </div>
+            
+            <div class="social-proof-container">
+                <div class="social-proof-stats">
+                    <div class="social-stat">
+                        <i class="fab fa-facebook-f"></i>
+                        <span class="stat-number" data-count="2500">0</span>
+                        <span class="stat-label">Followers</span>
+                    </div>
+                    <div class="social-stat">
+                        <i class="fab fa-twitter"></i>
+                        <span class="stat-number" data-count="1800">0</span>
+                        <span class="stat-label">Followers</span>
+                    </div>
+                    <div class="social-stat">
+                        <i class="fas fa-share-alt"></i>
+                        <span class="stat-number" data-count="5200">0</span>
+                        <span class="stat-label">Shares</span>
+                    </div>
+                    <div class="social-stat">
+                        <i class="fas fa-heart"></i>
+                        <span class="stat-number" data-count="8900">0</span>
+                        <span class="stat-label">Supporters</span>
+                    </div>
+                </div>
             </div>
             
 
@@ -150,18 +203,18 @@
     <!-- Who We Are Section -->
     <section class="section who-we-are" aria-label="Who We Are Section">
         <div class="container">
-            <h2 class="section-title">Who We Are</h2>
-            <p class="section-intro" id="whoWeAreDesc">
+            <h2 class="section-title heading-2">Who We Are</h2>
+            <p class="section-intro body-lg" id="whoWeAreDesc">
                 We are an Eswatini-based climate change NGO, grounded in local realities and communities. 
                 Our mission is to drive climate action through advocacy, education, and policy change, 
                 focusing on adaptation and mitigation strategies that align with local priorities.
             </p>
             <div class="values-grid">
-                <div class="value-card" data-animation-delay="0.1s">
-                    <div class="value-icon">
+                <div class="value-card card interactive" data-animation-delay="0.1s">
+                    <div class="value-icon icon icon-primary">
                         <i data-lucide="heart"></i>
                     </div>
-                    <h3>Climate Justice</h3>
+                    <h3 class="heading-3">Climate Justice</h3>
                     <p>Fighting for equitable climate solutions</p>
                 </div>
                 <div class="value-card" data-animation-delay="0.2s">
@@ -277,6 +330,42 @@
                     <div class="impact-number" data-count="15">0+</div>
                     <h3>Policies Influenced</h3>
                     <p>National and regional policy changes</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="section testimonials" aria-label="Community Testimonials">
+        <div class="container">
+            <h2 class="section-title">Community Voices</h2>
+            <p class="section-intro">
+                Hear from community members whose lives have been transformed through our climate action initiatives.
+            </p>
+            <div class="testimonials-grid">
+                <div class="testimonial-card" data-animation-delay="0.1s">
+                    <div class="testimonial-icon">
+                        <i data-lucide="quote"></i>
+                    </div>
+                    <h3>Nomsa Dlamini</h3>
+                    <p class="testimonial-role">Farmer, Hhohho Region</p>
+                    <p>"The climate-smart farming techniques taught by The Climate Watch have doubled my crop yield despite the changing weather patterns. My family now has food security year-round."</p>
+                </div>
+                <div class="testimonial-card" data-animation-delay="0.2s">
+                    <div class="testimonial-icon">
+                        <i data-lucide="quote"></i>
+                    </div>
+                    <h3>Sipho Mthembu</h3>
+                    <p class="testimonial-role">Youth Leader, Manzini</p>
+                    <p>"Through the youth climate leadership program, I've learned to advocate for environmental protection in my community. We've planted over 200 trees this year alone."</p>
+                </div>
+                <div class="testimonial-card" data-animation-delay="0.3s">
+                    <div class="testimonial-icon">
+                        <i data-lucide="quote"></i>
+                    </div>
+                    <h3>Themba Nkomo</h3>
+                    <p class="testimonial-role">Solar Technician, Lubombo</p>
+                    <p>"The solar energy training program gave me skills to install and maintain solar systems. Now I help bring clean energy to rural communities while earning a sustainable income."</p>
                 </div>
             </div>
         </div>
@@ -813,6 +902,40 @@
         </div>
     </section>
 
+    <!-- Carbon Calculator Section -->
+    <section class="section carbon-calculator" aria-label="Carbon Footprint Calculator">
+        <div class="container">
+            <h2 class="section-title">🌱 Carbon Footprint Calculator</h2>
+            <p class="section-intro">
+                Calculate your household's carbon footprint and discover ways to reduce your environmental impact.
+            </p>
+            <div class="calculator-container">
+                <div class="calculator-form">
+                    <div class="form-group">
+                        <label for="electricity">Monthly Electricity Usage (kWh)</label>
+                        <input type="number" id="electricity" placeholder="300" min="0">
+                    </div>
+                    <div class="form-group">
+                        <label for="transport">Monthly Transport (km driven)</label>
+                        <input type="number" id="transport" placeholder="1000" min="0">
+                    </div>
+                    <div class="form-group">
+                        <label for="waste">Weekly Waste (kg)</label>
+                        <input type="number" id="waste" placeholder="20" min="0">
+                    </div>
+                    <button class="btn btn-primary" id="calculateCarbon">Calculate Footprint</button>
+                </div>
+                <div class="calculator-results" id="carbonResults" style="display: none;">
+                    <h3>Your Monthly Carbon Footprint</h3>
+                    <div class="result-value">
+                        <span id="carbonValue">0</span> kg CO₂
+                    </div>
+                    <div class="recommendations" id="recommendations"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Contact Section -->
     <section id="contact" class="section contact" role="region" aria-label="Contact and Donate">
         <div class="container">
@@ -840,7 +963,7 @@
                     <div class="donation-cta">
                         <h4>Make a Difference Today</h4>
                         <p>Every donation helps us fight climate change and build resilient communities.</p>
-                        <button class="btn btn-primary" aria-label="Donate Now">Donate Now</button>
+<button class="btn btn-primary" onclick="document.getElementById('donationModal').style.display='block';" aria-label="Donate Now">Donate Now</button>
                     </div>
                 </div>
                 
@@ -886,6 +1009,38 @@
         </div>
     </div>
 
+    <!-- Donation Modal -->
+    <div id="donationModal" class="modal" role="dialog" aria-labelledby="donationTitle" aria-hidden="true">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="donationTitle">Support Our Mission</h2>
+                <span class="close" onclick="document.getElementById('donationModal').style.display='none';">&times;</span>
+            </div>
+            <div class="modal-body">
+                <p>Thank you for considering a donation to The Climate Watch. Your support helps build climate resilience in Eswatini.</p>
+                <!-- Placeholder for actual donation form or external link -->
+                <div class="donation-placeholder">
+                    <button class="btn btn-primary" onclick="window.open('https://www.theclimatewatch.org/donate', '_blank');">Proceed to Donate</button>
+                </div>
+                <div class="share-section">
+                    <h3>Share Your Support</h3>
+                    <p>Help spread the word and encourage others to join the cause!</p>
+                    <div class="share-buttons">
+                        <button class="share-resource-btn" data-title="Support The Climate Watch" data-url="https://www.theclimatewatch.org/donate" aria-label="Share donation on Facebook">
+                            <i class="fab fa-facebook-f"></i> Facebook
+                        </button>
+                        <button class="share-resource-btn" data-title="Support The Climate Watch" data-url="https://www.theclimatewatch.org/donate" aria-label="Share donation on Twitter">
+                            <i class="fab fa-twitter"></i> Twitter
+                        </button>
+                        <button class="share-resource-btn" data-title="Support The Climate Watch" data-url="https://www.theclimatewatch.org/donate" aria-label="Share donation on LinkedIn">
+                            <i class="fab fa-linkedin-in"></i> LinkedIn
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     </main>
 
     <!-- Footer -->
@@ -899,6 +1054,26 @@
     <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="script.min.js"></script>
     <script src="newsletter.min.js"></script>
     <script src="social-share.min.js"></script>
+    <script src="security.min.js"></script>
+    <script src="events.min.js"></script>
+    <script src="analytics.min.js"></script>
+    <script src="weather-alerts.min.js"></script>
+    <script src="donations.min.js"></script>
+    <script src="community.min.js"></script>
+    <script src="i18n.min.js"></script>
+    <script src="charts.min.js"></script>
+    <script src="mobile.min.js"></script>
+    <script src="ux-enhancements.min.js"></script>
+    <script src="micro-interactions.min.js"></script>
+    <script src="accessibility-enhancements.min.js"></script>
+    <script src="performance.min.js"></script>
+    
+    <!-- PWA Service Worker -->
+    <script>
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('/sw.js');
+        }
+    </script>
 
     <!-- Facebook SDK -->
     <div id="fb-root"></div>

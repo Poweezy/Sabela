@@ -226,4 +226,174 @@ document.addEventListener('DOMContentLoaded', () => {
       button.classList.remove('copied');
     }, 2000);
   }
+
+  // --- Donation Sharing ---
+  const donationShareBtn = document.querySelector('.donation-share-btn');
+  if (donationShareBtn) {
+    donationShareBtn.addEventListener('click', () => {
+      const donationAmount = donationShareBtn.dataset.amount || 'a generous';
+      const cause = donationShareBtn.dataset.cause || 'the cause';
+      handleDonationShare(donationAmount, cause);
+    });
+  }
+
+  function handleDonationShare(amount, cause) {
+    const text = encodeURIComponent(`I just donated ${amount} to support ${cause}! Join me in making a difference.`);
+    const url = encodeURIComponent(window.location.href);
+    const title = "Support Our Cause";
+
+    const modal = createShareModal(title, url, text);
+    document.body.appendChild(modal);
+    setupModalHandlers(modal, 'donation', cause);
+  }
+
+  // --- Social Proof ---
+  async function fetchSocialProof() {
+    // In a real app, you'd fetch this from your server/API
+    const mockApiData = {
+      shares: 1234,
+      followers: 5678,
+      donations: 89,
+    };
+    return mockApiData;
+  }
+
+  async function displaySocialProof() {
+    const socialProofContainer = document.querySelector('.social-proof-container');
+    if (!socialProofContainer) return;
+
+    try {
+      const data = await fetchSocialProof();
+      socialProofContainer.innerHTML = `
+        <div class="social-proof-item">
+          <i class="fas fa-share-alt"></i>
+          <span>${data.shares.toLocaleString()} Shares</span>
+        </div>
+        <div class="social-proof-item">
+          <i class="fas fa-users"></i>
+          <span>${data.followers.toLocaleString()} Supporters</span>
+        </div>
+        <div class="social-proof-item">
+          <i class="fas fa-heart"></i>
+          <span>${data.donations.toLocaleString()} Donations</span>
+        </div>
+      `;
+    } catch (error) {
+      console.error('Failed to load social proof:', error);
+      socialProofContainer.innerHTML = '<p>Join thousands of others in supporting our cause!</p>';
+    }
+  }
+
+  // --- Generic Modal Creation and Handlers ---
+  function createShareModal(title, url, text) {
+    const modal = document.createElement('div');
+    modal.className = 'share-modal';
+    modal.innerHTML = `
+      <div class="share-modal-content">
+        <div class="share-modal-header">
+          <h3>${title}</h3>
+          <button class="share-modal-close">&times;</button>
+        </div>
+        <div class="share-modal-body">
+          <div class="share-options-grid">
+            <button class="share-option" data-platform="facebook" data-url="${url}" data-text="${text}">
+              <i class="fab fa-facebook-f"></i> <span>Facebook</span>
+            </button>
+            <button class="share-option" data-platform="twitter" data-url="${url}" data-text="${text}">
+              <i class="fab fa-twitter"></i> <span>Twitter</span>
+            </button>
+            <button class="share-option" data-platform="linkedin" data-url="${url}" data-text="${text}">
+              <i class="fab fa-linkedin-in"></i> <span>LinkedIn</span>
+            </button>
+            <button class="share-option" data-platform="whatsapp" data-url="${url}" data-text="${text}">
+              <i class="fab fa-whatsapp"></i> <span>WhatsApp</span>
+            </button>
+            <button class="share-option" data-platform="email" data-url="${url}" data-text="${text}" data-title="${encodeURIComponent(title)}">
+              <i class="fas fa-envelope"></i> <span>Email</span>
+            </button>
+            <button class="share-option copy-link-option" data-url="${url}">
+              <i class="fas fa-link"></i> <span>Copy Link</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    `;
+    return modal;
+  }
+
+  function setupModalHandlers(modal, shareType, itemId) {
+    const closeBtn = modal.querySelector('.share-modal-close');
+    closeBtn.addEventListener('click', () => document.body.removeChild(modal));
+
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) {
+        document.body.removeChild(modal);
+      }
+    });
+
+    const shareOptions = modal.querySelectorAll('.share-option');
+    shareOptions.forEach(option => {
+      option.addEventListener('click', (e) => {
+        e.preventDefault();
+        const platform = option.dataset.platform;
+        const url = option.dataset.url;
+        const text = option.dataset.text;
+        const title = option.dataset.title;
+
+        if (platform === 'copy-link-option') {
+          navigator.clipboard.writeText(url).then(() => {
+            showCopyFeedback(option, 'Copied!');
+          }).catch(() => {
+            const textArea = document.createElement('textarea');
+            textArea.value = url;
+            document.body.appendChild(textArea);
+            textArea.select();
+            document.execCommand('copy');
+            document.body.removeChild(textArea);
+            showCopyFeedback(option, 'Copied!');
+          });
+          return;
+        }
+
+        let shareUrl = '';
+        switch (platform) {
+          case 'facebook':
+            shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`;
+            break;
+          case 'twitter':
+            shareUrl = `https://twitter.com/intent/tweet?url=${encodeURIComponent(url)}&text=${text}`;
+            break;
+          case 'linkedin':
+            shareUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(url)}`;
+            break;
+          case 'whatsapp':
+            shareUrl = `https://wa.me/?text=${text}%20${encodeURIComponent(url)}`;
+            break;
+          case 'email':
+            shareUrl = `mailto:?subject=${title}&body=${text}%20${encodeURIComponent(url)}`;
+            break;
+        }
+
+        if (shareUrl) {
+          const width = 600, height = 400;
+          const left = (window.innerWidth - width) / 2;
+          const top = (window.innerHeight - height) / 2;
+          window.open(shareUrl, 'share-dialog', `width=${width},height=${height},left=${left},top=${top},scrollbars=yes,resizable=yes`);
+        }
+
+        document.body.removeChild(modal);
+
+        if (typeof gtag !== 'undefined') {
+          gtag('event', 'share', {
+            method: platform,
+            content_type: shareType,
+            item_id: itemId
+          });
+        }
+      });
+    });
+  }
+
+  // Initialize features
+  displaySocialProof();
 });
