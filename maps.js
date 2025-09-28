@@ -37,6 +37,12 @@ function initMap() {
         return;
     }
 
+    // Check if map is already initialized
+    if (mapContainer._leaflet_id) {
+        console.log('Map already initialized');
+        return;
+    }
+
     // Eswatini coordinates (centered)
     const eswatiniCenter = [-26.5, 31.5];
 

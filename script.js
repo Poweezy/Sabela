@@ -28,6 +28,8 @@ document.addEventListener('DOMContentLoaded', function() {
     initWeatherDashboard();
     initVolunteerForm();
     initContactForm();
+    initLoginForm();
+    initRegisterForm();
     initHeaderScroll();
     initScrollButtons();
     initResourceSearch();
@@ -1567,45 +1569,176 @@ function initCarbonCalculator() {
     });
 }
 
-// Carbon Calculator Functionality
-function initCarbonCalculator() {
-    const calculateBtn = document.getElementById('calculateCarbon');
-    const resultsDiv = document.getElementById('carbonResults');
-    const carbonValue = document.getElementById('carbonValue');
-    const recommendations = document.getElementById('recommendations');
-    
-    if (!calculateBtn) return;
-    
-    calculateBtn.addEventListener('click', function() {
-        const electricity = parseFloat(document.getElementById('electricity').value) || 0;
-        const transport = parseFloat(document.getElementById('transport').value) || 0;
-        const waste = parseFloat(document.getElementById('waste').value) || 0;
-        
-        // Carbon footprint calculation (kg CO2 per month)
-        const electricityCarbon = electricity * 0.5;
-        const transportCarbon = transport * 0.2;
-        const wasteCarbon = waste * 4 * 0.5;
-        
-        const totalCarbon = Math.round(electricityCarbon + transportCarbon + wasteCarbon);
-        carbonValue.textContent = totalCarbon;
-        
-        // Generate recommendations
-        let tips = [];
-        if (electricityCarbon > 150) tips.push('⚡ Switch to LED bulbs and solar power');
-        if (transportCarbon > 200) tips.push('🚗 Use public transport or electric vehicles');
-        if (wasteCarbon > 40) tips.push('♻️ Compost organic waste and recycle');
-        if (totalCarbon < 300) tips.push('🌱 Excellent! Your footprint is below average');
-        
-        recommendations.innerHTML = tips.map(tip => `<p>${tip}</p>`).join('');
-        resultsDiv.style.display = 'block';
-        resultsDiv.scrollIntoView({ behavior: 'smooth' });
-        
-        if (typeof gtag !== 'undefined') {
-            gtag('event', 'carbon_calculator_used', {
-                event_category: 'engagement',
-                carbon_footprint: totalCarbon
-            });
+// Login Form Functionality
+function initLoginForm() {
+    const loginForm = document.getElementById('loginForm');
+    if (!loginForm) return;
+
+    const formMessage = loginForm.querySelector('.form-message');
+    const emailInput = loginForm.querySelector('input[name="email"]');
+    const passwordInput = loginForm.querySelector('input[name="password"]');
+    const submitButton = loginForm.querySelector('button[type="submit"]');
+
+    loginForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+
+        // Reset previous states
+        formMessage.classList.remove('show', 'success', 'error');
+        formMessage.textContent = '';
+        [emailInput, passwordInput].forEach(input => {
+            input.classList.remove('is-valid', 'is-invalid');
+        });
+
+        const email = emailInput.value.trim();
+        const password = passwordInput.value.trim();
+        let errors = [];
+
+        // Validation
+        if (!email) {
+            errors.push('Email is required.');
+            emailInput.classList.add('is-invalid');
+        } else if (!isValidEmail(email)) {
+            errors.push('Please enter a valid email address.');
+            emailInput.classList.add('is-invalid');
+        } else {
+            emailInput.classList.add('is-valid');
         }
+
+        if (!password) {
+            errors.push('Password is required.');
+            passwordInput.classList.add('is-invalid');
+        } else if (password !== 'password') {
+            errors.push('Invalid password.');
+            passwordInput.classList.add('is-invalid');
+        } else {
+            passwordInput.classList.add('is-valid');
+        }
+
+        if (errors.length > 0) {
+            formMessage.textContent = errors.join(' ');
+            formMessage.classList.add('error', 'show');
+            return;
+        }
+
+        // Simulate login
+        const originalButtonText = submitButton.textContent;
+        submitButton.textContent = 'Logging in...';
+        submitButton.disabled = true;
+
+        setTimeout(() => {
+            formMessage.textContent = 'Login successful! Welcome back.';
+            formMessage.classList.add('success', 'show');
+
+            loginForm.reset();
+            [emailInput, passwordInput].forEach(input => {
+                input.classList.remove('is-valid');
+            });
+
+            submitButton.textContent = originalButtonText;
+            submitButton.disabled = false;
+
+            // Hide the success message after 5 seconds
+            setTimeout(() => {
+                formMessage.classList.remove('show');
+            }, 5000);
+        }, 2000);
+    });
+}
+
+// Register Form Functionality
+function initRegisterForm() {
+    const registerForm = document.getElementById('registerForm');
+    if (!registerForm) return;
+
+    const formMessage = registerForm.querySelector('.form-message');
+    const nameInput = registerForm.querySelector('input[name="name"]');
+    const emailInput = registerForm.querySelector('input[name="email"]');
+    const passwordInput = registerForm.querySelector('input[name="password"]');
+    const confirmPasswordInput = registerForm.querySelector('input[name="confirmPassword"]');
+    const submitButton = registerForm.querySelector('button[type="submit"]');
+
+    registerForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+
+        // Reset previous states
+        formMessage.classList.remove('show', 'success', 'error');
+        formMessage.textContent = '';
+        [nameInput, emailInput, passwordInput, confirmPasswordInput].forEach(input => {
+            input.classList.remove('is-valid', 'is-invalid');
+        });
+
+        const name = nameInput.value.trim();
+        const email = emailInput.value.trim();
+        const password = passwordInput.value.trim();
+        const confirmPassword = confirmPasswordInput.value.trim();
+        let errors = [];
+
+        // Validation
+        if (!name) {
+            errors.push('Name is required.');
+            nameInput.classList.add('is-invalid');
+        } else {
+            nameInput.classList.add('is-valid');
+        }
+
+        if (!email) {
+            errors.push('Email is required.');
+            emailInput.classList.add('is-invalid');
+        } else if (!isValidEmail(email)) {
+            errors.push('Please enter a valid email address.');
+            emailInput.classList.add('is-invalid');
+        } else {
+            emailInput.classList.add('is-valid');
+        }
+
+        if (!password) {
+            errors.push('Password is required.');
+            passwordInput.classList.add('is-invalid');
+        } else if (password.length < 6) {
+            errors.push('Password must be at least 6 characters.');
+            passwordInput.classList.add('is-invalid');
+        } else {
+            passwordInput.classList.add('is-valid');
+        }
+
+        if (!confirmPassword) {
+            errors.push('Please confirm your password.');
+            confirmPasswordInput.classList.add('is-invalid');
+        } else if (password !== confirmPassword) {
+            errors.push('Passwords do not match.');
+            confirmPasswordInput.classList.add('is-invalid');
+        } else {
+            confirmPasswordInput.classList.add('is-valid');
+        }
+
+        if (errors.length > 0) {
+            formMessage.textContent = errors.join(' ');
+            formMessage.classList.add('error', 'show');
+            return;
+        }
+
+        // Simulate registration
+        const originalButtonText = submitButton.textContent;
+        submitButton.textContent = 'Registering...';
+        submitButton.disabled = true;
+
+        setTimeout(() => {
+            formMessage.textContent = 'Registration successful! You can now log in.';
+            formMessage.classList.add('success', 'show');
+
+            registerForm.reset();
+            [nameInput, emailInput, passwordInput, confirmPasswordInput].forEach(input => {
+                input.classList.remove('is-valid');
+            });
+
+            submitButton.textContent = originalButtonText;
+            submitButton.disabled = false;
+
+            // Hide the success message after 5 seconds
+            setTimeout(() => {
+                formMessage.classList.remove('show');
+            }, 5000);
+        }, 2000);
     });
 }
 
