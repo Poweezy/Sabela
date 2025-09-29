@@ -7,24 +7,24 @@ describe('Accessibility Focus Indicators', () => {
     // Navigate to contact section
     cy.scrollTo('bottom');
 
-    // Focus on contact form inputs - specific to contact form
+    // Focus on contact form inputs - specific to contact form (dark background, uses rgb(31, 41, 55))
     cy.get('#contactForm input[name="name"]').focus();
-    cy.get('#contactForm input[name="name"]').should('have.css', 'outline-color', 'rgb(22, 163, 74)');
+    cy.get('#contactForm input[name="name"]').should('have.css', 'outline-color', 'rgb(31, 41, 55)');
 
     cy.get('#contactForm input[name="email"]').focus();
-    cy.get('#contactForm input[name="email"]').should('have.css', 'outline-color', 'rgb(22, 163, 74)');
+    cy.get('#contactForm input[name="email"]').should('have.css', 'outline-color', 'rgb(31, 41, 55)');
 
     cy.get('#contactForm textarea[name="message"]').focus();
-    cy.get('#contactForm textarea[name="message"]').should('have.css', 'outline-color', 'rgb(22, 163, 74)');
+    cy.get('#contactForm textarea[name="message"]').should('have.css', 'outline-color', 'rgb(31, 41, 55)');
 
     cy.get('#contactForm button[type="submit"]').focus();
-    cy.get('#contactForm button[type="submit"]').should('have.css', 'outline-color', 'rgb(22, 163, 74)');
+    cy.get('#contactForm button[type="submit"]').should('have.css', 'outline-color', 'rgb(31, 41, 55)');
   });
   it('should have proper focus indicators on newsletter form', () => {
     // Navigate to newsletter section
     cy.get('#newsletterForm').scrollIntoView();
 
-    // Focus on newsletter input
+    // Focus on newsletter input (light background, uses var(--primary-color))
     cy.get('#newsletterEmail').focus();
     cy.get('#newsletterEmail').should('have.css', 'outline-color', 'rgb(22, 163, 74)');
 
@@ -68,13 +68,13 @@ describe('Accessibility Focus Indicators', () => {
 
   it('should have no visual regressions in form styling', () => {
     // Check contact form styling - contact form has dark background with white borders
-    cy.get('.contact-form input').should('have.css', 'border', '1px solid rgba(255, 255, 255, 0.2)');
-    cy.get('.contact-form textarea').should('have.css', 'border', '1px solid rgba(255, 255, 255, 0.2)');
+    cy.get('.kuleszo-contact-form input').should('have.css', 'border', '1px solid rgba(255, 255, 255, 0.2)');
+    cy.get('.kuleszo-contact-form textarea').should('have.css', 'border', '1px solid rgba(255, 255, 255, 0.2)');
 
     // Check newsletter form - newsletter is in light section
     cy.get('#newsletterEmail').should('have.css', 'border', '2px solid rgb(229, 231, 235)');
 
     // Ensure focus doesn't change other styles unexpectedly
-    cy.get('.contact-form input:focus-visible').should('have.css', 'outline-color', 'rgb(22, 163, 74)');
+    cy.get('.kuleszo-contact-form input:focus-visible').should('have.css', 'outline-color', 'rgb(22, 163, 74)');
   });
 });

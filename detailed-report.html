@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detailed Report - The Climate Watch</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <h1>The Climate Watch</h1>
+                </div>
+                <nav class="nav">
+                    <button class="btn btn-secondary" onclick="window.location.href='index.html'">Back to Dashboard</button>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section id="detailed-report" class="section">
+            <div class="container">
+                <h2>Detailed report</h2>
+                <p>Comprehensive view of all user data with advanced filtering and export capabilities.</p>
+                <div class="dashboard-actions">
+                    <button class="btn btn-primary" id="import-btn">Import</button>
+                    <button class="btn btn-secondary" id="export-btn">Export</button>
+                </div>
+                <div class="table-container">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Role</th>
+                                <th>Status</th>
+                                <th>Date</th>
+                            </tr>
+                        </thead>
+                        <tbody id="table-body">
+                            <!-- Table data will be populated by JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+    <script>
+        // Import/Export functionality for detailed report
+        document.addEventListener('DOMContentLoaded', function() {
+            const importBtn = document.getElementById('import-btn');
+            const exportBtn = document.getElementById('export-btn');
+            const tableBody = document.getElementById('table-body');
+
+            // Import data from localStorage (from dashboard overview)
+            importBtn.addEventListener('click', function() {
+                const overviewData = localStorage.getItem('overviewData');
+                if (overviewData) {
+                    const data = JSON.parse(overviewData);
+                    // Generate sample table data based on overview stats
+                    const sampleData = generateSampleData(data);
+                    populateTable(sampleData);
+                } else {
+                    alert('No overview data found. Please visit the dashboard first.');
+                }
+            });
+
+            // Export table data to localStorage and navigate back
+            exportBtn.addEventListener('click', function() {
+                const tableData = extractTableData();
+                localStorage.setItem('tableData', JSON.stringify(tableData));
+                window.location.href = 'index.html';
+            });
+
+            // Load any existing table data on page load
+            const existingData = localStorage.getItem('tableData');
+            if (existingData) {
+                const data = JSON.parse(existingData);
+                populateTable(data);
+            }
+
+            function generateSampleData(overview) {
+                const data = [];
+                const totalUsers = overview.totalUsers || 0;
+                const activeUsers = overview.activeUsers || 0;
+                const inactiveUsers = overview.inactiveUsers || 0;
+                const newThisMonth = overview.newThisMonth || 0;
+
+                // Generate sample rows
+                for (let i = 0; i < totalUsers; i++) {
+                    const isActive = i < activeUsers;
+                    const isNew = i < newThisMonth;
+                    const date = isNew ? new Date().toISOString().split('T')[0] : getRandomDate();
+                    data.push({
+                        name: `User ${i + 1}`,
+                        email: `user${i + 1}@example.com`,
+                        role: getRandomRole(),
+                        status: isActive ? 'Active' : 'Inactive',
+                        date: date
+                    });
+                }
+                return data;
+            }
+
+            function getRandomRole() {
+                const roles = ['User', 'Admin', 'Moderator'];
+                return roles[Math.floor(Math.random() * roles.length)];
+            }
+
+            function getRandomDate() {
+                const start = new Date(2023, 0, 1);
+                const end = new Date();
+                const randomDate = new Date(start.getTime() + Math.random() * (end.getTime() - start.getTime()));
+                return randomDate.toISOString().split('T')[0];
+            }
+
+            function populateTable(data) {
+                tableBody.innerHTML = '';
+                data.forEach(row => {
+                    const tr = document.createElement('tr');
+                    tr.innerHTML = `
+                        <td>${row.name}</td>
+                        <td>${row.email}</td>
+                        <td>${row.role}</td>
+                        <td>${row.status}</td>
+                        <td>${row.date}</td>
+                    `;
+                    tableBody.appendChild(tr);
+                });
+            }
+
+            function extractTableData() {
+                const rows = tableBody.querySelectorAll('tr');
+                const data = [];
+                rows.forEach(row => {
+                    const cells = row.querySelectorAll('td');
+                    if (cells.length >= 5) {
+                        data.push({
+                            name: cells[0].textContent,
+                            email: cells[1].textContent,
+                            role: cells[2].textContent,
+                            status: cells[3].textContent,
+                            date: cells[4].textContent
+                        });
+                    }
+                });
+                return data;
+            }
+        });
+    </script>
+</body>
+</html>
