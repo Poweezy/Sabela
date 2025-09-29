@@ -61,21 +61,21 @@ body.dark *:focus-visible,
 }
 
 :root {
-    --primary-color: #16a34a; /* Contrast 4.5:1 on white, AA compliant */
-    --primary-dark: #15803d;
-    --secondary-color: #10b981;
-    --accent-color: #06b6d4;
-    --text-primary: #1f2937; /* High contrast on white */
-    --text-secondary: #6b7280; /* 4.5:1 on white */
-    --text-light: #374151; /* WCAG AA compliant: ~7:1 contrast on white */
+    --primary-color: #059669; /* Muted green, AA compliant */
+    --primary-dark: #047857;
+    --secondary-color: #0d9488;
+    --accent-color: #0891b2;
+    --text-primary: #111827; /* Darker for better contrast */
+    --text-secondary: #374151; /* Improved contrast */
+    --text-light: #6b7280; /* Secondary text */
     --bg-primary: #ffffff;
-    --bg-secondary: #f9fafb;
-    --bg-accent: #f0fdf4;
-    --border-color: #e5e7eb;
-    --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
-    --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1);
-    --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1);
-    --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1);
+    --bg-secondary: #f8fafc;
+    --bg-accent: #f0f9ff;
+    --border-color: #e2e8f0;
+    --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.03);
+    --shadow-md: 0 2px 4px -1px rgb(0 0 0 / 0.06);
+    --shadow-lg: 0 4px 8px -2px rgb(0 0 0 / 0.08);
+    --shadow-xl: 0 8px 16px -4px rgb(0 0 0 / 0.1);
     /* WCAG AA compliant touch target size */
     --touch-target-min: 44px;
 }
@@ -110,20 +110,20 @@ body {
     padding: 0 1rem;
 }
 
-/* Header Styles - Enhanced Modern Design */
+/* Header Styles - Adrian Kuleszo Inspired Clean Design */
 .header {
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
     z-index: 1000;
-    background: rgba(15, 23, 42, 0.9);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border-bottom: 1px solid rgba(22, 163, 74, 0.2);
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    padding: 0.75rem 0;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    background: rgba(15, 23, 42, 0.95);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border-bottom: 1px solid rgba(22, 163, 74, 0.15);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    padding: 1rem 0;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.06);
 }
 
 .header.scrolled {

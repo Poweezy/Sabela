@@ -1,20 +1,34 @@
-# Accessibility Improvements Plan
+# UI/UX Improvements Plan Inspired by Adrian Kuleszo's Style
 
-## Steps to Complete
+## 1. Navigation Improvements
+- [x] Simplify dropdown menus with clearer hover/focus states
+- [x] Improve mobile menu toggle accessibility and animation
 
-### 1. Edit index.html for tabindex and aria-labels
-- [x] Add tabindex="0" to all interactive buttons (e.g., mobileMenuBtn, weather-filter buttons, map-control-btns, uploadBtn, share-btns, filter-btns, form buttons).
-- [x] Enhance aria-labels for icon-only buttons (e.g., weather filters: "Filter by all regions", map controls: "Zoom in map").
+## 2. Typography & Spacing Refinements
+- [x] Refine font sizes, line heights, and margins for better readability
+- [x] Increase whitespace between sections and elements
 
-### 2. Testing
-- [x] Launch browser and test tab navigation: Tab through elements to verify logical focus order on buttons and links.
-- [x] Check headings hierarchy with keyboard navigation or console logs.
-- [x] Verify no errors in console and proper aria-label announcements.
+## 3. Cards & Content Standardization
+- [x] Standardize card padding, borders, and shadows
+- [x] Enhance content hierarchy with consistent heading styles
 
-### 3. Finalization
-- [ ] Update TODO.md with completion status.
-- [ ] If issues found, iterate on edits.
+## 4. Animation Optimization
+- [x] Replace heavy animations with subtle micro-interactions
+- [x] Smooth transitions for modals, dropdowns, and buttons
 
-## Progress
-- User approved plan.
-- TODO.md created with steps.
+## 5. Accessibility Enhancements
+- [x] Improve keyboard navigation and focus outlines
+- [x] Add ARIA attributes where missing
+
+## 6. Forms & Modals Streamlining
+- [x] Streamline form validation and user feedback
+- [x] Simplify modal open/close logic and animations
+
+## 7. Color & Contrast Consistency
+- [x] Ensure consistent use of the updated color palette
+- [x] Verify contrast ratios for all text and UI elements
+
+## 8. Backend API Endpoints
+- [x] Create API endpoint for volunteer signup
+- [x] Create API endpoint for newsletter signup
+- [x] Set up Next.js backend project structure

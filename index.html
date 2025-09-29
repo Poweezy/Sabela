@@ -123,9 +123,9 @@
                     </div>
                 </a>
                 
-                <ul class="nav-links" id="navLinks">
-                    <li class="nav-item" role="none">
-                        <a href="#home" class="nav-link active" role="menuitem" data-i18n="nav.home">
+    <ul class="nav-links" id="navLinks" role="menubar">
+                    <li class="nav-item">
+                        <a href="#home" class="nav-link active" data-i18n="nav.home">
                             <i data-lucide="home" style="width: 16px; height: 16px;"></i>
                             Home
                         </a>
@@ -135,20 +135,20 @@
                             <i data-lucide="leaf" style="width: 16px; height: 16px;"></i>
                             Our Work
                         </a>
-                        <div class="dropdown">
-                            <a href="#what-we-do" class="dropdown-item">
+                        <div class="dropdown" role="menu">
+                            <a href="#what-we-do" class="dropdown-item" role="menuitem">
                                 <i data-lucide="tree-pine"></i>
                                 Adaptation & Resilience
                             </a>
-                            <a href="#what-we-do" class="dropdown-item">
+                            <a href="#what-we-do" class="dropdown-item" role="menuitem">
                                 <i data-lucide="users"></i>
                                 Sustainable Livelihoods
                             </a>
-                            <a href="#what-we-do" class="dropdown-item">
+                            <a href="#what-we-do" class="dropdown-item" role="menuitem">
                                 <i data-lucide="zap"></i>
                                 Clean Energy
                             </a>
-                            <a href="#what-we-do" class="dropdown-item">
+                            <a href="#what-we-do" class="dropdown-item" role="menuitem">
                                 <i data-lucide="book-open"></i>
                                 Education & Awareness
                             </a>
@@ -171,20 +171,20 @@
                             <i data-lucide="heart" style="width: 16px; height: 16px;"></i>
                             Get Involved
                         </a>
-                        <div class="dropdown">
-                            <a href="#get-involved" class="dropdown-item">
+                        <div class="dropdown" role="menu">
+                            <a href="#get-involved" class="dropdown-item" role="menuitem">
                                 <i data-lucide="user-plus"></i>
                                 Volunteer
                             </a>
-                            <a href="#get-involved" class="dropdown-item">
+                            <a href="#get-involved" class="dropdown-item" role="menuitem">
                                 <i data-lucide="handshake"></i>
                                 Partner With Us
                             </a>
-                            <a href="#events" class="dropdown-item">
+                            <a href="#events" class="dropdown-item" role="menuitem">
                                 <i data-lucide="calendar"></i>
                                 Events
                             </a>
-                            <a href="#newsletter" class="dropdown-item">
+                            <a href="#newsletter" class="dropdown-item" role="menuitem">
                                 <i data-lucide="mail"></i>
                                 Newsletter
                             </a>
@@ -281,6 +281,13 @@
             <span>Scroll to explore</span>
         </div>
     </section>
+
+    <!-- Climate Action Sidebar -->
+    <aside class="sidebar" aria-label="Climate Action Sidebar" role="complementary">
+        <h3>Climate Action Tips</h3>
+        <p>Small changes can make a big difference in fighting climate change. Join our community efforts today!</p>
+        <img src="https://images.unsplash.com/photo-1569163139394-de44cb5894c6?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Climate Action - Community planting trees" loading="lazy">
+    </aside>
 
     <!-- Dashboard Section -->
     <section id="dashboard" class="section dashboard" aria-label="Dashboard Section">
