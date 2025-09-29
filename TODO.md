@@ -32,3 +32,4 @@
 - [x] Create API endpoint for volunteer signup
 - [x] Create API endpoint for newsletter signup
 - [x] Set up Next.js backend project structure
+- [x] Integrate frontend forms with backend API endpoints

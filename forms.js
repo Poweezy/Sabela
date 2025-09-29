@@ -226,21 +226,33 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    // Simulate API call (replace with actual implementation)
+    // Make actual API call to backend
     async function simulateApiCall(formData, endpoint) {
-        // Simulate network delay
-        await new Promise(resolve => setTimeout(resolve, 1500));
+        const url = `http://localhost:3000${endpoint}`; // Adjust port if backend runs on different port
 
-        // Simulate success/failure randomly (90% success rate)
-        const success = Math.random() > 0.1;
+        const data = {};
+        for (let [key, value] of formData.entries()) {
+            data[key] = value;
+        }
 
-        if (success) {
-            return {
-                success: true,
-                message: 'Form submitted successfully'
-            };
-        } else {
-            throw new Error('Server error. Please try again later.');
+        try {
+            const response = await fetch(url, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data),
+            });
+
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+
+            const result = await response.json();
+            return result;
+        } catch (error) {
+            console.error('API call failed:', error);
+            throw new Error('Failed to submit form. Please try again later.');
         }
     }
 
